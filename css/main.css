@@ -1,0 +1,8 @@
+body {
+	font-family: Arial, Verdana, sans-serif;
+}
+
+canvas {
+	width:448px;
+	height:448px;
+}
