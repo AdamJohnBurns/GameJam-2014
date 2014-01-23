@@ -6,9 +6,11 @@ GJ.Sound = (function () {
 
 	var playTestSound = function ( ) {
 		sound.on('load', function ( ) {
-			console.log("audio file loaded!");
 			sound.play();
 		});
+		if("_loaded" in sound) {
+			console.log("sound is loaded");
+		}
 	};
 
 
