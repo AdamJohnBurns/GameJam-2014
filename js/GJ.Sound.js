@@ -1,32 +1,20 @@
 GJ.Sound = (function () {
 
-	var i,
-		buttonStates = [];
+	var sound = new Howl({
+		urls: ['audio/placeholder_01.wav'],
+	});
 
-
-
-	var setButtonState = function (keycode, pressed) {
-
-		i = this.buttonStates.length;
-		while (--i) {
-			if (this.buttonStates[i].keycode === keycode) {
-				this.buttonStates[i].pressed = pressed;
-				break;
-			}
-		}
-
-		if (i < 0) {
-			this.buttonStates.push({
-				keycode: keycode,
-				pressed: pressed
-			});
-		}
+	var playTestSound = function ( ) {
+		sound.on('load', function ( ) {
+			console.log("audio file loaded!");
+			sound.play();
+		});
 	};
 
 
 	return {
 		init: function () {
-			//
+			playTestSound();
 		},
 
 
