@@ -1,5 +1,4 @@
 var GJ = (function () {
-
 	var TARGET_FPS		= 60,
 		CANVAS_ID		= 'myCanvas',
 
