@@ -1,14 +1,17 @@
 GJ.Sound = (function () {
 
-	var sound = new Howl({
+	var sound1 = new Howl({
 		urls: ['audio/placeholder_01.wav'],
+	});
+	var sound2 = new Howl({
+		urls: ['audio/placeholder_02.wav'],
 	});
 
 	var playTestSound = function ( ) {
-		sound.on('load', function ( ) {
-			sound.play();
+		sound1.on('load', function ( ) {
+			sound1.play();
 		});
-		if("_loaded" in sound) {
+		if("_loaded" in sound1 && sound2) {
 			console.log("sound is loaded");
 		}
 	};

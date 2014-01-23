@@ -19,7 +19,7 @@ var GJ = (function () {
 
 	return {
 		start: function () {
-			GJ.Input.init();
+			//GJ.Input.init();
 			GJ.Assets.init();
 			GJ.Sound.init();
 
