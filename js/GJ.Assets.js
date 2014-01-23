@@ -1,19 +1,24 @@
 GJ.Assets = (function () {
 
-	var i,
-		buttonStates = [];
+	var loadPlayerAssets = function () {
+	};
 
+	var loadWorldAssets = function () {
+	};
 
-
-	var setButtonState = function (keycode, pressed) {
-
-
+	var loadActorAssets = function () {
 	};
 
 
 	return {
 		init: function () {
+			loadPlayerAssets();
+			loadWorldAssets();
+			loadActorAssets();
+		},
 
+		get: function (asset) {
+			return "something";
 		}
 	};
 }());
