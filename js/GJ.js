@@ -21,6 +21,7 @@ var GJ = (function () {
 		start: function () {
 			GJ.Input.init();
 			GJ.Assets.init();
+			GJ.Sound.init();
 
 			stage = new createjs.Stage(CANVAS_ID);
 
