@@ -1,4 +1,6 @@
-var Actor = function (world, stage) {
-	this.world = world;
-	this.stage = stage;
+var Actor = function () {
+};
+
+
+Actor.prototype.update = function () {
 };
