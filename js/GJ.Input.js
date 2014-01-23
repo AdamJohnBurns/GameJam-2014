@@ -9,18 +9,25 @@
 
 
 GJ.Input = (function () {
+	'use strict';
+
+
+
+	// Private variables //////////////////////////////////////////
 
 	var i,
 		buttonStates = [];
 
 
 
+	// Private methods ////////////////////////////////////////////
+	
 	var setButtonState = function (keycode, pressed) {
 
-		i = this.buttonStates.length;
+		i = buttonStates.length;
 		while (--i) {
-			if (this.buttonStates[i].keycode === keycode) {
-				this.buttonStates[i].pressed = pressed;
+			if (buttonStates[i].keycode === keycode) {
+				buttonStates[i].pressed = pressed;
 				break;
 			}
 		}
@@ -34,15 +41,18 @@ GJ.Input = (function () {
 	};
 
 
+
+	// Public methods /////////////////////////////////////////////
+	
 	return {
 		init: function () {
 			$(document).on('keydown', function (event) {
 				setButtonState(event.keyCode, false);
-			};
+			});
 
-			$(document).on('keyup', = function (event) {
+			$(document).on('keyup', function (event) {
 				setButtonState(event.keyCode, true);
-			};
+			});
 		},
 
 

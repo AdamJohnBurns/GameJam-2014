@@ -1,6 +1,6 @@
-Map = function () {
+World = function () {
 };
 
 
-Map.prototype.update = function () {
+World.prototype.update = function () {
 };

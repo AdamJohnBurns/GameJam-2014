@@ -1,4 +1,7 @@
 var GJ = (function () {
+	'use strict';
+
+	// Private variables //////////////////////////////////////////
 
 	var TARGET_FPS		= 60,
 		CANVAS_ID		= 'myCanvas',
@@ -17,6 +20,13 @@ var GJ = (function () {
 		players;
 
 
+
+	// Private methods ////////////////////////////////////////////
+
+
+
+	// Public methods /////////////////////////////////////////////
+	
 	return {
 		start: function () {
 			//GJ.Input.init();
@@ -27,7 +37,7 @@ var GJ = (function () {
 
 			worlds = [];
 			i = NUM_WORLDS;
-			while (--i) {
+			for (i = 0; i < NUM_WORLDS; i++) {
 				worlds.push(new World());
 			}
 
@@ -35,7 +45,7 @@ var GJ = (function () {
 
 			players = [];
 			i = NUM_PLAYERS
-			while (--i) {
+			for (i = 0; i < NUM_PLAYERS; i++) {
 				players.push(new Player(13));
 			}
 
@@ -48,7 +58,7 @@ var GJ = (function () {
 		update: function (evt) {
 			event = evt;
 
-			map.update();
+			worlds[currentWorld].update();
 
 			i = players.length;
 			while (--i) {

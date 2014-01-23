@@ -1,5 +1,16 @@
 GJ.Sound = (function () {
+	'use strict';
 
+	// Private variables //////////////////////////////////////////
+
+
+
+	// Private methods ////////////////////////////////////////////
+
+
+
+	// Public methods /////////////////////////////////////////////
+	
 	var sound1 = new Howl({
 		urls: ['audio/placeholder_01.wav'],
 	});
