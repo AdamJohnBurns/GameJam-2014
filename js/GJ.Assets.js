@@ -11,7 +11,8 @@ GJ.Assets = (function () {
 
 	var loadQueued = function () {
 		queue.loadManifest([
-			{id: 'sprite1', src:'img/sprite.jpg'}
+			{id: 'sprite1', src:'img/sprite.jpg'},
+			{id: 'placeholder_01', src:'audio/placeholderDial.ogg', data: 10}
 		]);
 	};
 
@@ -22,6 +23,7 @@ GJ.Assets = (function () {
 	return {
 		init: function () {
 			queue = new createjs.LoadQueue(false);
+			createjs.Sound.alternateExtensions = ["m4a"]; // Audio: load m4a files in safari instead
 			queue.installPlugin(createjs.Sound);
 			queue.addEventListener("complete", GJ.assetsReady); // add this
 
