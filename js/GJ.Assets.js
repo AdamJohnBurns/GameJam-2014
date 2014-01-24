@@ -8,29 +8,26 @@ GJ.Assets = (function () {
 
 
 	// Private methods ////////////////////////////////////////////
-	
-	var loadQueued = function () {
 
-		
+	var loadQueued = function () {
 		queue.loadManifest([
-			{id: 'bg', src:'images/bg.jpg'},			
-			{id: 'guitar-1', src:'images/guitar-1.png'}
+			{id: 'sprite1', src:'img/sprite.jpg'}
 		]);
 	};
 
 
 
 	// Public methods /////////////////////////////////////////////
-	
+
 	return {
 		init: function () {
 			queue = new createjs.LoadQueue(false);
 			queue.installPlugin(createjs.Sound);
-			// queue.addEventListener("complete", GJ.runGame); // add this
-			
+			queue.addEventListener("complete", GJ.assetsReady); // add this
+
 			loadQueued();
 		},
-		
+
 		get: function (id) {
 			return queue.getResult(id);
 		}

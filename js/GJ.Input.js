@@ -21,19 +21,18 @@ GJ.Input = (function () {
 
 
 	// Private methods ////////////////////////////////////////////
-	
+
 	var setButtonState = function (keycode, pressed) {
 
-		i = buttonStates.length;
-		while (--i) {
+		for(i = 0; i < buttonStates.length; i++) {
 			if (buttonStates[i].keycode === keycode) {
 				buttonStates[i].pressed = pressed;
 				break;
 			}
 		}
 
-		if (i < 0) {
-			this.buttonStates.push({
+		if (i >= buttonStates.length) {
+			buttonStates.push({
 				keycode: keycode,
 				pressed: pressed
 			});
@@ -43,7 +42,7 @@ GJ.Input = (function () {
 
 
 	// Public methods /////////////////////////////////////////////
-	
+
 	return {
 		init: function () {
 			$(document).on('keydown', function (event) {
@@ -60,10 +59,9 @@ GJ.Input = (function () {
 			var i,
 				isPressed = false;
 
-			i = this.buttonStates.length;
-			while (--i) {
-				if (this.buttonStates[i].keycode === keycode) {
-					isPressed = this.buttonStates[i].pressed;
+			for (i = 0; i < buttonStates.length; i++) {
+				if (buttonStates[i].keycode === keycode) {
+					isPressed = buttonStates[i].pressed;
 					break;
 				}
 			}

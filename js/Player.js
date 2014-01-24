@@ -19,6 +19,7 @@ Player.prototype.update = function () {
 
 Player.prototype.handleInput = function () {
 	if (GJ.Input.isPressed(this.forwardKey)) {
+		console.log('forward');
 		this.moveForward();
 	}
 };

@@ -26,17 +26,19 @@ var GJ = (function () {
 
 
 	// Public methods /////////////////////////////////////////////
-	
+
 	return {
 		start: function () {
-			//GJ.Input.init();
+			GJ.Input.init();
 			GJ.Assets.init();
 			GJ.Sound.init();
+		},
 
+
+		assetsReady: function () {
 			stage = new createjs.Stage(CANVAS_ID);
 
 			worlds = [];
-			i = NUM_WORLDS;
 			for (i = 0; i < NUM_WORLDS; i++) {
 				worlds.push(new World());
 			}
@@ -44,9 +46,8 @@ var GJ = (function () {
 			actors = [];
 
 			players = [];
-			i = NUM_PLAYERS
 			for (i = 0; i < NUM_PLAYERS; i++) {
-				players.push(new Player(13));
+				players.push(new Player(38));
 			}
 
 			createjs.Ticker.setFPS(TARGET_FPS);
@@ -60,8 +61,7 @@ var GJ = (function () {
 
 			worlds[currentWorld].update();
 
-			i = players.length;
-			while (--i) {
+			for (i = 0; i < players.length; i++) {
 				players[i].update();
 			}
 
