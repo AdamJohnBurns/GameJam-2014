@@ -46,11 +46,11 @@ GJ.Input = (function () {
 	return {
 		init: function () {
 			$(document).on('keydown', function (event) {
-				setButtonState(event.keyCode, false);
+				setButtonState(event.keyCode, true);
 			});
 
 			$(document).on('keyup', function (event) {
-				setButtonState(event.keyCode, true);
+				setButtonState(event.keyCode, false);
 			});
 		},
 
