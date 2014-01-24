@@ -87,11 +87,7 @@ Player.prototype.handleInput = function () {
 
 Player.prototype.applyVelocity = function () {
 
-	if (this.accelX > this.maxMoveSpeed) {
-		this.accelX = this.maxMoveSpeed;
-	} else if (this.accelX < -this.maxMoveSpeed) {
-		this.accelX = -this.maxMoveSpeed;
-	}
+	
 
 	this.accelY += GJ.getCurrentWorld().getGravity();
 
@@ -115,6 +111,11 @@ Player.prototype.applyVelocity = function () {
 Player.prototype.moveLeft = function () {
 	// this.image.x -= this.moveSpeed;
 	this.accelX -= this.moveSpeed;
+
+	if (this.accelX < -this.maxMoveSpeed) {
+		this.accelX = -this.maxMoveSpeed;
+	}
+
 	this.direction = GJ.Directions.LEFT;
 	this.image.scaleX = 1;
 	// this.image.gotoAndPlay('run');
@@ -124,6 +125,11 @@ Player.prototype.moveLeft = function () {
 Player.prototype.moveRight = function () {
 	// this.image.x += this.moveSpeed;
 	this.accelX += this.moveSpeed;
+
+	if (this.accelX > this.maxMoveSpeed) {
+		this.accelX = this.maxMoveSpeed;
+	}
+
 	this.direction = GJ.Directions.RIGHT;
 	this.image.scaleX = -1;
 	// this.image.gotoAndPlay('run');
@@ -131,9 +137,9 @@ Player.prototype.moveRight = function () {
 
 
 Player.prototype.jump = function () {
-	if (this.image.y >= GJ.getCurrentWorld().getGroundHeight()) {
+	if (this.image.y + this.image.getBounds().height / 2 >= GJ.getCurrentWorld().getGroundHeight()) {
 		console.log('true');
-		this.accelY = 500;
+		this.accelY = -20;
 		// this.image.gotoAndPlay('jump');
 	} else {
 		console.log('false');

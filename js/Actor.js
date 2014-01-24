@@ -26,7 +26,7 @@ Actor.prototype.update = function () {
 	if (this.active) {
 		// this.image.rotation++;
 		if (this.state === GJ.States.MOVING_LEFT) {
-			if (this.image.x <= 150) {
+			if (this.image.x <= GJ.getCurrentWorld().getGoalX()) {
 				this.state = GJ.States.STEALING;
 			} else {
 				this.image.x -= 2;

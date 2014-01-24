@@ -47,7 +47,7 @@ var GJ = (function () {
 
 			worlds = [];
 			for (i = 0; i < NUM_WORLDS; i++) {
-				worlds.push(new World(100, 2));
+				worlds.push(new World(150, stage.canvas.height - 130, 100, 1));
 			}
 
 			actors = [];
