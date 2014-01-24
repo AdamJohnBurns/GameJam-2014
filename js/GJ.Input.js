@@ -1,11 +1,5 @@
 // Keycodes: http://unixpapa.com/js/key.html
-// 	ENTER: 13,
-// 	SPACEBAR: 32,
-// 	SHIFT: 16,
-// 	UP_ARROW: 38,
-// 	DOWN_ARROW: 40,
-// 	LEFT_ARROW: 37,
-// 	RIGHT_ARROW: 39
+// 	
 
 
 GJ.Input = (function () {
@@ -71,6 +65,17 @@ GJ.Input = (function () {
 
 
 		pressedOnce: function (keycode) {
+		},
+
+
+		Keycodes: {
+			ENTER: 13,
+			SPACEBAR: 32,
+			SHIFT: 16,
+			UP_ARROW: 38,
+			DOWN_ARROW: 40,
+			LEFT_ARROW: 37,
+			RIGHT_ARROW: 39
 		}
 	};
 }());

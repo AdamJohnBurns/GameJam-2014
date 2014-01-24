@@ -1,21 +1,28 @@
-var Player = function (forwardKey) {
+var Player = function (leftKey, rightKey, shootKey, moveSpeed) {
 	var blurFilter, bounds;
 
-	this.forwardKey = forwardKey;
+	this.leftKey = leftKey;
+	this.rightKey = rightKey;
+	this.shootKey = shootKey;
 
-	this.shape = new createjs.Shape();
-	this.shape.graphics.beginFill("red").drawCircle(0, 0, 50);
-	this.shape.x = 100;
-	this.shape.y = 100;
+	this.moveSpeed = moveSpeed;
+	this.direction = GJ.Directions.RIGHT;
 
-	this.blurFilter = new createjs.BlurFilter(5, 5, 1);
-	this.shape.filters = [this.blurFilter];
+	this.image = new createjs.Shape();
+	this.image.graphics.beginFill("red").drawCircle(0, 0, 50);
+	this.image.x = 100;
+	this.image.y = 100;
+
+	this.blurFilter = new createjs.BlurFilter(10, 10, 1);
+	this.image.filters = [this.blurFilter];
 	this.bounds = this.blurFilter.getBounds();
 // console.log(bounds.x, bounds.y, bounds.width, bounds.height);
 	// MUST use a cache when using filters
-	this.shape.cache(-50+this.bounds.x, -50+this.bounds.y, 100+this.bounds.width, 100+this.bounds.height);
+	this.image.cache(-50+this.bounds.x, -50+this.bounds.y, 100+this.bounds.width, 100+this.bounds.height);
 
-	GJ.getStage().addChild(this.shape);
+	GJ.getStage().addChild(this.image);
+
+	this.gun = new Gun(GJ.getTargetFPS(), 4, 0, this);
 };
 
 
@@ -23,18 +30,43 @@ Player.prototype.update = function () {
 	this.handleInput();
 	this.checkActorCollision();
 	this.checkWorldCollision();
+	this.gun.update();
+	this.checkBulletCollisions();
 };
 
 
 Player.prototype.handleInput = function () {
-	if (GJ.Input.isPressed(this.forwardKey)) {
-		this.moveForward();
+	if (GJ.Input.isPressed(this.leftKey)) {
+		this.moveLeft();
+	} else if (GJ.Input.isPressed(this.rightKey)) {
+		this.moveRight();
+	}
+
+	if (GJ.Input.isPressed(this.shootKey)) {
+		this.gun.fire();
 	}
 };
 
 
-Player.prototype.moveForward = function () {
-	this.shape.x += 5;//GJ.toDelta(5);
+Player.prototype.checkBulletCollisions = function () {
+	this.gun.checkBulletCollisions(GJ.getActors());
+};
+
+
+Player.prototype.moveLeft = function () {
+	this.image.x -= this.moveSpeed;
+	this.direction = GJ.Directions.LEFT;
+};
+
+
+Player.prototype.moveRight = function () {
+	this.image.x += this.moveSpeed;
+	this.direction = GJ.Directions.RIGHT;
+};
+
+
+Player.prototype.getImage = function () {
+	return this.image;
 };
 
 
@@ -42,8 +74,8 @@ Player.prototype.checkActorCollision = function (actor) {
 
 	if (typeof actor !== 'undefined') {
 		// can you check this with shapes!????
-		var intersection = ndgmr.checkRectCollision(this.shape, actor.getBitmap());
-		console.log(intersection);
+		var intersection = ndgmr.checkRectCollision(this.image, actor.getImage());
+		// console.log(intersection);
 	} else {
 		// console.error('checkActorCollision(): actor is undefined');
 	}

@@ -44,7 +44,7 @@ var GJ = (function () {
 
 			worlds = [];
 			for (i = 0; i < NUM_WORLDS; i++) {
-				worlds.push(new World());
+				worlds.push(new World(100, 3));
 			}
 
 			actors = [];
@@ -54,7 +54,7 @@ var GJ = (function () {
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
-				players.push(new Player(38));
+				players.push(new Player(GJ.Input.Keycodes.LEFT_ARROW, GJ.Input.Keycodes.RIGHT_ARROW, GJ.Input.Keycodes.SPACEBAR, 5));
 			}
 
 			createjs.Ticker.setFPS(TARGET_FPS);
@@ -74,10 +74,12 @@ var GJ = (function () {
 
 			for (i = 0; i < actors.length; i++) {
 				actors[i].update();
+				worlds[currentWorld].handleGravity(actors[i].getImage());
 			}
 
 			for (i = 0; i < players.length; i++) {
 				players[i].update();
+				worlds[currentWorld].handleGravity(players[i].getImage());
 
 				for (j = 0; j < actors.length; j++) {
 					players[i].checkActorCollision(actors[j]);
@@ -109,6 +111,10 @@ var GJ = (function () {
 			return Ticker.getMeasuredFPS();
 		},
 
+		getTargetFPS: function () {
+			return TARGET_FPS;
+		},
+
 
 		getStage: function () {
 			return stage;
@@ -117,6 +123,19 @@ var GJ = (function () {
 
 		getCurrentWorld: function () {
 			return worlds[currentWorld];
+		},
+
+		getActors: function () {
+			return actors;
+		},
+
+		States: {
+			MOVING_LEFT: 0
+		},
+
+		Directions: {
+			LEFT: 0,
+			RIGHT: 1
 		}
 	};
 })();
