@@ -9,33 +9,33 @@ GJ.Sound = (function () {
 	// Private methods ////////////////////////////////////////////
 
 	var init = function ( ) {
-		//GJ.Sound.loadSounds(console.log('sounds are loaded'));
-		var startUpPlaceholder = createjs.Sound.play("placeholder_01");
-		startUpPlaceholder.volume = 0;
-		startUpPlaceholder.pan = -1;
-
-		// fun with fades
-		createjs.Tween.get(startUpPlaceholder).to({volume:1}, 150).call(handleComplete);
-	    function handleComplete() {
-         console.log("fadein complete");
-    	}
 		
+		// Start music loops
+		var music_background = createjs.Sound.play("placeholder_02", {loop: 10});
+		music_background.volume = 0;
+		fadeVolume(music_background, 1, 2000);
 	},
 
-	audioEvent = function (gameData) {
-		var i,
-			isPressed = false;
-
-		return isPressed;
+	// Generic fading function
+	fadeVolume = function (soundInstance, targetVolume, fadeDuration) {
+		createjs.Tween.get(soundInstance).to({volume:targetVolume}, fadeDuration);
 	}
+
+
 
 	// Public methods /////////////////////////////////////////////
 
 	return {
 
 		init: init,
-		audioEvent: audioEvent,
-		//play: play,
+		playFootstep: function ( ) {
+			var randomInt = Math.floor((Math.random()*3)+1);
+			var footstep = createjs.Sound.play("placeholder_0" + randomInt, {loop: 50});
+		},
+
+		changeVolume: function ( ) {
+			playFootstep.footstep.volume = 0.5;
+		}
 
 	};
 }());

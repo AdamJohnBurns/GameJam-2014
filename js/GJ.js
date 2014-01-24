@@ -34,7 +34,6 @@ var GJ = (function () {
 		start: function () {
 			GJ.Input.init();
 			GJ.Assets.init();
-			GJ.Sound.init();
 		},
 
 
@@ -61,6 +60,8 @@ var GJ = (function () {
 			createjs.Ticker.setFPS(TARGET_FPS);
 			createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED; // if we do standard timing instead of this can we adjust fps to slow/fast up game?
 			createjs.Ticker.addEventListener('tick', GJ.update);
+
+			GJ.Sound.init(); // Start the audio engine
 		},
 
 
