@@ -26,7 +26,7 @@ Player.prototype.handleInput = function () {
 
 
 Player.prototype.moveForward = function () {
-	this.shape.x += GJ.toDelta(5);
+	this.shape.x += 5;//GJ.toDelta(5);
 };
 
 

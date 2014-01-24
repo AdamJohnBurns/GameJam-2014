@@ -7,6 +7,7 @@ var GJ = (function () {
 		CANVAS_ID		= 'myCanvas',
 
 		NUM_PLAYERS 	= 1,
+		NUM_ACTORS 		= 5,
 		NUM_WORLDS		= 1,
 
 		currentWorld 	= 0,
@@ -44,6 +45,9 @@ var GJ = (function () {
 			}
 
 			actors = [];
+			for (i = 0; i < NUM_ACTORS; i++) {
+				actors.push(new Actor());
+			}
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
@@ -60,6 +64,10 @@ var GJ = (function () {
 			event = evt;
 
 			worlds[currentWorld].update();
+
+			for (i = 0; i < actors.length; i++) {
+				actors[i].update();
+			}
 
 			for (i = 0; i < players.length; i++) {
 				players[i].update();
