@@ -110,6 +110,10 @@ var GJ = (function () {
 			return Ticker.getMeasuredFPS();
 		},
 
+		getTargetFPS: function () {
+			return TARGET_FPS;
+		},
+
 
 		getStage: function () {
 			return stage;
@@ -120,8 +124,17 @@ var GJ = (function () {
 			return worlds[currentWorld];
 		},
 
+		getActors: function () {
+			return actors;
+		},
+
 		States: {
 			MOVING_LEFT: 0
+		},
+
+		Directions: {
+			LEFT: 0,
+			RIGHT: 1
 		}
 	};
 })();
