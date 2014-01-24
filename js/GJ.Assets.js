@@ -13,8 +13,15 @@ GJ.Assets = (function () {
 		queue.loadManifest([
 			// {id: 'playerSS', src:'img/playerSS.png'},
 			{id: 'sprite1', src:'img/sprite.jpg'},
-			{id: 'placeholder_01', src:'audio/placeholderDial.ogg', data: 10},
-			{id: 'placeholder_02', src:'audio/placeholderDoctor.ogg', data: 10}
+			{id: 'amb_birdsong', src:'audio/amb_birdsong.ogg', data: 5},
+			{id: 'footstep_grass_01', src:'audio/footstep_grass_01.ogg', data: 5},
+			{id: 'footstep_grass_02', src:'audio/footstep_grass_02.ogg', data: 5},
+			{id: 'footstep_grass_03', src:'audio/footstep_grass_03.ogg', data: 5},
+			{id: 'footstep_grass_04', src:'audio/footstep_grass_04.ogg', data: 5},
+			{id: 'footstep_grass_05', src:'audio/footstep_grass_05.ogg', data: 5},
+			{id: 'footstep_grass_06', src:'audio/footstep_grass_06.ogg', data: 5},
+			{id: 'footstep_grass_07', src:'audio/footstep_grass_07.ogg', data: 5},
+			{id: 'footstep_grass_08', src:'audio/footstep_grass_08.ogg', data: 5}
 		]);
 	};
 
