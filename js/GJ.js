@@ -47,7 +47,7 @@ var GJ = (function () {
 
 			worlds = [];
 			for (i = 0; i < NUM_WORLDS; i++) {
-				worlds.push(new World(100, 3));
+				worlds.push(new World(100, 2));
 			}
 
 			actors = [];
@@ -57,7 +57,11 @@ var GJ = (function () {
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
-				players.push(new Player(GJ.Input.Keycodes.LEFT_ARROW, GJ.Input.Keycodes.RIGHT_ARROW, GJ.Input.Keycodes.SHIFT, GJ.Input.Keycodes.SPACEBAR, 2, 8, 1));
+				players.push(new Player(GJ.Input.Keycodes.LEFT_ARROW, 
+					GJ.Input.Keycodes.RIGHT_ARROW, 
+					GJ.Input.Keycodes.SHIFT, 
+					GJ.Input.Keycodes.SPACEBAR, 
+					2, 8, 1));
 			}
 
 			gemText = new createjs.Text('Gems :' + numGems, "20px Arial", "#ff7700"); 

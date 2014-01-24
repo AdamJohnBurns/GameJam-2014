@@ -17,14 +17,14 @@ World.prototype.update = function () {
 
 
 
-// World.prototype.getGroundHeight = function () {
-// 	return this.groundHeight;
-// };
+World.prototype.getGroundHeight = function () {
+	return this.groundHeight;
+};
 
 
-// World.prototype.getGravity = function () {
-// 	return this.gravity;
-// };
+World.prototype.getGravity = function () {
+	return this.gravity;
+};
 
 
 World.prototype.handleGravity = function (object) {
@@ -32,8 +32,9 @@ World.prototype.handleGravity = function (object) {
 	var height = object.getBounds().height / 2;
 
 	if (object.y + height < this.groundHeight) {
-		object.y += this.gravity;
+		// object.y += this.gravity;
 	} else {
 		object.y = this.groundHeight - height;
+		// object.
 	}
 };

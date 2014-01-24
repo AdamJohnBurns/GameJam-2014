@@ -62,6 +62,7 @@ Player.prototype.update = function () {
 	this.gun.checkBulletCollisions(GJ.getActors());
 
 	this.applyVelocity();
+	this.checkWorldCollision();
 };
 
 
@@ -85,21 +86,29 @@ Player.prototype.handleInput = function () {
 
 
 Player.prototype.applyVelocity = function () {
-	if (this.accelX > 0) {
-		if (this.accelX > this.maxMoveSpeed) {
-			this.accelX = this.maxMoveSpeed;
-		}
 
-		this.image.x += this.accelX;
-	} else if (this.accelX < 0) {
-		if (this.accelX < -this.maxMoveSpeed) {
-			this.accelX = -this.maxMoveSpeed;
-		}
-
-		this.image.x += this.accelX;
+	if (this.accelX > this.maxMoveSpeed) {
+		this.accelX = this.maxMoveSpeed;
+	} else if (this.accelX < -this.maxMoveSpeed) {
+		this.accelX = -this.maxMoveSpeed;
 	}
 
-	// this.image.y += this.accelY;
+	this.accelY += GJ.getCurrentWorld().getGravity();
+
+	// if (this.accelY > 0) {
+	// 	this.accelY -= GJ.getCurrentWorld().getGravity();
+
+	// 	if (this.accelY < 0) {
+	// 		this.accelY = 0;
+	// 	}		
+	// } else if (this.accelY < 0) {
+	// 	// if (this.accelY < -this.maxMoveSpeed) {
+	// 	// 	this.accelY = -this.maxMoveSpeed;
+	// 	// }
+	// }
+
+	this.image.x += this.accelX;
+	this.image.y += this.accelY;
 };
 
 
@@ -122,7 +131,13 @@ Player.prototype.moveRight = function () {
 
 
 Player.prototype.jump = function () {
-
+	if (this.image.y >= GJ.getCurrentWorld().getGroundHeight()) {
+		console.log('true');
+		this.accelY = 500;
+		// this.image.gotoAndPlay('jump');
+	} else {
+		console.log('false');
+	}
 };
 
 
@@ -164,5 +179,10 @@ Player.prototype.checkActorCollision = function (actor) {
 
 
 Player.prototype.checkWorldCollision = function () {
-	// GJ.getCurrentWorld();
+	var height = this.image.getBounds().height / 2;
+
+	if (this.image.y + height > this.groundHeight) {
+		this.image.y = GJ.getCurrentWorld().getGroundHeight();
+		this.accelY = 0;
+	}
 };
