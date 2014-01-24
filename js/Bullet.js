@@ -1,4 +1,6 @@
 var Bullet = function (x, y, velX, velY) {
+	this.active = true;
+
 	this.velX = velX;
 	this.velY = velY;
 
@@ -12,11 +14,19 @@ var Bullet = function (x, y, velX, velY) {
 
 
 Bullet.prototype.update = function () {
-	this.image.x += this.velX;
-	this.image.y += this.velY;
+	if (this.active) {
+		this.image.x += this.velX;
+		this.image.y += this.velY;
+	}
 };
 
 
 Bullet.prototype.checkCollision = function (object) {
-	// return GV.Collisions.boundingBox(this.image, object.image);
+	return ndgmr.checkRectCollision(this.image, object.image);
 };
+
+
+Bullet.prototype.kill = function () {
+	this.active = false;
+	GJ.getStage().removeChild(this.image);
+}

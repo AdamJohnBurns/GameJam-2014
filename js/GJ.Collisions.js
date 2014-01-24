@@ -17,7 +17,7 @@ GJ.Collisions = (function () {
 
 	return {
 		// taken from the ndgmr.Collision library
-		var boundingBox = function(rect1, rect2) {
+		boundingBox: function(rect1, rect2) {
 			// first we have to calculate the
 			// center of each rectangle and half of
 			// width and height

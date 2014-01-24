@@ -1,12 +1,39 @@
-var Player = function (leftKey, rightKey, shootKey, moveSpeed) {
-	var blurFilter, bounds;
+var Player = function (leftKey, rightKey, shootKey, jumpKey, moveSpeed, maxMoveSpeed, weight) {
+	var blurFilter, bounds, data;
 
 	this.leftKey = leftKey;
 	this.rightKey = rightKey;
 	this.shootKey = shootKey;
+	this.jumpKey = jumpKey;
+
+	this.accelX = 0;
+	this.accelY = 0;
 
 	this.moveSpeed = moveSpeed;
+	this.maxMoveSpeed = maxMoveSpeed;
+	this.weight = weight;
+
 	this.direction = GJ.Directions.RIGHT;
+
+	// data = new createjs.SpriteSheet({
+ //            'images': [GJ.Assets.get('playerSS')],
+ //            'frames': {
+ //            	'regX': 0, 
+ //            	'height': 292, 
+ //            	'count': 64, 
+ //            	'regY': 0, 
+ //            	'width': 165
+ //            },
+ //            // define two animations, run (loops, 1.5x speed) and jump (returns to run):
+ //            'animations': {
+ //            	'run': [0, 25, 'run', 1.5], 
+ //            	'jump': [26, 63, 'run'],
+ //            	'idle': [0, 0]
+ //            }
+ //    });
+ //    this.image = new createjs.Sprite(data, "run");
+ //    this.image.setTransform(-200, 90, 0.8, 0.8);
+ //    this.image.framerate = 30;
 
 	this.image = new createjs.Shape();
 	this.image.graphics.beginFill("red").drawCircle(0, 0, 50);
@@ -22,7 +49,8 @@ var Player = function (leftKey, rightKey, shootKey, moveSpeed) {
 
 	GJ.getStage().addChild(this.image);
 
-	this.gun = new Gun(GJ.getTargetFPS(), 4, 0, this);
+	this.gun = new Gun(GJ.getTargetFPS(), 6, 0, this);
+	this.gunType = GJ.Weapons.PLAYER_GUN;
 };
 
 
@@ -31,7 +59,9 @@ Player.prototype.update = function () {
 	this.checkActorCollision();
 	this.checkWorldCollision();
 	this.gun.update();
-	this.checkBulletCollisions();
+	this.gun.checkBulletCollisions(GJ.getActors());
+
+	this.applyVelocity();
 };
 
 
@@ -40,28 +70,78 @@ Player.prototype.handleInput = function () {
 		this.moveLeft();
 	} else if (GJ.Input.isPressed(this.rightKey)) {
 		this.moveRight();
+	} else {
+		this.idle();
 	}
 
 	if (GJ.Input.isPressed(this.shootKey)) {
 		this.gun.fire();
 	}
+
+	if (GJ.Input.isPressed(this.jumpKey)) {
+		this.jump();
+	}
 };
 
 
-Player.prototype.checkBulletCollisions = function () {
-	this.gun.checkBulletCollisions(GJ.getActors());
+Player.prototype.applyVelocity = function () {
+	if (this.accelX > 0) {
+		if (this.accelX > this.maxMoveSpeed) {
+			this.accelX = this.maxMoveSpeed;
+		}
+
+		this.image.x += this.accelX;
+	} else if (this.accelX < 0) {
+		if (this.accelX < -this.maxMoveSpeed) {
+			this.accelX = -this.maxMoveSpeed;
+		}
+
+		this.image.x += this.accelX;
+	}
+
+	// this.image.y += this.accelY;
 };
 
 
 Player.prototype.moveLeft = function () {
-	this.image.x -= this.moveSpeed;
+	// this.image.x -= this.moveSpeed;
+	this.accelX -= this.moveSpeed;
 	this.direction = GJ.Directions.LEFT;
+	this.image.scaleX = 1;
+	// this.image.gotoAndPlay('run');
 };
 
 
 Player.prototype.moveRight = function () {
-	this.image.x += this.moveSpeed;
+	// this.image.x += this.moveSpeed;
+	this.accelX += this.moveSpeed;
 	this.direction = GJ.Directions.RIGHT;
+	this.image.scaleX = -1;
+	// this.image.gotoAndPlay('run');
+};
+
+
+Player.prototype.jump = function () {
+
+};
+
+
+Player.prototype.idle = function () {
+	if (this.accelX > 0) {
+		this.accelX -= this.weight;
+
+		if (this.accelX < 0) {
+			this.accelX = 0;
+		}
+	} else if (this.accelX < 0) {
+		this.accelX += this.weight;
+
+		if (this.accelX > 0) {
+			this.accelX = 0;
+		}
+	}
+
+	// this.image.gotoAndPlay('idle');
 };
 
 

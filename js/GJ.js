@@ -14,6 +14,9 @@ var GJ = (function () {
 
 		event,
 
+		numGems			= 10,
+		gemText,
+
 		stage,
 		worlds,
 		actors,
@@ -54,8 +57,14 @@ var GJ = (function () {
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
-				players.push(new Player(GJ.Input.Keycodes.LEFT_ARROW, GJ.Input.Keycodes.RIGHT_ARROW, GJ.Input.Keycodes.SPACEBAR, 5));
+				players.push(new Player(GJ.Input.Keycodes.LEFT_ARROW, GJ.Input.Keycodes.RIGHT_ARROW, GJ.Input.Keycodes.SHIFT, GJ.Input.Keycodes.SPACEBAR, 2, 8, 1));
 			}
+
+			gemText = new createjs.Text('Gems :' + numGems, "20px Arial", "#ff7700"); 
+			gemText.x = 20;
+			gemText.y = 20;
+			gemText.textBaseline = "alphabetic";
+			stage.addChild(gemText);
 
 			createjs.Ticker.setFPS(TARGET_FPS);
 			createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED; // if we do standard timing instead of this can we adjust fps to slow/fast up game?
@@ -120,7 +129,6 @@ var GJ = (function () {
 			return stage;
 		},
 
-
 		getCurrentWorld: function () {
 			return worlds[currentWorld];
 		},
@@ -129,13 +137,24 @@ var GJ = (function () {
 			return actors;
 		},
 
+		stoleMyBike: function () {
+			numGems--;
+			gemText.text = 'Gems :' + numGems;
+		},
+
 		States: {
-			MOVING_LEFT: 0
+			MOVING_LEFT: 0,
+			STEALING: 1,
+			LEGGING_IT: 2
 		},
 
 		Directions: {
 			LEFT: 0,
 			RIGHT: 1
+		},
+
+		Weapons: {
+			PLAYER_GUN: 0
 		}
 	};
 })();

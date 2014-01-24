@@ -27,10 +27,14 @@ Gun.prototype.checkBulletCollisions = function (targets) {
 
 	for (i = 0; i < targets.length; i++) {
 		for (j = 0; j < this.bullets.length; j++) {
-			result = this.bullets[j].checkCollision(targets[i]);
-
-			if (result) {
-				hits.push(result);
+			if (targets[i].active && this.bullets[j].active) {
+				result = this.bullets[j].checkCollision(targets[i]);
+	
+				if (result) {
+					this.bullets[j].kill();
+					targets[i].hitByBullet();
+					// hits.push(result);
+				}
 			}
 		}
 	}

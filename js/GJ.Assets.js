@@ -11,6 +11,7 @@ GJ.Assets = (function () {
 
 	var loadQueued = function () {
 		queue.loadManifest([
+			// {id: 'playerSS', src:'img/playerSS.png'},
 			{id: 'sprite1', src:'img/sprite.jpg'},
 			{id: 'placeholder_01', src:'audio/placeholderDial.ogg', data: 10},
 			{id: 'placeholder_02', src:'audio/placeholderDoctor.ogg', data: 10}
