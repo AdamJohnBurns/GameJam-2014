@@ -8,6 +8,9 @@ var Actor = function () {
 	this.bitmap.scaleX = 0.25;
 	this.bitmap.scaleY = 0.25;
 
+	this.bitmap.regX = 90;
+	this.bitmap.regY = 166;
+
 	this.bitmap.addEventListener('click', function (event) {
 		console.log('actor clicked at:' + event.stageX + ', ' + event.stageY);
 	});
@@ -16,4 +19,9 @@ var Actor = function () {
 
 Actor.prototype.update = function () {
 	this.bitmap.rotation++;
+};
+
+
+Actor.prototype.getBitmap = function () {
+	return this.bitmap;
 };

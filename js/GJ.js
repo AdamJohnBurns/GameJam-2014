@@ -12,7 +12,6 @@ var GJ = (function () {
 
 		currentWorld 	= 0,
 
-		i,
 		event,
 
 		stage,
@@ -24,6 +23,9 @@ var GJ = (function () {
 
 	// Private methods ////////////////////////////////////////////
 
+	var drawFPS = function () {
+
+	};
 
 
 	// Public methods /////////////////////////////////////////////
@@ -37,6 +39,8 @@ var GJ = (function () {
 
 
 		assetsReady: function () {
+			var i;
+
 			stage = new createjs.Stage(CANVAS_ID);
 
 			worlds = [];
@@ -61,6 +65,8 @@ var GJ = (function () {
 
 
 		update: function (evt) {
+			var i, j;
+
 			event = evt;
 
 			worlds[currentWorld].update();
@@ -71,7 +77,13 @@ var GJ = (function () {
 
 			for (i = 0; i < players.length; i++) {
 				players[i].update();
+
+				for (j = 0; j < actors.length; j++) {
+					players[i].checkActorCollision(actors[j]);
+				}
 			}
+
+			drawFPS();
 
 			stage.update();
 		},
