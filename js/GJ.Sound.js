@@ -18,24 +18,27 @@ GJ.Sound = (function () {
 
 		init: function ( ) {
 		
-			// Start music loops
+			// Start happy ambience loop
 			soundsPlaying.push({
-				name: "BGM",
-				sound: createjs.Sound.play("placeholder_02", {loop: 50})
+				name: "ambience_happy",
+				sound: createjs.Sound.play("amb_birdsong", {volume: 0.001}, {loop: -1})
 			});
-			music_background.volume = 0;
-			fadeVolume(music_background, 1, 2000);
-		},
 
-		playFootstep: function ( ) { // model for playing random sounds
-			var randomInt = Math.floor((Math.random()*3)+1);
-			soundsPlaying.push({
-				name: "footstep",
-				sound: createjs.Sound.play("placeholder_0" + randomInt, {loop: 50})
-			});
+			// Fade in happy ambience loop
+			var i, sound;
+			for (i = 0; i < soundsPlaying.length; i++) {
+				sound = soundsPlaying[i];
+
+				if (sound.name === "ambience_happy") {
+					fadeVolume(sound.sound, 1, 1000);
+				}
+				
+			}
+
 		},
 
 		update: function ( ) {
+			// Generic update function (that gets called every tick)
 			var i, sound;
 
 			for (i = 0; i < soundsPlaying.length; i++) {
@@ -51,10 +54,12 @@ GJ.Sound = (function () {
 		},
 
 		triggerEvent: function (name) {
-			if (name === "explosion") {
+			// Play footstep
+			if (name === "footstep") {
+				var randomInt = Math.floor((Math.random()*8)+1); // randomised 1 - 8
 				soundsPlaying.push({
-					name: "explosion",
-					sound: createjs.Sound.play("placeholder_01", {loop: 10})
+					name: "footstep",
+					sound: createjs.Sound.play("footstep_grass_0" + randomInt, {loop: 0})
 				});
 			}
 		}
