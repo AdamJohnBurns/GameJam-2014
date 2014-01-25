@@ -64,13 +64,13 @@ GJ.Sound = (function () {
 				var randomInt = Math.floor((Math.random()*8)+1); // randomised 1 - 8
 				soundsPlaying.push({
 					name: "footstep",
-					sound: createjs.Sound.play("footstep_grass_0" + randomInt, {volume: 0.7})
+					sound: createjs.Sound.play("footstep_grass_0" + randomInt, {volume: 0.4})
 				});
 			} else if (name === "land") {
 				var randomInt = Math.floor((Math.random()*4)+1);
 				soundsPlaying.push({
 					name: "land",
-					sound: createjs.Sound.play("footstep_land_0" + randomInt)
+					sound: createjs.Sound.play("footstep_land_0" + randomInt, {volume: 0.4})
 				});	
 			} else if (name === "explode") {
 				var randomInt = Math.floor((Math.random()*6)+1);
@@ -155,6 +155,21 @@ GJ.Sound = (function () {
 				soundsPlaying.push({
 					name: "oink",
 					sound: createjs.Sound.play("pig_oink_0" + randomInt, {volume: 0.6})
+				});
+			} else if (name === "new_wave") {
+				soundsPlaying.push({
+					name: "new_wave",
+					sound: createjs.Sound.play("new_wave")
+				});
+			} else if (name === "win") {
+				soundsPlaying.push({
+					name: "win",
+					sound: createjs.Sound.play("win")
+				});
+			}  else if (name === "lose") {
+				soundsPlaying.push({
+					name: "lose",
+					sound: createjs.Sound.play("lose")
 				});
 			}
 		}
