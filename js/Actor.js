@@ -7,34 +7,67 @@ var Actor = function (type) {
 
 	this.type = type;
 
+	this.hasGem = false;
+	this.isOnGround = false;
+
+	var data;
+	data = new createjs.SpriteSheet({
+		framerate: 25,
+		images: [ 
+			GJ.Assets.get('PigRun'), 		// 22
+			GJ.Assets.get('PigHit'), 		// 15
+			GJ.Assets.get('PigCollect'), 	// 75
+			GJ.Assets.get('PigGemRun'), 		// 22
+			GJ.Assets.get('PigBombRun') 		// 22
+		], 
+		frames: [
+			// x, y, width, height, index, regX, regY
+			// the index needs to match the file with the sprites
+			[0,0,56,70,0,27.75,67.7],[56,0,56,70,0,27.75,67.7],[112,0,56,70,0,27.75,67.7],[168,0,56,70,0,27.75,67.7],[0,70,56,70,0,27.75,67.7],[56,70,56,70,0,27.75,67.7],[112,70,56,70,0,27.75,67.7],[168,70,56,70,0,27.75,67.7],[0,140,56,70,0,27.75,67.7],[56,140,56,70,0,27.75,67.7],[112,140,56,70,0,27.75,67.7],[168,140,56,70,0,27.75,67.7],[0,210,56,70,0,27.75,67.7],[56,210,56,70,0,27.75,67.7],[112,210,56,70,0,27.75,67.7],[168,210,56,70,0,27.75,67.7],[0,280,56,70,0,27.75,67.7],[56,280,56,70,0,27.75,67.7],[112,280,56,70,0,27.75,67.7],[168,280,56,70,0,27.75,67.7],[0,350,56,70,0,27.75,67.7],[56,350,56,70,0,27.75,67.7],
+			[0,0,58,58,1,3.4,4.15],[58,0,58,58,1,3.4,4.15],[116,0,58,58,1,3.4,4.15],[174,0,58,58,1,3.4,4.15],[0,58,58,58,1,3.4,4.15],[58,58,58,58,1,3.4,4.15],[116,58,58,58,1,3.4,4.15],[174,58,58,58,1,3.4,4.15],[0,116,58,58,1,3.4,4.15],[58,116,58,58,1,3.4,4.15],[116,116,58,58,1,3.4,4.15],[174,116,58,58,1,3.4,4.15],[0,174,58,58,1,3.4,4.15],[58,174,58,58,1,3.4,4.15],[116,174,58,58,1,3.4,4.15],
+			[0,0,57,81,2,28,80.5],[62,0,57,81,2,28,80.5],[124,0,57,81,2,28,80.5],[186,0,57,81,2,28,80.5],[248,0,57,81,2,28,80.5],[310,0,57,81,2,28,80.5],[372,0,57,81,2,28,80.5],[434,0,57,81,2,28,80.5],[0,86,57,81,2,28,80.5],[62,86,57,81,2,28,80.5],[124,86,57,81,2,28,80.5],[186,86,57,81,2,28,80.5],[248,86,57,81,2,28,80.5],[310,86,57,81,2,28,80.5],[372,86,57,81,2,28,80.5],[434,86,57,81,2,28,80.5],[0,172,57,81,2,28,80.5],[62,172,57,81,2,28,80.5],[124,172,57,81,2,28,80.5],[186,172,57,81,2,28,80.5],[248,172,57,81,2,28,80.5],[310,172,57,81,2,28,80.5],[372,172,57,81,2,28,80.5],[434,172,57,81,2,28,80.5],[0,258,57,81,2,28,80.5],[62,258,57,81,2,28,80.5],[124,258,57,81,2,28,80.5],[186,258,57,81,2,28,80.5],[248,258,57,81,2,28,80.5],[310,258,57,81,2,28,80.5],[372,258,57,81,2,28,80.5],[434,258,57,81,2,28,80.5],[0,344,57,81,2,28,80.5],[62,344,57,81,2,28,80.5],[124,344,57,81,2,28,80.5],[186,344,57,81,2,28,80.5],[248,344,57,81,2,28,80.5],[310,344,57,81,2,28,80.5],[372,344,57,81,2,28,80.5],[434,344,57,81,2,28,80.5],[0,430,57,81,2,28,80.5],[62,430,57,81,2,28,80.5],[124,430,57,81,2,28,80.5],[186,430,57,81,2,28,80.5],[248,430,57,81,2,28,80.5],[310,430,57,81,2,28,80.5],[372,430,57,81,2,28,80.5],[434,430,57,81,2,28,80.5],[0,516,57,81,2,28,80.5],[62,516,57,81,2,28,80.5],[124,516,57,81,2,28,80.5],[186,516,57,81,2,28,80.5],[248,516,57,81,2,28,80.5],[310,516,57,81,2,28,80.5],[372,516,57,81,2,28,80.5],[434,516,57,81,2,28,80.5],[0,602,57,81,2,28,80.5],[62,602,57,81,2,28,80.5],[124,602,57,81,2,28,80.5],[186,602,57,81,2,28,80.5],[248,602,57,81,2,28,80.5],[310,602,57,81,2,28,80.5],[372,602,57,81,2,28,80.5],[434,602,57,81,2,28,80.5],[0,688,57,81,2,28,80.5],[62,688,57,81,2,28,80.5],[124,688,57,81,2,28,80.5],[186,688,57,81,2,28,80.5],[248,688,57,81,2,28,80.5],[310,688,57,81,2,28,80.5],[372,688,57,81,2,28,80.5],[434,688,57,81,2,28,80.5],[0,774,57,81,2,28,80.5],[62,774,57,81,2,28,80.5],[124,774,57,81,2,28,80.5],
+			[0,0,78,128,3,38.95,124.25],[78,0,78,128,3,38.95,124.25],[156,0,78,128,3,38.95,124.25],[234,0,78,128,3,38.95,124.25],[312,0,78,128,3,38.95,124.25],[390,0,78,128,3,38.95,124.25],[0,128,78,128,3,38.95,124.25],[78,128,78,128,3,38.95,124.25],[156,128,78,128,3,38.95,124.25],[234,128,78,128,3,38.95,124.25],[312,128,78,128,3,38.95,124.25],[390,128,78,128,3,38.95,124.25],[0,256,78,128,3,38.95,124.25],[78,256,78,128,3,38.95,124.25],[156,256,78,128,3,38.95,124.25],[234,256,78,128,3,38.95,124.25],[312,256,78,128,3,38.95,124.25],[390,256,78,128,3,38.95,124.25],[0,384,78,128,3,38.95,124.25],[78,384,78,128,3,38.95,124.25],[156,384,78,128,3,38.95,124.25],[234,384,78,128,3,38.95,124.25],
+			[0,0,56,97,4,27.75,93.95],[56,0,56,97,4,27.75,93.95],[112,0,56,97,4,27.75,93.95],[168,0,56,97,4,27.75,93.95],[224,0,56,97,4,27.75,93.95],[280,0,56,97,4,27.75,93.95],[336,0,56,97,4,27.75,93.95],[392,0,56,97,4,27.75,93.95],[448,0,56,97,4,27.75,93.95],[0,97,56,97,4,27.75,93.95],[56,97,56,97,4,27.75,93.95],[112,97,56,97,4,27.75,93.95],[168,97,56,97,4,27.75,93.95],[224,97,56,97,4,27.75,93.95],[280,97,56,97,4,27.75,93.95],[336,97,56,97,4,27.75,93.95],[392,97,56,97,4,27.75,93.95],[448,97,56,97,4,27.75,93.95],[0,194,56,97,4,27.75,93.95],[56,194,56,97,4,27.75,93.95],[112,194,56,97,4,27.75,93.95],[168,194,56,97,4,27.75,93.95]
+		],
+		animations: { 
+			run: [0, 21],
+			hit: [22, 37],
+			collect: [38, 113],
+			gemrun: [114, 136],
+			bombrun: [137, 159]
+		}
+	});
+	this.image = new createjs.Sprite(data, 'run');
+
+	this.waitDelay = 160;
+
 	if (this.type === GJ.ActorTypes.GROUND_NORMAL) {
 		this.useGravity = true;
 		this.moveSpeed = 1;
 		this.maxMoveSpeed = 5;
 		this.weight = 2;
-		this.waitDelay = 100;
-		this.image = new createjs.Bitmap(GJ.Assets.get('sprite1'));
+		this.hasBomb = false;
 
 	} else if (this.type === GJ.ActorTypes.GROUND_EXPLODING) {
 		this.useGravity = true;
 		this.moveSpeed = 1;
-		this.maxMoveSpeed = 5;
+		this.maxMoveSpeed = 3;
 		this.weight = 2;
-		this.waitDelay = 200;
-		this.image = new createjs.Bitmap(GJ.Assets.get('sprite2'));
+		this.hasBomb = true;
 
 	} else if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
 		this.useGravity = false;
 		this.moveSpeed = 1;
 		this.maxMoveSpeed = 5;
 		this.weight = 2;
-		this.waitDelay = 300;
-		this.image = new createjs.Bitmap(GJ.Assets.get('sprite3'));
+		this.hasBomb = false;
 		this.balloon = new createjs.Bitmap(GJ.Assets.get('sprite1'));
 	}
 
 	this.image.x = Math.random() * 100 + 700;
 	this.image.y = Math.random() * 400;
+
+	this.height = 50;//this.image.getBounds().height;
 
 	if (typeof this.balloon !== 'undefined') {
 		this.balloon.x = this.image.x;
@@ -94,14 +127,16 @@ Actor.prototype.doAI = function () {
 
 		if (this.image.y + this.image.getBounds().height / 2 > this.groundHeight) {
 			this.state = GJ.States.STEALING;
+			this.type = GJ.ActorTypes.GROUND_NORMAL;
 		}
 
 	} else if (this.state === GJ.States.STEALING) {
 		this.waitTimer++;
 
-		this.idle();
+		this.collect();
 
 		if (this.waitTimer > this.waitDelay) {
+			this.hasGem = true;
 			this.state = GJ.States.LEGGING_IT;
 		}
 	} else if (this.state === GJ.States.LEGGING_IT) {
@@ -149,8 +184,21 @@ Actor.prototype.moveLeft = function () {
 	}
 
 	this.direction = GJ.Directions.LEFT;
-	this.image.scaleX = 1;
-	// this.image.gotoAndPlay('run');
+	this.image.scaleX = -1;
+
+	if (this.image.currentAnimation !== 'run' && this.image.currentAnimation !== 'gemrun') {
+
+		if (this.hasGem) {
+			this.image.gotoAndPlay('gemrun');
+		} else if (this.hasBomb) {
+			console.log('biomb');
+			this.image.gotoAndPlay('bombrun');
+		} else {
+			this.image.gotoAndPlay('run');
+			
+		}
+	}
+
 };
 
 
@@ -163,12 +211,24 @@ Actor.prototype.moveRight = function () {
 	}
 
 	this.direction = GJ.Directions.RIGHT;
-	this.image.scaleX = -1;
-	// this.image.gotoAndPlay('run');
+
+	this.image.scaleX = 1;
+
+	if (this.image.currentAnimation !== 'run' && this.image.currentAnimation !== 'gemrun') {
+
+		if (this.hasGem) {
+			this.image.gotoAndPlay('gemrun');
+		} else if (this.hasBomb) {
+			this.image.gotoAndPlay('bombrun');
+		}  else {
+			this.image.gotoAndPlay('run');
+		}
+	}
+
 };
 
 
-Actor.prototype.idle = function () {
+Actor.prototype.collect = function () {
 	if (this.accelX > 0) {
 		this.accelX -= this.weight;
 
@@ -183,23 +243,27 @@ Actor.prototype.idle = function () {
 		}
 	}
 
+	if (this.image.currentAnimation !== 'collect') {
+			this.image.gotoAndPlay('collect');
+		}
+
 	// this.image.gotoAndPlay('idle');
 };
 
 
 Actor.prototype.spawnBacsplosion = function () {
-	this.emitter = new createjs.ParticleEmitter();
+	this.emitter = new createjs.ParticleEmitter(GJ.Assets.get('ParticleBacon'));
     this.emitter.position = new createjs.Point(this.image.x, this.image.y);
     this.emitter.emitterType = createjs.ParticleEmitterType.Emit;
     this.emitter.duration = 60;	// how long emitter lasts for
-    this.emitter.emissionRate = 400;
-    this.emitter.maxParticles = 800;
-    this.emitter.life = 3000;
-    this.emitter.lifeVar = 1000;
-    this.emitter.speed = 200;
+    this.emitter.emissionRate = 200;
+    this.emitter.maxParticles = 200;
+    this.emitter.life = 2000;
+    this.emitter.lifeVar = 500;
+    this.emitter.speed = 230;
     this.emitter.speedVar = 0;
-    this.emitter.positionVarX = 0;
-    this.emitter.positionVarY = 0;
+    this.emitter.positionVarX = 5;
+    this.emitter.positionVarY = 5;
     this.emitter.accelerationX = 0;
     this.emitter.accelerationY = 0;
     this.emitter.radialAcceleration = 0;
@@ -210,17 +274,17 @@ Actor.prototype.spawnBacsplosion = function () {
     this.emitter.angleVar = 180;
     this.emitter.startSpin = 0;
     this.emitter.startSpinVar = 0;
-    this.emitter.endSpin = null;
-    this.emitter.endSpinVar = null;
+    this.emitter.endSpin = 10;
+    this.emitter.endSpinVar = 1;
     this.emitter.startColor = [150, 150, 150];
     this.emitter.startColorVar = [0, 0, 0];
     this.emitter.startOpacity = 1;
     this.emitter.endColor = null;
     this.emitter.endColorVar = null;
     this.emitter.endOpacity = 0;
-    this.emitter.startSize = 20;
+    this.emitter.startSize = 10;
     this.emitter.startSizeVar = 0;
-    this.emitter.endSize = 40;
+    this.emitter.endSize = 10;
     this.emitter.endSizeVar = null;
 
 	GJ.getStage().addChild(this.emitter);
@@ -250,10 +314,14 @@ Actor.prototype.hitByBullet = function () {
 
 
 Actor.prototype.checkWorldCollision = function () {
-	var height = this.image.getBounds().height / 2;
+	// var height = this.height;//this.image.getBounds().height / 2;
 
-	if (this.image.y + height + this.accelY >= GJ.getCurrentWorld().getGroundHeight()) {
-		this.image.y = GJ.getCurrentWorld().getGroundHeight() - height;
+	if (this.image.y + this.accelY + this.height >= GJ.getCurrentWorld().getGroundHeight()) {
+		this.image.y = GJ.getCurrentWorld().getGroundHeight() + this.height;
 		this.accelY = 0;
+
+		this.isOnGround = true;
+	} else {
+		this.isOnGround = false;
 	}
 };

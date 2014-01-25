@@ -53,11 +53,11 @@ var GJ = (function () {
 			actors = [];
 			// for (i = 0; i < NUM_ACTORS; i++) {
 			actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-			actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+			// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
 			actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-			actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-			actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-			actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+			// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+			// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+			// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
 			// }
 
 			players = [];

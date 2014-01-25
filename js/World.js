@@ -64,7 +64,7 @@ World.prototype.scrollClouds = function () {
 
 		cloud.x -= 0.15;
 
-		if (cloud.x + /*cloud.getBounds().width*/60 < 0) {
+		if (cloud.x + cloud.getBounds().width < 0) {
 			cloud.x = this.worldWidth + Math.random() * 100;
 			this.clouds[i].y = 30 + Math.random() * 100;
 		}

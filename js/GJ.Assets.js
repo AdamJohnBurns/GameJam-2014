@@ -11,11 +11,26 @@ GJ.Assets = (function () {
 
 	var loadQueued = function () {
 		queue.loadManifest([
-			{id: 'ExplosionSmall', src:'img/ExplosionSmall.png'},
+			// effects
+			{id: 'EffectExplosionSmall', src:'img/Effects/ExplosionSmall.png'},
+			{id: 'EffectHitEffect', src:'img/Effects/EffectHitEffect.png'},
+			{id: 'EffectJumpSmoke', src:'img/Effects/JumpSmoke.png'},
+			{id: 'EffectRunningSmoke', src:'img/Effects/RunningSmoke.png'},
 
 			// main character
 			{id: 'MainCharacterIdle', src:'img/MainCharacter/Idle.png'},
 			{id: 'MainCharacterRun', src:'img/MainCharacter/Run.png'},
+			{id: 'MainCharacterJump', src:'img/MainCharacter/Jumping-NoLoop.png'},
+
+			// pigs
+			{id: 'PigRun', src:'img/Pigs/PigRun.png'},
+			{id: 'PigHit', src:'img/Pigs/PigHit.png'},
+			{id: 'PigCollect', src:'img/Pigs/PigCollect.png'},
+			{id: 'PigGemRun', src:'img/Pigs/DiamondPigRun.png'},
+			{id: 'PigBombRun', src:'img/Pigs/BombPigRun.png'},
+
+			// particles
+			{id: 'ParticleBacon', src:'img/Particles/BaconParticle.png'},
 
 			// scene
 			{id: 'SceneCloud1', src:'img/Scene/Cloud1.png'},
@@ -25,7 +40,7 @@ GJ.Assets = (function () {
 			{id: 'sprite1', src:'img/sprite1.jpg'},
 			{id: 'sprite2', src:'img/sprite2.jpg'},
 			{id: 'sprite3', src:'img/sprite3.jpg'},
-			
+
 			{id: 'amb_birdsong', src:'audio/amb_birdsong.ogg', data: 4},
 			{id: 'footstep_grass_01', src:'audio/footstep_grass_01.ogg', data: 4},
 			{id: 'footstep_grass_02', src:'audio/footstep_grass_02.ogg', data: 4},
