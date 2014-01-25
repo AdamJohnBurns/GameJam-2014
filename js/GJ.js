@@ -62,11 +62,13 @@ var GJ = (function () {
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
-				players.push(new Player(GJ.Input.Keycodes.LEFT_ARROW, 
+				players.push(new Player(
+					GJ.Input.Keycodes.LEFT_ARROW, 
 					GJ.Input.Keycodes.RIGHT_ARROW, 
 					GJ.Input.Keycodes.SHIFT, 
-					GJ.Input.Keycodes.SPACEBAR,
+					GJ.Input.Keycodes.UP_ARROW,
 					GJ.Input.Keycodes.ENTER,
+					GJ.Input.Keycodes.SPACEBAR,
 					2, 9, 1.5));
 			}
 

@@ -30,11 +30,17 @@ var Actor = function (type) {
 		this.weight = 2;
 		this.waitDelay = 300;
 		this.image = new createjs.Bitmap(GJ.Assets.get('sprite3'));
-		// add the baloon sprite as well
+		this.balloon = new createjs.Bitmap(GJ.Assets.get('sprite1'));
 	}
 
 	this.image.x = Math.random() * 100 + 700;
 	this.image.y = Math.random() * 400;
+
+	if (typeof this.balloon !== 'undefined') {
+		this.balloon.x = this.image.x;
+		this.balloon.y = this.image.y - 100;
+		GJ.getStage().addChild(this.balloon);		
+	}
 
 	this.waitTimer = 0;
 
@@ -56,6 +62,13 @@ Actor.prototype.update = function () {
 	if (this.active) {
 		this.doAI();
 		this.applyVelocity();
+		this.updateBalloon();
+	}
+};
+
+Actor.prototype.updateBalloon = function () {
+	if (typeof this.balloon !== 'undefined' && this.balloon) {
+		this.balloon.x = this.image.x - this.image.getBounds().width / 2;
 	}
 };
 
@@ -66,7 +79,8 @@ Actor.prototype.doAI = function () {
 
 			if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
 				this.useGravity = true;
-				// pop balloon
+				GJ.getStage().removeChild(this.balloon);
+
 				this.state = GJ.States.LANDING;
 			} else {
 				this.state = GJ.States.STEALING;
@@ -238,7 +252,7 @@ Actor.prototype.hitByBullet = function () {
 Actor.prototype.checkWorldCollision = function () {
 	var height = this.image.getBounds().height / 2;
 
-	if (this.image.y + height >= GJ.getCurrentWorld().getGroundHeight()) {
+	if (this.image.y + height + this.accelY >= GJ.getCurrentWorld().getGroundHeight()) {
 		this.image.y = GJ.getCurrentWorld().getGroundHeight() - height;
 		this.accelY = 0;
 	}

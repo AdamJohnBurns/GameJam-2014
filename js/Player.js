@@ -1,4 +1,4 @@
-var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, moveSpeed, maxMoveSpeed, weight) {
+var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, moveSpeed, maxMoveSpeed, weight) {
 	var blurFilter, bounds, data;
 
 	this.leftKey = leftKey;
@@ -6,6 +6,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, moveSpeed
 	this.shootKey = shootKey;
 	this.meleeKey = meleeKey;
 	this.jumpKey = jumpKey;
+	this.useKey = useKey;
 
 	this.accelX = 0;
 	this.accelY = 0;
@@ -15,6 +16,8 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, moveSpeed
 	this.weight = weight;
 
 	this.attackRange = 20;
+
+	this.isMining = false;
 
 	this.direction = GJ.Directions.RIGHT;
 
@@ -70,9 +73,9 @@ Player.prototype.update = function () {
 
 
 Player.prototype.handleInput = function () {
-	if (GJ.Input.isPressed(this.leftKey)) {
+	if (GJ.Input.isPressed(this.leftKey) && !this.isMining) {
 		this.moveLeft();
-	} else if (GJ.Input.isPressed(this.rightKey)) {
+	} else if (GJ.Input.isPressed(this.rightKey) && !this.isMining) {
 		this.moveRight();
 	} else {
 		this.idle();
@@ -84,6 +87,14 @@ Player.prototype.handleInput = function () {
 
 	if (GJ.Input.isPressed(this.meleeKey)) {
 		this.meleeAttack();
+	}
+
+	if (GJ.Input.isPressed(this.useKey)) {
+		// if (GJ.getCurrentWorld().isInMineBounds()) {
+		// 	this.mineGems();
+		// }
+
+		// this.buyFence();
 	}
 
 	if (GJ.Input.isPressed(this.jumpKey)) {
