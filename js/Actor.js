@@ -37,7 +37,8 @@ var Actor = function (type) {
 			hit: [22, 37],
 			collect: [38, 113],
 			gemrun: [114, 136],
-			bombrun: [137, 159]
+			bombrun: [137, 159],
+			explode: [160, 226]
 		}
 	});
 	
@@ -119,7 +120,16 @@ Actor.prototype.doAI = function () {
 	if (this.state === GJ.States.MOVING_LEFT) {
 
 		if (this.hasBomb) {
-			
+			var players = GJ.getPlayers(), intersection;
+
+			for (var i =0; i<players.length;i++) {
+				intersection = ndgmr.checkRectCollision(this.image, players[i].getImage());
+
+				if (intersection) {
+					this.state = GJ.States.EXPLODING;
+
+				}
+			}
 		}
 
 		if (this.image.x <= GJ.getCurrentWorld().getGoalX()) {			
@@ -162,7 +172,25 @@ Actor.prototype.doAI = function () {
 			this.kill();
 		}
 	} else if (this.state === GJ.States.EXPLODING) {
+		this.dampenAcceleration();
 
+		if (this.image.currentAnimation !== 'explode') {
+			this.image.gotoAndPlay('explode');
+
+			this.image.addEventListener('animationend', function (event) {
+				// console.log(bitmap);
+				console.log(event.currentTarget);
+				// event.target.image.stop();
+				// console.log(type);
+				// if (typeof object !== 'undefined' && object != null) {
+				// object.stop();
+					// GJ.getStage().removeChild(object);//.kill();
+					// bitmap.
+				// }
+				// console.log(bitmap);
+				// console.log(animation);
+			});
+		}
 	}
 };
 
@@ -200,7 +228,7 @@ Actor.prototype.moveLeft = function () {
 
 	this.direction = GJ.Directions.LEFT;
 	this.image.scaleX = -1;
-console.log(this.image.currentAnimation, this.hasBomb);
+// console.log(this.image.currentAnimation, this.hasBomb);
 	if (this.image.currentAnimation !== 'run' && this.image.currentAnimation !== 'gemrun' && this.image.currentAnimation !== 'bombrun') {
 
 		if (this.hasGem) {
@@ -241,6 +269,22 @@ Actor.prototype.moveRight = function () {
 		}
 	}
 
+};
+
+Actor.prototype.dampenAcceleration = function () {
+	if (this.accelX > 0) {
+		this.accelX -= this.weight;
+
+		if (this.accelX < 0) {
+			this.accelX = 0;
+		}
+	} else if (this.accelX < 0) {
+		this.accelX += this.weight;
+
+		if (this.accelX > 0) {
+			this.accelX = 0;
+		}
+	}
 };
 
 

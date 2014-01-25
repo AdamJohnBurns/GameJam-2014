@@ -34,6 +34,10 @@ GJ.Assets = (function () {
 			{id: 'ParticleBacon', src:'img/Particles/BaconParticle.png'},
 
 			// scene
+			{id: 'SceneBGMain', src:'img/Scene/BGMain.png'},
+			{id: 'SceneDecoration', src:'img/Scene/Decoration.png'},
+			{id: 'SceneGround', src:'img/Scene/Ground.png'},
+			{id: 'SceneForeground', src:'img/Scene/Foreground.png'},
 			{id: 'SceneCloud1', src:'img/Scene/Cloud1.png'},
 			{id: 'SceneCloud2', src:'img/Scene/Cloud2.png'},
 			{id: 'SceneCloud3', src:'img/Scene/Cloud3.png'},
