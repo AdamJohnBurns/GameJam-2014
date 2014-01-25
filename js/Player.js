@@ -62,7 +62,8 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 			jump: [28, 43],
 			fall: [44, 69],
 			shoot: [70, 86],
-			pickaxe: [87, 182]
+			pickaxe: [87, 182],
+			melee: [183, 196]
 
 			// melee: [24, 24],
 			// shoot: [27, 27]
@@ -163,18 +164,6 @@ Player.prototype.applyVelocity = function () {
 		this.accelY += GJ.getCurrentWorld().getGravity();
 	}
 
-	// if (this.accelY > 0) {
-	// 	this.accelY -= GJ.getCurrentWorld().getGravity();
-
-	// 	if (this.accelY < 0) {
-	// 		this.accelY = 0;
-	// 	}		
-	// } else if (this.accelY < 0) {
-	// 	// if (this.accelY < -this.maxMoveSpeed) {
-	// 	// 	this.accelY = -this.maxMoveSpeed;
-	// 	// }
-	// }
-
 	this.image.x += this.accelX;
 	this.image.y += this.accelY;
 
@@ -189,8 +178,6 @@ Player.prototype.checkMining = function () {
 			this.image.removeEventListener('animationend');
 			this.image.giveGem = false;
 			
-		} else {
-
 		}
 	}
 
@@ -226,12 +213,8 @@ Player.prototype.mineGems = function () {
 };
 
 
-Player.prototype.doMining = function () {
-};
-
-
 Player.prototype.moveLeft = function () {
-	// this.image.x -= this.moveSpeed;
+
 	this.accelX -= this.moveSpeed;
 
 	if (this.accelX < -this.maxMoveSpeed) {
@@ -253,7 +236,7 @@ Player.prototype.moveLeft = function () {
 
 
 Player.prototype.moveRight = function () {
-	// this.image.x += this.moveSpeed;
+	
 	this.accelX += this.moveSpeed;
 
 	if (this.accelX > this.maxMoveSpeed) {
@@ -275,36 +258,52 @@ Player.prototype.moveRight = function () {
 
 
 Player.prototype.meleeAttack = function () {
-	var i, 
-		actors = GJ.getActors(),
-		attackBox = {
-			x: this.image.x,
-			y: this.image.y,
-			width: this.image.getBounds().width,
-			height: this.image.getBounds().height
-		},  // use attackrange
-		actorBox;
 
-	this.dampenAcceleration();
+	if (this.image.currentAnimation !== 'melee') {
 
-	for (i = 0; i < actors.length; i++) {
-		actorBox = {
-			x: actors[i].image.x,
-			y: actors[i].image.y,
-			width: actors[i].image.getBounds().width,
-			height: actors[i].image.getBounds().height,
-		};
+		this.image.gotoAndPlay('melee');
 
-		if (GJ.Collisions.boundingBox(attackBox, actorBox)) {
-			actors[i].kill();
-		}
+		this.image.addEventListener('tick', function (event) {
+// 183, 196
+			if(event.currentTarget.currentFrame == 195) {
+				console.log('DONE');
+				event.remove();
+				event.currentTarget.currentAnimation = 'idle';
+
+			} else if(event.currentTarget.currentFrame >= 189) {
+				var i, 
+					actors = GJ.getActors(),
+					attackBox = {
+						x: event.currentTarget.x,
+						y: event.currentTarget.y,
+						width: 5,//event.currentTarget.getBounds().width,
+						height: 40//event.currentTarget.getBounds().height
+					},  // use attackrange
+					actorBox;
+
+				// this.dampenAcceleration();
+
+				for (i = 0; i < actors.length; i++) {
+					actorBox = {
+						x: actors[i].image.x,
+						y: actors[i].image.y,
+						width: actors[i].image.getBounds().width,
+						height: actors[i].image.getBounds().height,
+					};
+
+					if (GJ.Collisions.boundingBox(attackBox, actorBox)) {
+						actors[i].kill();
+					}
+				}
+			}
+		});
 	}
 
-	// this.image.gotoAndPlay('melee');
 };
 
 
 Player.prototype.shoot = function () {
+	if (GJ.getNumGems() > 1) {
 	// if (this.image.currentAnimation !== 'shoot') {
 		this.image.gotoAndPlay('shoot');
 		this.dampenAcceleration();
@@ -326,7 +325,10 @@ Player.prototype.shoot = function () {
 			// console.log('----');
 		});
 	// }
-
+	} else {
+		console.log('SHOW GET MORE GEMS MSG');
+		GJ.Sound.triggerEvent("turtle_sad");
+	}
 	
 };
 
@@ -348,7 +350,7 @@ Player.prototype.jump = function () {
 Player.prototype.idle = function () {
 	this.dampenAcceleration();
 
-	if (this.image.currentAnimation !== 'idle' && this.isOnGround && this.image.currentAnimation !== 'shoot'&& this.image.currentAnimation !== 'pickaxe') {
+	if (this.image.currentAnimation !== 'idle' && this.isOnGround && this.image.currentAnimation !== 'shoot'&& this.image.currentAnimation !== 'pickaxe' && this.image.currentAnimation !== 'melee') {
 		this.image.gotoAndPlay('idle');
 	}
 };

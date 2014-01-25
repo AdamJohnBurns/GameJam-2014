@@ -479,6 +479,10 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
 			GJ.Sound.triggerEvent("turtle_sad");
 		},
 
+		getNumGems: function () {
+			return numGems;
+		},
+
 		addGem: function () {
 			numGems++;
 			gemText.text = '' + numGems;

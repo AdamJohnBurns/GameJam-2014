@@ -288,9 +288,54 @@ Actor.prototype.doExplode = function () {
 
 	this.image.addEventListener('tick', function (event) {
 		// console.log(target.currentTarget.currentFrame);
+
+
 		
 		if (event.currentTarget.currentFrame == 190) {
-			this.spawnBacsplosion();
+
+			// var index = event.currentTarget.getChildIndex(event.currentTarget);
+
+			var emitter;
+				emitter = new createjs.ParticleEmitter(GJ.Assets.get('ParticleBacon'));
+			    emitter.position = new createjs.Point(event.currentTarget.x + 10, event.currentTarget.y - 70);
+			    emitter.emitterType = createjs.ParticleEmitterType.Emit;
+			    emitter.duration = 250;	// how long emitter lasts for
+			    emitter.emissionRate = 1000;
+			    emitter.maxParticles = 1000;
+			    emitter.life = 500;
+			    emitter.lifeVar = 500;
+			    emitter.speed = 290;
+			    emitter.speedVar = 10;
+			    emitter.positionVarX = 10;
+			    emitter.positionVarY = 10;
+			    emitter.accelerationX = 6;
+			    emitter.accelerationY = 6;
+			    emitter.radialAcceleration = 3;
+			    emitter.radialAccelerationVar = 3;
+			    emitter.tangentalAcceleration = 3;
+			    emitter.tangentalAccelerationVar = 10;
+			    emitter.angle = 0;
+			    emitter.angleVar = 180;
+			    emitter.startSpin = 0;
+			    emitter.startSpinVar = 5;
+			    emitter.endSpin = 10;
+			    emitter.endSpinVar = 5;
+			    emitter.startColor = [150, 150, 150];
+			    emitter.startColorVar = [0, 0, 0];
+			    emitter.startOpacity = 1;
+			    emitter.endColor = null;
+			    emitter.endColorVar = null;
+			    emitter.endOpacity = 1;
+			    emitter.startSize = 10;
+			    emitter.startSizeVar = 0;
+			    emitter.endSize = 10;
+			    emitter.endSizeVar = 3;
+
+
+
+				GJ.getStage().addChild(emitter);
+
+				// createjs.setChild
 		}
 
 		if (event.currentTarget.currentFrame >= 225) {
@@ -429,44 +474,44 @@ Actor.prototype.collect = function () {
 };
 
 
-Actor.prototype.spawnBacsplosion = function () {
-	this.emitter = new createjs.ParticleEmitter(GJ.Assets.get('ParticleBacon'));
-    this.emitter.position = new createjs.Point(this.image.x, this.image.y);
-    this.emitter.emitterType = createjs.ParticleEmitterType.Emit;
-    this.emitter.duration = 500;	// how long emitter lasts for
-    this.emitter.emissionRate = 2000;
-    this.emitter.maxParticles = 2000;
-    this.emitter.life = 2000;
-    this.emitter.lifeVar = 500;
-    this.emitter.speed = 290;
-    this.emitter.speedVar = 5;
-    this.emitter.positionVarX = 5;
-    this.emitter.positionVarY = 5;
-    this.emitter.accelerationX = 3;
-    this.emitter.accelerationY = 3;
-    this.emitter.radialAcceleration = 0;
-    this.emitter.radialAccelerationVar = 0;
-    this.emitter.tangentalAcceleration = 0;
-    this.emitter.tangentalAccelerationVar = 10;
-    this.emitter.angle = 0;
-    this.emitter.angleVar = 180;
-    this.emitter.startSpin = 0;
-    this.emitter.startSpinVar = 0;
-    this.emitter.endSpin = 10;
-    this.emitter.endSpinVar = 1;
-    this.emitter.startColor = [150, 150, 150];
-    this.emitter.startColorVar = [0, 0, 0];
-    this.emitter.startOpacity = 1;
-    this.emitter.endColor = null;
-    this.emitter.endColorVar = null;
-    this.emitter.endOpacity = 0;
-    this.emitter.startSize = 10;
-    this.emitter.startSizeVar = 0;
-    this.emitter.endSize = 10;
-    this.emitter.endSizeVar = null;
+// Actor.prototype.spawnBacsplosion = function () {
+// this.emitter = new createjs.ParticleEmitter(GJ.Assets.get('ParticleBacon'));
+// 			    this.emitter.position = new createjs.Point(this.image.x, this.image.y);
+// 			    this.emitter.emitterType = createjs.ParticleEmitterType.Emit;
+// 			    this.emitter.duration = 500;	// how long emitter lasts for
+// 			    this.emitter.emissionRate = 2000;
+// 			    this.emitter.maxParticles = 2000;
+// 			    this.emitter.life = 2000;
+// 			    this.emitter.lifeVar = 500;
+// 			    this.emitter.speed = 290;
+// 			    this.emitter.speedVar = 5;
+// 			    this.emitter.positionVarX = 5;
+// 			    this.emitter.positionVarY = 5;
+// 			    this.emitter.accelerationX = 3;
+// 			    this.emitter.accelerationY = 3;
+// 			    this.emitter.radialAcceleration = 0;
+// 			    this.emitter.radialAccelerationVar = 0;
+// 			    this.emitter.tangentalAcceleration = 0;
+// 			    this.emitter.tangentalAccelerationVar = 10;
+// 			    this.emitter.angle = 0;
+// 			    this.emitter.angleVar = 180;
+// 			    this.emitter.startSpin = 0;
+// 			    this.emitter.startSpinVar = 0;
+// 			    this.emitter.endSpin = 10;
+// 			    this.emitter.endSpinVar = 1;
+// 			    this.emitter.startColor = [150, 150, 150];
+// 			    this.emitter.startColorVar = [0, 0, 0];
+// 			    this.emitter.startOpacity = 1;
+// 			    this.emitter.endColor = null;
+// 			    this.emitter.endColorVar = null;
+// 			    this.emitter.endOpacity = 0;
+// 			    this.emitter.startSize = 10;
+// 			    this.emitter.startSizeVar = 0;
+// 			    this.emitter.endSize = 10;
+// 			    this.emitter.endSizeVar = null;
 
-	GJ.getStage().addChild(this.emitter);
-};
+// 				GJ.getStage().addChild(this.emitter);
+// };
 
 
 Actor.prototype.kill = function (explode) {

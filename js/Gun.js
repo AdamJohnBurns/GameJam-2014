@@ -35,6 +35,8 @@ Gun.prototype.checkBulletCollisions = function (targets) {
 				if (result) {
 
 
+
+
 					if (this.bullets[j].velX > 0) {
 						targets[i].velX = 50;
 					} else {
@@ -69,11 +71,16 @@ Gun.prototype.checkBulletCollisions = function (targets) {
 Gun.prototype.fire = function () {
 	var x, y, velX, velY;
 
+
+
 	if (this.fireTimer <= 0) {
 		// if (this.controller.direction === GJ.Directions.RIGHT) {
 		// 	x = this.controller.image.x;// + this.controller.image.getBounds().width / 2 + this.offsetX;
 		// } else {
 		// }
+	
+		GJ.gentlemanStoleMyBike();
+
 			x = this.controller.image.x + this.offsetX;
 
 		y = this.controller.image.y + this.offetY;
