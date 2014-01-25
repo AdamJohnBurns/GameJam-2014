@@ -29,7 +29,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 
 	this.direction = GJ.Directions.RIGHT;
 
-	this.gun = new Gun(GJ.getTargetFPS(), 6, 0, this, 0, -48);
+	this.gun = new Gun(10, 6, 0, this, 0, -48);
 	this.gunType = GJ.Weapons.PLAYER_GUN;
 
 	this.waitForEffect = 0;
@@ -105,7 +105,7 @@ Player.prototype.update = function () {
 	if (this.hitTimer > 0) {
 		this.hitTimer--;
 	}
-	
+	console.log(this.image.currentAnimation);
 };
 
 
@@ -384,7 +384,7 @@ Player.prototype.checkActorCollision = function (actor) {
 				this.hitTimer = this.hitDelay;
 				GJ.takeHit();
 				GJ.Sound.triggerEvent("meow");
-
+console.log('hit from eneny');
 				if(this.image.x < actor.getImage().x) {
 					this.accelX = -20;
 				} else {

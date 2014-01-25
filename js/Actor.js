@@ -41,7 +41,7 @@ var Actor = function (type) {
 				collect: [38, 113],
 				gemrun: [114, 133],
 				bombrun: [134, 156],
-				explode: [160, 226],
+				explode: [160, 226], // explosion ~190
 				fly: [227,250]
 			}
 		});
@@ -128,6 +128,11 @@ Actor.prototype.update = function () {
 		this.doAI();
 		this.applyVelocity();
 		this.updateBalloon();
+	} else {
+		if (GJ.getPlayers()[0].hitTimer === 0) {
+			this.image.x = 2000;
+			this.image.y = 2000;
+		}
 	}
 };
 
@@ -140,11 +145,38 @@ Actor.prototype.updateBalloon = function () {
 
 Actor.prototype.checkExploding = function () {
 	if (typeof this.image.stopExploding !== 'undefined') {
+		this.image.removeEventListener('tick');
 		this.image.x = 2000;
 		this.image.y = 2000;
 		this.image.stopExploding = undefined;
 		this.kill();
 		GJ.getStage().removeChild(this.image);
+	}
+
+	if (typeof this.image.checkBombCollision !== 'undefined') {
+		if (typeof actor !== 'undefined') {
+			
+			var intersection = ndgmr.checkRectCollision(this.image, GJ.getPlayers()[0].image);
+
+			if (intersection) {
+
+				if (this.hitTimer <= 0) {
+					this.hitTimer = this.hitDelay;
+					GJ.takeHit();
+					GJ.Sound.triggerEvent("meow");
+console.log('hit from explosion');
+					if(this.image.x < GJ.getPlayers()[0].image.x) {
+						this.accelX = -20;
+					} else {
+						this.accelX = 20;
+					}
+				}
+			}
+
+			// console.log(intersection);
+		}
+
+		this.image.checkBombCollision = undefined;
 	}
 
 	if (typeof this.balloon !== 'undefined') {
@@ -236,6 +268,17 @@ Actor.prototype.doAI = function () {
 		if (this.image.currentAnimation !== 'explode') {
 			this.image.gotoAndPlay('explode');
 			GJ.Sound.triggerEvent("explode");
+
+			this.image.addEventListener('tick', function (event) {
+				// console.log(target.currentTarget.currentFrame);
+				
+				if (event.currentTarget.currentFrame >= 225) {
+					event.remove();
+				}
+				else if (event.currentTarget.currentFrame >= 190) {
+					event.currentTarget.checkBombCollision = true;
+				}
+			});
 
 			this.image.addEventListener('animationend', function (event) {
 
