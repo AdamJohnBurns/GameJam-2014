@@ -100,7 +100,7 @@ var data;
 		} else {
 			this.image.x = x+ 30;
 		}
-		this.image.y = y - 30;
+		this.image.y = y - 90;
 
 		if (this.direction === GJ.Directions.LEFT) {
 			this.image.scaleX = 1;

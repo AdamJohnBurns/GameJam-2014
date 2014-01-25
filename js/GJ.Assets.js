@@ -28,6 +28,7 @@ GJ.Assets = (function () {
 			{id: 'MainCharacterJump', src:'img/MainCharacter/Jumping-NoLoop.png'},
 			{id: 'MainCharacterShoot', src:'img/MainCharacter/ThrowDiamond.png'},
 			{id: 'MainCharacterPickaxe', src:'img/MainCharacter/Pickaxing.png'},
+			{id: 'MainCharacterMelee', src:'img/MainCharacter/Attack1.png'},
 
 			// turtle
 			{id: 'TurtleIdle', src:'img/Turtle/Turtle.png'},
