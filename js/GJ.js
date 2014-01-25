@@ -96,19 +96,24 @@ var GJ = (function () {
 
 	actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
 	actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 50, startY + 0));
-	actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 50, startY + 0));
+	actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 50, balloonHeightHigh)); // make sure these 2 dont overlap
+	actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightLow));
 
 	*/
 
 	var spawnWave1 = function () {
 		var startX = GJ.getCurrentWorld().getWorldWidth(),
 			startY = 400,
+			balloonHeightHigh = 250,
+			balloonHeightLow = 400,
 			gapBetweenMiniWaves = 1500;
 
 		actors = [];
-// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 500, startY + 0));		
-actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));	
-// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 500, startY + 0));			
+// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 800, startY + 0));		
+actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
+// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 800, balloonHeightHigh));
+// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 900, balloonHeightLow));
+
 
 
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
@@ -125,7 +130,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
 		startX += gapBetweenMiniWaves;
 
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightLow));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
 
 		startX += gapBetweenMiniWaves;
@@ -152,6 +157,8 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
 	var spawnWave2 = function () {
 		var startX = GJ.getCurrentWorld().getWorldWidth(),
 			startY = 400,
+			balloonHeightHigh = 250,
+			balloonHeightLow = 400,
 			gapBetweenMiniWaves = 1500;
 
 		actors = [];
@@ -170,7 +177,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
 		startX += gapBetweenMiniWaves;
 
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightLow));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
 
 		startX += gapBetweenMiniWaves;
@@ -197,10 +204,12 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
 	var spawnWave3 = function () {
 		var startX = GJ.getCurrentWorld().getWorldWidth(),
 			startY = 400,
+			balloonHeightHigh = 250,
+			balloonHeightLow = 400,
 			gapBetweenMiniWaves = 1500;
 
 		actors = [];
-
+		
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
 
 		startX += gapBetweenMiniWaves;
@@ -215,7 +224,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
 		startX += gapBetweenMiniWaves;
 
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightLow));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
 
 		startX += gapBetweenMiniWaves;

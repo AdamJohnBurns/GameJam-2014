@@ -195,16 +195,17 @@ Player.prototype.mineGems = function () {
 		this.image.gotoAndPlay('pickaxe');
 		GJ.Sound.triggerEvent("mine");
 
-		// this.image.removeEventListener('animationend');
+		this.image.removeEventListener('animationend');
 		this.mining = true;
 
 		this.image.addEventListener('animationend', function (event) {
 			if (event.currentTarget.currentFrame === 182) {
-				event.currentTarget.giveGem = true;
+				// event.currentTarget.giveGem = true;
+				GJ.addGem();
 			}
 
 			if (event.currentTarget.currentAnimation !== 'pickaxe') {
-				event.currentTarget.giveGem = undefined;
+				// event.currentTarget.giveGem = undefined;
 				event.remove();
 			}
 
