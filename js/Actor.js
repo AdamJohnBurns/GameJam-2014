@@ -181,12 +181,7 @@ Actor.prototype.checkExploding = function () {
 
 	if (typeof this.balloon !== 'undefined') {
 		if (typeof this.balloon.removeBalloon !== 'undefined') {
-			GJ.Sound.triggerEvent("pop");
-			this.balloon.removeBalloon = undefined;
-			this.ignoreBalloon = true;
-			// this.balloon.x = 2000;
-			// this.balloon.y = 2000;
-			GJ.getStage().removeChild(this.balloon);
+			this.killBalloon();
 		}
 	}
 
@@ -194,6 +189,17 @@ Actor.prototype.checkExploding = function () {
 		this.active = false;
 	}
 };
+
+
+Actor.prototype.killBalloon = function () {
+	GJ.Sound.triggerEvent("pop");
+			this.balloon.removeBalloon = undefined;
+			this.ignoreBalloon = true;
+			// this.balloon.x = 2000;
+			// this.balloon.y = 2000;
+			GJ.getStage().removeChild(this.balloon);
+		};
+
 
 Actor.prototype.doAI = function () {
 	if (this.state === GJ.States.MOVING_LEFT) {
@@ -467,6 +473,10 @@ Actor.prototype.kill = function (explode) {
 	
 	var effect;
 
+	if (typeof this.balloon !== 'undefined') {
+		this.killBalloon();
+	}
+
 	if (this.type === GJ.ActorTypes.GROUND_NORMAL) {
 		this.throwBack();
 		effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
@@ -486,6 +496,8 @@ Actor.prototype.kill = function (explode) {
 		this.throwBack();
 		this.active = false;
 	}
+
+
 
 	// this.image.x = 2000;
 	// this.image.y = 2000;
