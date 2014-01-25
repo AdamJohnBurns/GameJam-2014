@@ -61,7 +61,36 @@ GJ.Sound = (function () {
 					name: "footstep",
 					sound: createjs.Sound.play("footstep_grass_0" + randomInt, {loop: 0})
 				});
+			} else if (name === "jump") {
+				var randomInt = Math.floor((Math.random()*3)+1);
+				soundsPlaying.push({
+					name: "jump",
+					sound: createjs.Sound.play("footstep_jump_0" + randomInt)
+				});	
+			} else if (name === "explode") {
+				var randomInt = Math.floor((Math.random()*5)+1);
+				soundsPlaying.push({
+					name: "explosion",
+					sound: createjs.Sound.play("explosion_0" + randomInt)
+				});
+			} else if (name === "gem_pickup") {
+				soundsPlaying.push({
+					name: "gem_pickup",
+					sound: createjs.Sound.play("gem_pickup_01")
+				});
 			}
+			} else if (name === "gem_steal") {
+				var randomPig = Math.floor((Math.random()*3)+1);
+				soundsPlaying.push({
+					name: "gem_steal",
+					sound: createjs.Sound.play("gem_steal")
+				}, {
+					name: "pig_happy",
+					sound: createjs.Sound.play("pig_snort_0" + randomPig)					
+				});
+			}
+
+
 		}
 
 	};
