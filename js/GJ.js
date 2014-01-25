@@ -14,13 +14,23 @@ var GJ = (function () {
 
 		event,
 
-		numGems			= 10,
+		numGems,
 		gemText,
 		gemImage,
 
+		waveTitle,
+		waveCounter,
+		waveTimer,
+
+		numHearts,
+		heartText,
+		heartImage,
+
+		enemyCount,
+
 		stage,
 		worlds,
-		actors,
+		actors = [],
 		turtle,
 		players;
 
@@ -31,6 +41,161 @@ var GJ = (function () {
 	var drawFPS = function () {
 
 	};
+
+
+	var setupGem = function () {
+		gemImage = new createjs.Bitmap(GJ.Assets.get('BulletGem'));
+			gemImage.x = 20;
+			gemImage.y = 20;
+			stage.addChild(gemImage);
+
+			gemText = new createjs.Text('' + numGems, "20px Arial", "#000000"); 
+			gemText.x = 50;
+			gemText.y = 40;
+			gemText.textBaseline = "alphabetic";
+			stage.addChild(gemText);
+	};
+
+
+	var setupHeart = function () {
+		heartImage = new createjs.Bitmap(GJ.Assets.get('ParticleHeart'));
+			heartImage.x = 100;
+			heartImage.y = 20;
+					heartImage.scaleX = 0.55;
+			heartImage.scaleY = 0.55;
+			stage.addChild(heartImage);
+
+			heartText = new createjs.Text('' + numHearts, "20px Arial", "#000000"); 
+			heartText.x = 130;
+			heartText.y = 40;
+	
+			heartText.textBaseline = "alphabetic";
+			stage.addChild(heartText);
+	};
+
+
+
+
+
+
+	///////////////// WAVE 1
+
+	var setupWaveTitle1 = function () {
+		// waveCounter = 1;
+		// waveTimer = 0;
+
+		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
+		waveTitle.x = 150;
+		waveTitle.y = 200;
+		
+	};
+
+	var spawnWave1 = function () {
+		actors = [];
+				// for (i = 0; i < NUM_ACTORS; i++) {
+				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// }
+
+			enemyCount = actors.length;
+	};
+
+
+	///////////////// WAVE 2
+	
+	var setupWaveTitle2 = function () {
+		// waveCounter = 1;
+		// waveTimer = 0;
+
+		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
+		waveTitle.x = 150;
+		waveTitle.y = 200;
+		
+	};
+
+	var spawnWave2 = function () {
+		actors = [];
+				// for (i = 0; i < NUM_ACTORS; i++) {
+				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// }
+
+			enemyCount = actors.length;
+	};
+
+
+	///////////////// WAVE 3
+	
+	var setupWaveTitle3 = function () {
+		// waveCounter = 1;
+		// waveTimer = 0;
+
+		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
+		waveTitle.x = 150;
+		waveTitle.y = 200;
+		
+	};
+
+	var spawnWave3 = function () {
+		actors = [];
+				// for (i = 0; i < NUM_ACTORS; i++) {
+				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// }
+
+			enemyCount = actors.length;
+	};
+
+
+	///////////////// WIN
+	
+	var showWin = function () {
+		
+		
+	};
+
+
+
+
+	
+	var showGameOver = function () {
+		
+		
+	};
+
+
+
+	var showTitleWave = function () {
+		stage.addChild(waveTitle);
+	};
+
+
+
+	var hideTitleWave = function () {
+		stage.removeChild(waveTitle);
+	};
+
+
+	var triggerWaveEnd = function () {
+		GJ.Sound.triggerEvent("turtle_happy");
+				turtle.spawnHearts();
+				var effect = new Effect(550, 200, GJ.EffectTypes.WAVE_OVER, 0);
+				waveTimer = -200;
+				waveCounter++;
+	};
+
 
 
 	// Public methods /////////////////////////////////////////////
@@ -53,15 +218,9 @@ var GJ = (function () {
 			}
 			turtle = new Turtle();
 
-			actors = [];
-			// for (i = 0; i < NUM_ACTORS; i++) {
-			// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-			actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-			// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-			// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-			// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-			// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-			// }
+			
+				
+			waveTimer = 0;
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
@@ -75,29 +234,29 @@ var GJ = (function () {
 					2, 9, 1.5));
 			}
 
-
-			gemImage = new createjs.Bitmap(GJ.Assets.get('BulletGem'));
-			gemImage.x = 20;
-			gemImage.y = 20;
-			stage.addChild(gemImage);
+			numGems = 10;
+			numHearts = 3;
+			waveCounter = 1;
 
 
-			gemText = new createjs.Text('' + numGems, "20px Arial", "#000000"); 
-			gemText.x = 50;
-			gemText.y = 40;
-			gemText.textBaseline = "alphabetic";
-			stage.addChild(gemText);
+
+			setupGem();
+			setupHeart();
 
 			createjs.Ticker.setFPS(TARGET_FPS);
 			createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED; // if we do standard timing instead of this can we adjust fps to slow/fast up game?
 			createjs.Ticker.addEventListener('tick', GJ.update);
 
 			GJ.Sound.init(); // Start the audio engine
+
+
+			
 		},
 
 
 		update: function (evt) {
-			var i, j;
+			var i, j,
+			activeCount = 0;
 
 			event = evt;
 
@@ -105,8 +264,19 @@ var GJ = (function () {
 
 			worlds[currentWorld].update();
 
+
+
 			for (i = 0; i < actors.length; i++) {
+				actors[i].active
+				if (actors[i].active) {
+					activeCount++;
+				}
+
 				actors[i].update();
+			}
+
+			if (activeCount <= 0 && waveTimer > 450) {
+				triggerWaveEnd();
 			}
 
 			for (i = 0; i < players.length; i++) {
@@ -116,6 +286,62 @@ var GJ = (function () {
 					players[i].checkActorCollision(actors[j]);
 				}
 			}
+
+			waveTimer++;
+
+			///////////////////// WAVE 1
+
+			if(waveTimer == 100 && waveCounter == 1) {
+				setupWaveTitle1();
+				showTitleWave();
+			}
+
+			else if(waveTimer == 300 && waveCounter == 1) {
+				hideTitleWave();
+			}
+
+			else if (waveTimer == 400 && waveCounter == 1) {
+				spawnWave1();
+			}
+
+			///////////////////// WAVE 2
+
+			if(waveTimer == 100 && waveCounter == 2) {
+				setupWaveTitle2();
+				showTitleWave();
+			}
+
+			else if(waveTimer == 300 && waveCounter == 2) {
+				hideTitleWave();
+			}
+
+			else if (waveTimer == 400 && waveCounter == 2) {
+				spawnWave2();
+			}
+
+
+			///////////////////// WAVE 3
+
+			if(waveTimer == 100 && waveCounter == 3) {
+				setupWaveTitle3();
+				showTitleWave();
+			}
+
+			else if(waveTimer == 300 && waveCounter == 3) {
+				hideTitleWave();
+			}
+
+			else if (waveTimer == 400 && waveCounter == 3) {
+				spawnWave3();
+			}
+
+
+			///////////////////// WINRAR!
+
+			if(waveTimer == 100 && waveCounter == 3) {
+				showWin();
+			}
+
 
 			drawFPS();
 
@@ -165,12 +391,36 @@ var GJ = (function () {
 
 		gentlemanStoleMyBike: function () {
 			numGems--;
-			gemText.text = 'Gems :' + numGems;
+			gemText.text = '' + numGems;
+			GJ.Sound.triggerEvent("turtle_sad");
 		},
 
 		addGem: function () {
 			numGems++;
-			gemText.text = 'Gems :' + numGems;
+			gemText.text = '' + numGems;
+		},
+
+		getTurtle: function () {
+			return turtle;
+		},
+
+		removeEnemy: function () {
+			enemyCount--;
+
+			if (enemyCount <= 0) {
+				
+			}
+		},
+
+
+		takeHit: function () {
+			numHearts--;
+			heartText.text = '' + numHearts;
+
+			// DO GAMESTAGE CHECKING STUFF HERE, REINIT IF DEAD
+			if(numHearts <= 0) {
+				GJ.assetsReady();
+			}
 		},
 
 		States: {
@@ -199,7 +449,12 @@ var GJ = (function () {
 
 		EffectTypes: {
 			RUNNING_SMOKE: 0,
-			JUMP_SMOKE: 1
+			JUMP_SMOKE: 1,
+			WAVE1: 2,
+			WAVE2: 3,
+			WAVE3: 4,
+			WAVE_OVER: 5,
+			EXPLOSION_SMALL: 6
 		}
 	};
 })();

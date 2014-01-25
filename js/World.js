@@ -37,8 +37,7 @@ World = function (goalX, goalY, groundOffset, gravity) {
 
 	GJ.getStage().addChild(this.bgmain);
 	GJ.getStage().addChild(this.decoration);
-	GJ.getStage().addChild(this.ground);
-	GJ.getStage().addChild(this.foreground);
+	
 
 	this.clouds = [];
 	for (i = 0; i < 4; i++) {
@@ -64,9 +63,12 @@ World = function (goalX, goalY, groundOffset, gravity) {
 	this.mine.x = 0;
 	this.mine.y = 320;
 
-	GJ.getStage().addChild(this.shape);
+	
 	GJ.getStage().addChild(this.gems);
 	GJ.getStage().addChild(this.mine);
+
+	GJ.getStage().addChild(this.ground);
+	GJ.getStage().addChild(this.foreground);
 };
 
 

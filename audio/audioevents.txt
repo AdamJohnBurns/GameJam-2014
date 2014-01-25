@@ -1,5 +1,6 @@
 EVENTS YOU CAN TRIGGER:
 
+IN NEEDS WORK BY ADAM
 GJ.Sound.triggerEvent("footstep");
 	-- Cat footstep (animation sync)
 	-- Should also be played on "jump" keypress
@@ -7,39 +8,49 @@ GJ.Sound.triggerEvent("footstep");
 GJ.Sound.triggerEvent("land");
 	-- [optional] Cat lands after jump (animation sync)
 
+IN
 GJ.Sound.triggerEvent("explode");
 	-- Bomb piggy explodes
 
+IN
 GJ.Sound.triggerEvent("gem_pickup");
 	-- You mine a gem with your pick and the gem flies up into your inventory (I can re-time this later to match animation)
 
 GJ.Sound.triggerEvent("gem_drop");
 	-- You give a gem to the turtle
 
+IN, MIGHT NEED RETIMING
 GJ.Sound.triggerEvent("pig_steal");
 	-- A little piggy rummages around for a bit an then picks up a gem (I can re-time this later to match animation)
 
+IN BUT ON SHOOT NOT MELEE
 GJ.Sound.triggerEvent("swish");
 	-- [optional] Generic "swish" SFX
 
 GJ.Sound.triggerEvent("attack");
 	-- Cat swings his/her sword	
 
+IN
 GJ.Sound.triggerEvent("kill");
 	-- Piggy gets sliced into bacon
 
+IN, NEEDS SYNCING - NEED TO DISCUSS
 GJ.Sound.triggerEvent("mine");
 	-- [optional] Cat swings his/her pick against gems (but doesn't collect any)
 
+IN
 GJ.Sound.triggerEvent("pop");
 	-- [optional] A balloon bursts
 
+IN
 GJ.Sound.triggerEvent("turtle_sad");
 	-- [optional] The turtle feels sad for some reason
 
+IN
 GJ.Sound.triggerEvent("turtle_happy");
 	-- [optional] The turtle feels happy for some reason
 
+IN
 GJ.Sound.triggerEvent("meow");
 	-- [optional] The cat meows for some reason (bloodlust?)
 

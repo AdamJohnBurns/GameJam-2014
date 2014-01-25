@@ -16,6 +16,11 @@ GJ.Assets = (function () {
 			{id: 'EffectHitEffect', src:'img/Effects/EffectHitEffect.png'},
 			{id: 'EffectJumpSmoke', src:'img/Effects/JumpSmoke.png'},
 			{id: 'EffectRunningSmoke', src:'img/Effects/RunningSmoke.png'},
+			// {id: 'EffectWave2', src:'img/Effects/Wave2.png'},
+			// {id: 'EffectWave3', src:'img/Effects/Wave3.png'},
+			{id: 'EffectWaveOver', src:'img/Effects/WaveOver.png'},
+
+			{id: 'WaveTitle', src:'img/Effects/Wave1.png'},
 
 			// main character
 			{id: 'MainCharacterIdle', src:'img/MainCharacter/Idle.png'},
@@ -34,9 +39,15 @@ GJ.Assets = (function () {
 			{id: 'PigGemRun', src:'img/Pigs/DiamondPigRun.png'},
 			{id: 'PigBombRun', src:'img/Pigs/BombPigRun.png'},
 			{id: 'PigBombExplode', src:'img/Pigs/ExplodingPig.png'},
+			{id: 'PigFly', src:'img/Pigs/FlyingPig.png'},
+
+			// ballooon
+			{id: 'BalloonFly', src:'img/Pigs/Balloon.png'},
+			{id: 'BalloonDestroy', src:'img/Pigs/BalloonFlyOff.png'},
 
 			// particles
 			{id: 'ParticleBacon', src:'img/Particles/BaconParticle.png'},
+			{id: 'ParticleHeart', src:'img/Particles/Heart.png'},
 
 			// bullets
 			{id: 'BulletGem', src:'img/Particles/Diamond.png'},			
@@ -50,10 +61,6 @@ GJ.Assets = (function () {
 			{id: 'SceneCloud1', src:'img/Scene/Cloud1.png'},
 			{id: 'SceneCloud2', src:'img/Scene/Cloud2.png'},
 			{id: 'SceneCloud3', src:'img/Scene/Cloud3.png'},
-
-			{id: 'sprite1', src:'img/sprite1.jpg'},
-			{id: 'sprite2', src:'img/sprite2.jpg'},
-			{id: 'sprite3', src:'img/sprite3.jpg'},
 
 			// audio
 			{id: 'amb_birdsong', src:'audio/amb_birdsong.ogg', data: 4},

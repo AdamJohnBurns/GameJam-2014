@@ -15,6 +15,8 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 	this.maxMoveSpeed = maxMoveSpeed;
 	this.weight = weight;
 
+	this.footstepDelay = 30;
+	this.footstepTimer = this.footstepDelay;
 	
 	this.isOnGround = false;
 
@@ -22,27 +24,10 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 
 	this.isMining = false;
 
-	this.direction = GJ.Directions.RIGHT;
+	this.hitDelay = 100;
+	this.hitTimer = 0;
 
-	// data = new createjs.SpriteSheet({
- //            'images': [GJ.Assets.get('playerSS')],
- //            'frames': {
- //            	'regX': 0, 
- //            	'height': 292, 
- //            	'count': 64, 
- //            	'regY': 0, 
- //            	'width': 165
- //            },
- //            // define two animations, run (loops, 1.5x speed) and jump (returns to run):
- //            'animations': {
- //            	'run': [0, 25, 'run', 1.5], 
- //            	'jump': [26, 63, 'run'],
- //            	'idle': [0, 0]
- //            }
- //    });
- //    this.image = new createjs.Sprite(data, "run");
- //    this.image.setTransform(-200, 90, 0.8, 0.8);
- //    this.image.framerate = 30;
+	this.direction = GJ.Directions.RIGHT;
 
 	this.gun = new Gun(GJ.getTargetFPS(), 6, 0, this, 0, -48);
 	this.gunType = GJ.Weapons.PLAYER_GUN;
@@ -109,6 +94,17 @@ Player.prototype.update = function () {
 
 	this.checkWorldCollision();
 	this.applyVelocity();
+
+	if (this.footstepTimer <= 0) {
+		GJ.Sound.triggerEvent("footstep");
+		this.footstepTimer = this.footstepDelay;
+	} else {	
+		this.footstepTimer--;		
+	}
+
+	if (this.hitTimer > 0) {
+		this.hitTimer--;
+	}
 	
 };
 
@@ -146,6 +142,7 @@ Player.prototype.checkReadyToFire = function () {
 	if (typeof this.image.readyToFire !== 'undefined' && this.image.readyToFire) {
 		this.gun.fire();
 		this.image.readyToFire = undefined;
+		GJ.Sound.triggerEvent("swish");
 
 		this.image.removeEventListener('tick');
 	}
@@ -190,7 +187,7 @@ Player.prototype.checkMining = function () {
 			this.mining = false;
 			this.image.removeEventListener('animationend');
 			this.image.giveGem = false;
-			console.log('removed');
+			
 		} else {
 
 		}
@@ -198,6 +195,8 @@ Player.prototype.checkMining = function () {
 
 	if (typeof this.image.giveGem !== 'undefined' && this.image.giveGem === true) {
 		GJ.addGem();
+		
+		GJ.Sound.triggerEvent("gem_pickup");
 		this.image.giveGem = undefined;
 	}
 };
@@ -206,8 +205,9 @@ Player.prototype.checkMining = function () {
 Player.prototype.mineGems = function () {
 	if (this.image.currentAnimation !== 'pickaxe' && this.isOnGround && this.direction === GJ.Directions.LEFT && this.image.x <= 150) {
 		this.image.gotoAndPlay('pickaxe');
+		GJ.Sound.triggerEvent("mine");
 
-		this.image.removeEventListener('animationend');
+		// this.image.removeEventListener('animationend');
 		this.mining = true;
 
 		this.image.addEventListener('animationend', function (event) {
@@ -377,6 +377,22 @@ Player.prototype.checkActorCollision = function (actor) {
 	if (typeof actor !== 'undefined') {
 		// can you check this with shapes!????
 		var intersection = ndgmr.checkRectCollision(this.image, actor.getImage());
+
+		if (intersection) {
+
+			if (this.hitTimer <= 0) {
+				this.hitTimer = this.hitDelay;
+				GJ.takeHit();
+				GJ.Sound.triggerEvent("meow");
+
+				if(this.image.x < actor.getImage().x) {
+					this.accelX = -20;
+				} else {
+					this.accelX = 20;
+				}
+			}
+		}
+
 		// console.log(intersection);
 	} else {
 		// console.error('checkActorCollision(): actor is undefined');
