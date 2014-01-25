@@ -1,6 +1,9 @@
 World = function (goalX, goalY, groundOffset, gravity) {
-	var stageWidth = GJ.getStage().canvas.width,
+	var i,
+		stageWidth = GJ.getStage().canvas.width,
 		stageHeight = GJ.getStage().canvas.height;
+
+	this.worldWidth = stageWidth * 3;
 
 	this.groundHeight = stageHeight - groundOffset;
 	this.gravity = gravity;
@@ -15,6 +18,13 @@ World = function (goalX, goalY, groundOffset, gravity) {
 	this.gems.graphics.beginFill("orange").drawRect(0, 30, 30, 30);
 	this.gems.x = this.goalX - 15;
 	this.gems.y = this.goalY - 15;
+
+	this.clouds = [];
+	for (i = 0; i < 10; i++) {
+		this.clouds.push(new createjs.Shape());
+		this.clouds[i].x
+		this.clouds[i].y 
+	}
 
 	GJ.getStage().addChild(this.shape);
 	GJ.getStage().addChild(this.gems);

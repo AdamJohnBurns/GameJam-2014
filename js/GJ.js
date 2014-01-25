@@ -52,7 +52,7 @@ var GJ = (function () {
 
 			actors = [];
 			for (i = 0; i < NUM_ACTORS; i++) {
-				actors.push(new Actor());
+				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
 			}
 
 			players = [];
@@ -149,7 +149,8 @@ var GJ = (function () {
 		States: {
 			MOVING_LEFT: 0,
 			STEALING: 1,
-			LEGGING_IT: 2
+			LEGGING_IT: 2,
+			EXPLODING: 2
 		},
 
 		Directions: {
@@ -159,6 +160,12 @@ var GJ = (function () {
 
 		Weapons: {
 			PLAYER_GUN: 0
+		},
+
+		ActorTypes: {
+			GROUND_NORMAL: 0,
+			GROUND_EXPLODING: 1,
+			FLYING_NORMAL: 1
 		}
 	};
 })();

@@ -80,7 +80,7 @@ Player.prototype.handleInput = function () {
 	}
 
 	if (GJ.Input.isPressed(this.jumpKey)) {
-		this.jump();
+		this.jump();		
 	}
 };
 
@@ -138,11 +138,9 @@ Player.prototype.moveRight = function () {
 
 Player.prototype.jump = function () {
 	if (this.image.y + this.image.getBounds().height / 2 >= GJ.getCurrentWorld().getGroundHeight()) {
-		console.log('true');
 		this.accelY = -20;
+		GJ.Sound.triggerEvent('footstep');
 		// this.image.gotoAndPlay('jump');
-	} else {
-		console.log('false');
 	}
 };
 
