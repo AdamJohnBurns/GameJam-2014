@@ -108,6 +108,8 @@ var Actor = function (type, x, y) {
 			this.balloon.y = this.image.y - 110;
 			GJ.getStage().addChild(this.balloon);	
 			this.balloon.gotoAndPlay('fly');	
+
+			console.log(this.image.y, this.balloon.y);
 		}
 
 		this.waitTimer = 0;
