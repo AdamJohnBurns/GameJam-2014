@@ -238,7 +238,7 @@ Player.prototype.moveLeft = function () {
 		this.accelX = -this.maxMoveSpeed;
 	}
 
-	if(this.accelX > 0 && this.waitForEffect <= 0 && this.isOnGround) {
+	if(this.accelX > 0 && this.waitForEffect <= 0 && this.isOnGround ) {
 		this.waitForEffect = 4;
 		var effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.RUNNING_SMOKE, this.direction);
 	}
@@ -305,9 +305,12 @@ Player.prototype.meleeAttack = function () {
 
 
 Player.prototype.shoot = function () {
-	if (this.image.currentAnimation !== 'shoot') {
+	// if (this.image.currentAnimation !== 'shoot') {
 		this.image.gotoAndPlay('shoot');
 		this.dampenAcceleration();
+
+		this.image.removeEventListener('tick');
+		this.image.removeEventListener('animationend');
 
 		this.image.addEventListener('tick', function (target) {
 			// console.log(target.currentTarget.currentFrame);
@@ -322,7 +325,7 @@ Player.prototype.shoot = function () {
 			// console.log(event2);
 			// console.log('----');
 		});
-	}
+	// }
 
 	
 };

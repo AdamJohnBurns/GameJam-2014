@@ -49,7 +49,7 @@ Gun.prototype.checkBulletCollisions = function (targets) {
 					// }
 
 
-					this.bullets[j].kill(true);
+					// this.bullets[j].kill(true);
 					targets[i].hitByBullet();
 
 
