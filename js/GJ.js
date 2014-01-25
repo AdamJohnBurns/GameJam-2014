@@ -106,6 +106,10 @@ var GJ = (function () {
 			gapBetweenMiniWaves = 1500;
 
 		actors = [];
+// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 500, startY + 0));		
+actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));	
+// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 500, startY + 0));			
+
 
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
 
@@ -304,6 +308,19 @@ var GJ = (function () {
 			numGems = 10;
 			numHearts = 3;
 			waveCounter = 1;
+
+
+
+
+
+
+
+			// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS
+			waveTimer = 350;
+
+
+
+
 
 
 

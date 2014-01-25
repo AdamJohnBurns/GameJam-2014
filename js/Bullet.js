@@ -21,6 +21,10 @@ Bullet.prototype.update = function () {
 		this.image.y += this.velY;
 
 		this.image.rotation += 25;
+
+		if (this.image.x > GJ.getCurrentWorld().getWorldWidth()) {
+			this.kill();
+		}
 	}
 };
 

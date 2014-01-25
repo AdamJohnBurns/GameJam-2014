@@ -164,7 +164,7 @@ Actor.prototype.checkExploding = function () {
 					this.hitTimer = this.hitDelay;
 					GJ.takeHit();
 					GJ.Sound.triggerEvent("meow");
-console.log('hit from explosion');
+// console.log('hit from explosion');
 					if(this.image.x < GJ.getPlayers()[0].image.x) {
 						this.accelX = -20;
 					} else {
@@ -188,6 +188,10 @@ console.log('hit from explosion');
 			// this.balloon.y = 2000;
 			GJ.getStage().removeChild(this.balloon);
 		}
+	}
+
+	if (typeof this.image.setNotActive !== 'undefined') {
+		this.active = false;
 	}
 };
 
@@ -266,29 +270,39 @@ Actor.prototype.doAI = function () {
 		this.dampenAcceleration();
 
 		if (this.image.currentAnimation !== 'explode') {
-			this.image.gotoAndPlay('explode');
-			GJ.Sound.triggerEvent("explode");
-
-			this.image.addEventListener('tick', function (event) {
-				// console.log(target.currentTarget.currentFrame);
-				
-				if (event.currentTarget.currentFrame >= 225) {
-					event.remove();
-				}
-				else if (event.currentTarget.currentFrame >= 190) {
-					event.currentTarget.checkBombCollision = true;
-				}
-			});
-
-			this.image.addEventListener('animationend', function (event) {
-
-				event.currentTarget.stopExploding = true;
-				event.currentTarget.x = 2000;
-				event.currentTarget.y = 2000;
-				event.remove();
-			});
+			this.doExplode();
 		}
 	}
+};
+
+
+Actor.prototype.doExplode = function () {
+	this.image.gotoAndPlay('explode');
+	GJ.Sound.triggerEvent("explode");
+
+	this.image.addEventListener('tick', function (event) {
+		// console.log(target.currentTarget.currentFrame);
+		
+		if (event.currentTarget.currentFrame == 190) {
+			this.spawnBacsplosion();
+		}
+
+		if (event.currentTarget.currentFrame >= 225) {
+			event.remove();
+			event.currentTarget.setNotActive = true;
+		}
+		else if (event.currentTarget.currentFrame >= 190) {
+			event.currentTarget.checkBombCollision = true;
+		}
+	});
+
+	this.image.addEventListener('animationend', function (event) {
+
+		event.currentTarget.stopExploding = true;
+		// event.currentTarget.x = 2000;
+		// event.currentTarget.y = 2000;
+		event.remove();
+	});
 };
 
 
@@ -413,17 +427,17 @@ Actor.prototype.spawnBacsplosion = function () {
 	this.emitter = new createjs.ParticleEmitter(GJ.Assets.get('ParticleBacon'));
     this.emitter.position = new createjs.Point(this.image.x, this.image.y);
     this.emitter.emitterType = createjs.ParticleEmitterType.Emit;
-    this.emitter.duration = 60;	// how long emitter lasts for
-    this.emitter.emissionRate = 200;
-    this.emitter.maxParticles = 200;
+    this.emitter.duration = 500;	// how long emitter lasts for
+    this.emitter.emissionRate = 2000;
+    this.emitter.maxParticles = 2000;
     this.emitter.life = 2000;
     this.emitter.lifeVar = 500;
-    this.emitter.speed = 230;
-    this.emitter.speedVar = 0;
+    this.emitter.speed = 290;
+    this.emitter.speedVar = 5;
     this.emitter.positionVarX = 5;
     this.emitter.positionVarY = 5;
-    this.emitter.accelerationX = 0;
-    this.emitter.accelerationY = 0;
+    this.emitter.accelerationX = 3;
+    this.emitter.accelerationY = 3;
     this.emitter.radialAcceleration = 0;
     this.emitter.radialAccelerationVar = 0;
     this.emitter.tangentalAcceleration = 0;
@@ -450,20 +464,27 @@ Actor.prototype.spawnBacsplosion = function () {
 
 
 Actor.prototype.kill = function (explode) {
-	this.active = false;
+	
+	var effect;
 
 	if (this.type === GJ.ActorTypes.GROUND_NORMAL) {
 		this.throwBack();
+		effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
 		GJ.Sound.triggerEvent("kill");
+		this.active = false;
 
 	} else if (this.type === GJ.ActorTypes.GROUND_EXPLODING) {
 		if (typeof explode !== 'undefined') {
-			this.spawnBacsplosion();
+			// this.spawnBacsplosion();
+			// GJ.Sound.triggerEvent("kill"); // explode sound instead?
+			this.doExplode();
 		}
 		 
 	} else if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
 		GJ.Sound.triggerEvent("kill");
+		effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
 		this.throwBack();
+		this.active = false;
 	}
 
 	// this.image.x = 2000;
@@ -474,7 +495,7 @@ Actor.prototype.kill = function (explode) {
 
 
 Actor.prototype.hitByBullet = function () {
-	this.kill();
+	this.kill(true);
 };
 
 
