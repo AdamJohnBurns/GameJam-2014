@@ -97,12 +97,10 @@ var GJ = (function () {
 
 			for (i = 0; i < actors.length; i++) {
 				actors[i].update();
-				// worlds[currentWorld].handleGravity(actors[i].getImage());
 			}
 
 			for (i = 0; i < players.length; i++) {
 				players[i].update();
-				// worlds[currentWorld].handleGravity(players[i].getImage());
 
 				for (j = 0; j < actors.length; j++) {
 					players[i].checkActorCollision(actors[j]);

@@ -15,7 +15,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 	this.maxMoveSpeed = maxMoveSpeed;
 	this.weight = weight;
 
-	this.height = 96;
+	
 	this.isOnGround = false;
 
 	this.attackRange = 20;
@@ -44,13 +44,8 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
  //    this.image.setTransform(-200, 90, 0.8, 0.8);
  //    this.image.framerate = 30;
 
-	this.gun = new Gun(GJ.getTargetFPS(), 6, 0, this, 0, 0);
+	this.gun = new Gun(GJ.getTargetFPS(), 6, 0, this, 0, -48);
 	this.gunType = GJ.Weapons.PLAYER_GUN;
-
-
-
-
-
 
 
 
@@ -64,20 +59,23 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 		frames: [
 			// x, y, width, height, index, regX, regY
 			// the index needs to match the file with the sprites
-			[0,0,67,97,0,32.3,96.65],[67,0,67,97,0,32.3,96.65],[134,0,67,97,0,32.3,96.65],[0,97,67,97,0,32.3,96.65],[67,97,67,97,0,32.3,96.65],[134,97,67,97,0,32.3,96.65],[0,194,67,97,0,32.3,96.65],[67,194,67,97,0,32.3,96.65],[134,194,67,97,0,32.3,96.65],[0,291,67,97,0,32.3,96.65],[67,291,67,97,0,32.3,96.65],[134,291,67,97,0,32.3,96.65],[0,388,67,97,0,32.3,96.65],
+			[0,0,67,97,0,32.3,96.65],[72,0,67,97,0,32.3,96.65],[144,0,67,97,0,32.3,96.65],[0,102,67,97,0,32.3,96.65],[72,102,67,97,0,32.3,96.65],[144,102,67,97,0,32.3,96.65],[0,204,67,97,0,32.3,96.65],[72,204,67,97,0,32.3,96.65],[144,204,67,97,0,32.3,96.65],[0,306,67,97,0,32.3,96.65],[72,306,67,97,0,32.3,96.65],[144,306,67,97,0,32.3,96.65],[0,408,67,97,0,32.3,96.65],
 			[0,0,71,113,1,37.75,112.35],[71,0,71,113,1,37.75,112.35],[142,0,71,113,1,37.75,112.35],[213,0,71,113,1,37.75,112.35],[284,0,71,113,1,37.75,112.35],[355,0,71,113,1,37.75,112.35],[426,0,71,113,1,37.75,112.35],[0,113,71,113,1,37.75,112.35],[71,113,71,113,1,37.75,112.35],[142,113,71,113,1,37.75,112.35],[213,113,71,113,1,37.75,112.35],[284,113,71,113,1,37.75,112.35],[355,113,71,113,1,37.75,112.35],[426,113,71,113,1,37.75,112.35],[0,226,71,113,1,37.75,112.35],[71,226,71,113,1,37.75,112.35],[142,226,71,113,1,37.75,112.35]
 		],
 		animations: { 
 			idle: [0, 10],
 			run: [11, 27],
 			jump: [15, 15],
-			fall: [20, 20]
+			fall: [20, 20],
+			melee: [24, 24],
+			shoot: [27, 27]
 		}
 	});
 	this.image = new createjs.Sprite(data, 'idle');
 
 
 
+	this.height = this.image.getBounds().height;//48;
 
 	// this.image = new createjs.Shape();
 	// this.image.graphics.beginFill("red").drawCircle(0, 0, 50);
@@ -123,6 +121,7 @@ Player.prototype.update = function () {
 
 	this.checkWorldCollision();
 	this.applyVelocity();
+	
 };
 
 
@@ -245,7 +244,7 @@ Player.prototype.meleeAttack = function () {
 
 
 Player.prototype.jump = function () {
-	if (this.image.y + this.image.getBounds().height / 2 >= GJ.getCurrentWorld().getGroundHeight()) {
+	if (this.isOnGround) {
 		this.accelY = -20;
 		GJ.Sound.triggerEvent('footstep');
 
@@ -301,14 +300,24 @@ Player.prototype.checkActorCollision = function (actor) {
 
 
 Player.prototype.checkWorldCollision = function () {
-	var height = this.height / 2;//this.image.getBounds().height / 2;
+	var height = this.height;//this.image.getBounds().height / 2;
 
-	if (this.image.y >= GJ.getCurrentWorld().getGroundHeight() ) {
+	if (this.image.y + this.accelY >= GJ.getCurrentWorld().getGroundHeight() ) {
 		this.image.y = GJ.getCurrentWorld().getGroundHeight();
-		this.accelY = 0;
+
+		if (this.image.currentAnimation !== 'jump') {
+			this.accelY = 0;
+		}
+
 		this.isOnGround = true;
 	} else {
 		this.isOnGround = false;
 		// this.image.gotoAndPlay('fall');
+	}
+
+	if (this.image.x < 0) {
+		this.image.x = 0;
+	} else if (this.image.x > GJ.getCurrentWorld().getWorldWidth()) {
+		this.image.x = GJ.getCurrentWorld().getWorldWidth();
 	}
 };

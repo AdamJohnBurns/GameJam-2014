@@ -49,8 +49,14 @@ Gun.prototype.fire = function () {
 	var x, y, velX, velY;
 
 	if (this.fireTimer <= 0) {
-		x = this.controller.image.x;
-		y = this.controller.image.y;
+		// if (this.controller.direction === GJ.Directions.RIGHT) {
+		// 	x = this.controller.image.x;// + this.controller.image.getBounds().width / 2 + this.offsetX;
+		// } else {
+		// }
+			x = this.controller.image.x + this.offsetX;
+
+		y = this.controller.image.y + this.offetY;
+
 		velX = this.bulletSpeedX;
 		velY = this.bulletSpeedY;
 

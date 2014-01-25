@@ -1,9 +1,11 @@
 World = function (goalX, goalY, groundOffset, gravity) {
 	var i,
+		rnd,
+		cloudName,
 		stageWidth = GJ.getStage().canvas.width,
 		stageHeight = GJ.getStage().canvas.height;
 
-	this.worldWidth = stageWidth * 3;
+	this.worldWidth = stageWidth;
 
 	this.groundHeight = stageHeight - groundOffset;
 	this.gravity = gravity;
@@ -20,9 +22,19 @@ World = function (goalX, goalY, groundOffset, gravity) {
 	this.gems.y = this.goalY - 15;
 
 	this.clouds = [];
-	for (i = 0; i < 10; i++) {
-		this.clouds.push(new createjs.Shape());
-		this.clouds[i].graphics.beginFill("green").drawRect(0, 0, 60, 20);
+	for (i = 0; i < 4; i++) {
+		rnd = Math.random();
+
+		if (rnd < 0.33) {
+			cloudName = 'SceneCloud1';
+		} else if (rnd < 0.66) {
+			cloudName = 'SceneCloud2';
+		} else {
+			cloudName = 'SceneCloud3';
+		}
+
+		this.clouds.push(new createjs.Bitmap(GJ.Assets.get(cloudName)));
+
 		this.clouds[i].x = Math.random() * this.worldWidth;
 		this.clouds[i].y = 30 + Math.random() * 100;
 
@@ -31,7 +43,6 @@ World = function (goalX, goalY, groundOffset, gravity) {
 
 	this.mine = new createjs.Shape();
 	this.mine.graphics.beginFill("green").drawRect(0, stageHeight - groundOffset - 60, 60, 90);
-
 
 	GJ.getStage().addChild(this.shape);
 	GJ.getStage().addChild(this.gems);
@@ -51,7 +62,7 @@ World.prototype.scrollClouds = function () {
 	for (i = 0; i < this.clouds.length; i++) {
 		cloud = this.clouds[i];
 
-		cloud.x -= 0.25;
+		cloud.x -= 0.15;
 
 		if (cloud.x + /*cloud.getBounds().width*/60 < 0) {
 			cloud.x = this.worldWidth + Math.random() * 100;
@@ -86,4 +97,9 @@ World.prototype.handleGravity = function (object) {
 
 World.prototype.getGoalX = function () {
 	return this.goalX;
+};
+
+
+World.prototype.getWorldWidth = function () {
+	return this.worldWidth;
 };
