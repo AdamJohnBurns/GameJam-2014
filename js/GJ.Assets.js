@@ -97,7 +97,7 @@ GJ.Assets = (function () {
 			{id: 'cat_02', src:'audio/cat_02.ogg', data: 5},
 			{id: 'cat_03', src:'audio/cat_03.ogg', data: 5},
 			{id: 'cat_04', src:'audio/cat_04.ogg', data: 5},
-			{id: 'cat_04', src:'audio/cat_05.ogg', data: 5},
+			{id: 'cat_05', src:'audio/cat_05.ogg', data: 5},
 			{id: 'sword_stab_01', src:'audio/sword_stab_01.ogg', data: 3},
 			{id: 'sword_stab_02', src:'audio/sword_stab_02.ogg', data: 3},
 			{id: 'sword_stab_03', src:'audio/sword_stab_03.ogg', data: 3},

@@ -30,7 +30,7 @@ GJ.Sound = (function () {
 				sound = soundsPlaying[i];
 
 				if (sound.name === "ambience_happy") {
-					fadeVolume(sound.sound, 0.7, 3000); //fade in sound over 3s
+					fadeVolume(sound.sound, 0.5, 3000); //fade in sound over 3s
 				}
 
 			}
