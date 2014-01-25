@@ -136,6 +136,11 @@ Actor.prototype.update = function () {
 			this.image.y = 2000;
 		}
 	}
+
+
+	if (this.hasBomb) {
+		console.log(this.image.currentAnimation);
+	}
 };
 
 Actor.prototype.updateBalloon = function () {
@@ -146,40 +151,39 @@ Actor.prototype.updateBalloon = function () {
 
 
 Actor.prototype.checkExploding = function () {
-	if (typeof this.image.stopExploding !== 'undefined') {
-		this.image.removeEventListener('tick');
-		this.image.x = 2000;
-		this.image.y = 2000;
-		this.image.stopExploding = undefined;
-		this.kill();
-		GJ.getStage().removeChild(this.image);
-	}
+	// if (typeof this.image.stopExploding !== 'undefined') {
+	// 	this.image.removeEventListener('tick');
+	// 	this.image.x = 2000;
+	// 	this.image.y = 2000;
+	// 	this.image.stopExploding = undefined;
+	// 	this.kill();
+	// 	GJ.getStage().removeChild(this.image);
+	// }
 
-	if (typeof this.image.checkBombCollision !== 'undefined') {
-		if (typeof actor !== 'undefined') {
+	// if (typeof this.image.checkBombCollision !== 'undefined') {
+	// 	if (typeof actor !== 'undefined') {
 			
-			var intersection = ndgmr.checkRectCollision(this.image, GJ.getPlayers()[0].image);
+	// 		var intersection = ndgmr.checkRectCollision(this.image, GJ.getPlayers()[0].image);
 
-			if (intersection) {
+	// 		if (intersection) {
 
-				if (this.hitTimer <= 0) {
-					this.hitTimer = this.hitDelay;
-					GJ.takeHit();
-					GJ.Sound.triggerEvent("meow");
-// console.log('hit from explosion');
-					if(this.image.x < GJ.getPlayers()[0].image.x) {
-						this.accelX = -20;
-					} else {
-						this.accelX = 20;
-					}
-				}
-			}
+	// 			if (this.hitTimer <= 0) {
+	// 				this.hitTimer = this.hitDelay;
+	// 				GJ.takeHit();
+	// 				GJ.Sound.triggerEvent("meow");
 
-			// console.log(intersection);
-		}
+	// 				if(this.image.x < GJ.getPlayers()[0].image.x) {
+	// 					this.accelX = -20;
+	// 				} else {
+	// 					this.accelX = 20;
+	// 				}
+	// 			}
+	// 		}
 
-		this.image.checkBombCollision = undefined;
-	}
+	// 	}
+
+	// 	this.image.checkBombCollision = undefined;
+	// }
 
 	if (typeof this.balloon !== 'undefined') {
 		if (typeof this.balloon.removeBalloon !== 'undefined') {
@@ -213,8 +217,8 @@ Actor.prototype.doAI = function () {
 				intersection = ndgmr.checkRectCollision(this.image, players[i].getImage());
 
 				if (intersection) {
-					this.state = GJ.States.EXPLODING;
-
+					// this.state = GJ.States.EXPLODING;
+					this.doExplode();
 				}
 			}
 		}
@@ -285,77 +289,86 @@ Actor.prototype.doAI = function () {
 
 
 Actor.prototype.doExplode = function () {
-	this.image.gotoAndPlay('explode');
-	GJ.Sound.triggerEvent("explode");
-
-	this.image.addEventListener('tick', function (event) {
-		// console.log(target.currentTarget.currentFrame);
 
 
-		
-		if (event.currentTarget.currentFrame == 190) {
+	if (this.image.currentAnimation !== 'explode') {
 
-			// var index = event.currentTarget.getChildIndex(event.currentTarget);
+		console.log('do explode');
 
-			var emitter;
-				emitter = new createjs.ParticleEmitter(GJ.Assets.get('ParticleBacon'));
-			    emitter.position = new createjs.Point(event.currentTarget.x + 10, event.currentTarget.y - 70);
-			    emitter.emitterType = createjs.ParticleEmitterType.Emit;
-			    emitter.duration = 250;	// how long emitter lasts for
-			    emitter.emissionRate = 1000;
-			    emitter.maxParticles = 1000;
-			    emitter.life = 500;
-			    emitter.lifeVar = 500;
-			    emitter.speed = 290;
-			    emitter.speedVar = 10;
-			    emitter.positionVarX = 10;
-			    emitter.positionVarY = 10;
-			    emitter.accelerationX = 6;
-			    emitter.accelerationY = 6;
-			    emitter.radialAcceleration = 3;
-			    emitter.radialAccelerationVar = 3;
-			    emitter.tangentalAcceleration = 3;
-			    emitter.tangentalAccelerationVar = 10;
-			    emitter.angle = 0;
-			    emitter.angleVar = 180;
-			    emitter.startSpin = 0;
-			    emitter.startSpinVar = 5;
-			    emitter.endSpin = 10;
-			    emitter.endSpinVar = 5;
-			    emitter.startColor = [150, 150, 150];
-			    emitter.startColorVar = [0, 0, 0];
-			    emitter.startOpacity = 1;
-			    emitter.endColor = null;
-			    emitter.endColorVar = null;
-			    emitter.endOpacity = 1;
-			    emitter.startSize = 10;
-			    emitter.startSizeVar = 0;
-			    emitter.endSize = 10;
-			    emitter.endSizeVar = 3;
+		this.state = GJ.States.EXPLODING;
+		this.image.gotoAndPlay('explode');
+		GJ.Sound.triggerEvent("explode");
+
+		this.image.addEventListener('tick', function (event) {
+			// console.log(target.currentTarget.currentFrame);
+console.log('tick');	
+
+			if (event.currentTarget.currentFrame == 190 && event.currentTarget.currentAnimation == 'explode') {
+
+console.log('tick = 190');			
+				// var index = event.currentTarget.getChildIndex(event.currentTarget);
+
+				var emitter;
+					emitter = new createjs.ParticleEmitter(GJ.Assets.get('ParticleBacon'));
+				    emitter.position = new createjs.Point(event.currentTarget.x + 10, event.currentTarget.y - 70);
+				    emitter.emitterType = createjs.ParticleEmitterType.Emit;
+				    emitter.duration = 250;	// how long emitter lasts for
+				    emitter.emissionRate = 20;
+				    emitter.maxParticles = 40;
+				    emitter.life = 500;
+				    emitter.lifeVar = 500;
+				    emitter.speed = 290;
+				    emitter.speedVar = 10;
+				    emitter.positionVarX = 10;
+				    emitter.positionVarY = 10;
+				    emitter.accelerationX = 20;
+				    emitter.accelerationY = 10;
+				    emitter.radialAcceleration = 3;
+				    emitter.radialAccelerationVar = 3;
+				    emitter.tangentalAcceleration = 3;
+				    emitter.tangentalAccelerationVar = 10;
+				    emitter.angle = 5;
+				    emitter.angleVar = 180;
+				    emitter.startSpin = 0;
+				    emitter.startSpinVar = 360;
+				    emitter.endSpin = 10;
+				    emitter.endSpinVar = 360;
+				    emitter.startColor = [150, 150, 150];
+				    emitter.startColorVar = [0, 0, 0];
+				    emitter.startOpacity = 1;
+				    emitter.endColor = null;
+				    emitter.endColorVar = null;
+				    emitter.endOpacity = 1;
+				    emitter.startSize = 10;
+				    emitter.startSizeVar = 0;
+				    emitter.endSize = 10;
+				    emitter.endSizeVar = 3;
 
 
 
-				GJ.getStage().addChild(emitter);
+					GJ.getStage().addChild(emitter);
 
-				// createjs.setChild
-		}
+					// createjs.setChild
+			}
 
-		if (event.currentTarget.currentFrame >= 225) {
+			if (event.currentTarget.currentFrame >= 225  && event.currentTarget.currentAnimation == 'explode') {
+console.log('tick = 225');				
+				event.remove();
+				event.currentTarget.setNotActive = true;
+			}
+			else if (event.currentTarget.currentFrame >= 190 && event.currentTarget.currentAnimation == 'explode') {
+				event.currentTarget.checkBombCollision = true;
+			}
+		});
+
+		this.image.addEventListener('animationend', function (event) {
+console.log('anim end');
+			event.currentTarget.stopExploding = true;
+			// event.currentTarget.x = 2000;
+			// event.currentTarget.y = 2000;
 			event.remove();
-			event.currentTarget.setNotActive = true;
-		}
-		else if (event.currentTarget.currentFrame >= 190) {
-			event.currentTarget.checkBombCollision = true;
-		}
-	});
-
-	this.image.addEventListener('animationend', function (event) {
-
-		event.currentTarget.stopExploding = true;
-		// event.currentTarget.x = 2000;
-		// event.currentTarget.y = 2000;
-		event.remove();
-	});
+		});
+	}
 };
 
 
@@ -393,7 +406,7 @@ Actor.prototype.moveLeft = function () {
 	this.direction = GJ.Directions.LEFT;
 	this.image.scaleX = -1;
 // console.log(this.image.currentAnimation, this.hasBomb);
-	if (this.image.currentAnimation !== 'run' && this.image.currentAnimation !== 'gemrun' && this.image.currentAnimation !== 'bombrun' && this.image.currentAnimation !== 'fly') {
+	if (this.image.currentAnimation !== 'run' && this.image.currentAnimation !== 'gemrun' && this.image.currentAnimation !== 'bombrun' && this.image.currentAnimation !== 'fly'  && this.image.currentAnimation != 'explode') {
 
 		if (!this.useGravity) {
 			this.image.gotoAndPlay('fly');
@@ -423,7 +436,7 @@ Actor.prototype.moveRight = function () {
 
 	this.image.scaleX = 1;
 
-	if (this.image.currentAnimation !== 'run' && this.image.currentAnimation !== 'gemrun' && this.image.currentAnimation !== 'bombrun') {
+	if (this.image.currentAnimation !== 'run' && this.image.currentAnimation !== 'gemrun' && this.image.currentAnimation !== 'bombrun' && this.image.currentAnimation != 'explode') {
 
 		if (this.hasGem) {
 			this.image.gotoAndPlay('gemrun');
@@ -531,11 +544,11 @@ Actor.prototype.kill = function (explode) {
 		this.active = false;
 
 	} else if (this.type === GJ.ActorTypes.GROUND_EXPLODING) {
-		if (typeof explode !== 'undefined') {
+		// if (typeof explode !== 'undefined') {
 			// this.spawnBacsplosion();
 			// GJ.Sound.triggerEvent("kill"); // explode sound instead?
 			this.doExplode();
-		}
+		// }
 		 
 	} else if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
 		GJ.Sound.triggerEvent("kill");

@@ -151,7 +151,6 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
 		waveTitle.x = 150;
 		waveTitle.y = 200;
-		
 	};
 
 	var spawnWave2 = function () {
@@ -209,7 +208,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 			gapBetweenMiniWaves = 1500;
 
 		actors = [];
-		
+
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
 
 		startX += gapBetweenMiniWaves;
