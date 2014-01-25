@@ -84,10 +84,11 @@ GJ.Assets = (function () {
 			{id: 'turtle_sad_03', src:'audio/turtle_sad_03.ogg', data: 2},
 			{id: 'turtle_sad_04', src:'audio/turtle_sad_04.ogg', data: 2},
 			{id: 'turtle_sad_05', src:'audio/turtle_sad_05.ogg', data: 2},
-			{id: 'cat_01', src:'audio/cat_01.ogg', data: 2},
-			{id: 'cat_02', src:'audio/cat_02.ogg', data: 2},
-			{id: 'cat_03', src:'audio/cat_03.ogg', data: 2},
-			{id: 'cat_04', src:'audio/cat_04.ogg', data: 2},
+			{id: 'cat_01', src:'audio/cat_01.ogg', data: 5},
+			{id: 'cat_02', src:'audio/cat_02.ogg', data: 5},
+			{id: 'cat_03', src:'audio/cat_03.ogg', data: 5},
+			{id: 'cat_04', src:'audio/cat_04.ogg', data: 5},
+			{id: 'cat_04', src:'audio/cat_05.ogg', data: 5},
 			{id: 'sword_stab_01', src:'audio/sword_stab_01.ogg', data: 3},
 			{id: 'sword_stab_02', src:'audio/sword_stab_02.ogg', data: 3},
 			{id: 'sword_stab_03', src:'audio/sword_stab_03.ogg', data: 3},
@@ -95,7 +96,7 @@ GJ.Assets = (function () {
 			{id: 'sword_swing_01', src:'audio/sword_swing_01.ogg', data: 10},
 			{id: 'sword_swing_02', src:'audio/sword_swing_02.ogg', data: 10},
 			{id: 'sword_swing_03', src:'audio/sword_swing_03.ogg', data: 10},
-			{id: 'sword_swing_04', src:'audio/sword_swing_04.ogg', data: 10}
+			{id: 'sword_swing_04', src:'audio/sword_swing_04.ogg', data: 10},
 			{id: 'swish_01', src:'audio/swish_01.ogg', data: 10},
 			{id: 'swish_02', src:'audio/swish_02.ogg', data: 10},
 			{id: 'swish_03', src:'audio/swish_03.ogg', data: 10},			
@@ -105,7 +106,8 @@ GJ.Assets = (function () {
 			{id: 'pinch_02', src:'audio/pinch_02.ogg', data: 5},
 			{id: 'gem_drop', src:'audio/gem_drop.ogg', data: 10},
 			{id: 'gem_pickup', src:'audio/gem_pickup.ogg', data: 10},
-			{id: 'gem_pinch', src:'audio/gem_pinch.ogg', data: 10}
+			{id: 'gem_pinch', src:'audio/gem_pinch.ogg', data: 10},
+			{id: 'pick', src:'audio/pick.ogg', data: 10}		
 		]);
 	};
 
