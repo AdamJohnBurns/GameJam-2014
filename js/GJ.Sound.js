@@ -92,13 +92,14 @@ GJ.Sound = (function () {
 					sound: createjs.Sound.play("gem_drop")
 				});
 			} else if (name === "pig_steal") {
-				var randomInt = Math.floor((Math.random()*2)+1);
+				var randomPinch = Math.floor((Math.random()*2)+1);
+				var randomRummage = Math.floor((Math.random()*6)+1);				
 				soundsPlaying.push({
 					name: "pinch",
-					sound: createjs.Sound.play("pinch_0" + randomInt, {delay: 500})					
+					sound: createjs.Sound.play("pinch_0" + randomPinch, {delay: 1000})					
 				}, {
 					name: "rummage",
-					sound: createjs.Sound.play("rummage", {volume: 0.5})					
+					sound: createjs.Sound.play("rummage_0" + randomRummage, {volume: 0.5})					
 				});
 			} else if (name === "swish") {
 				var randomInt = Math.floor((Math.random()*3)+1);
