@@ -28,6 +28,7 @@ GJ.Assets = (function () {
 			{id: 'PigCollect', src:'img/Pigs/PigCollect.png'},
 			{id: 'PigGemRun', src:'img/Pigs/DiamondPigRun.png'},
 			{id: 'PigBombRun', src:'img/Pigs/BombPigRun.png'},
+			{id: 'PigBombExplode', src:'img/Pigs/ExplodingPig.png'},
 
 			// particles
 			{id: 'ParticleBacon', src:'img/Particles/BaconParticle.png'},
