@@ -50,6 +50,7 @@ IN
 GJ.Sound.triggerEvent("turtle_happy");
 	-- [optional] The turtle feels happy for some reason
 
+IN
 GJ.Sound.triggerEvent("meow");
 	-- [optional] The cat meows for some reason (bloodlust?)
 

@@ -14,11 +14,11 @@ var GJ = (function () {
 
 		event,
 
-		numGems			= 10,
+		numGems,
 		gemText,
 		gemImage,
 
-		numHearts		= 3,
+		numHearts,
 		heartText,
 		heartImage,
 
@@ -57,7 +57,7 @@ var GJ = (function () {
 			heartImage.y = 20;
 			stage.addChild(heartImage);
 
-			heartText = new createjs.Text('' + numGems, "20px Arial", "#000000"); 
+			heartText = new createjs.Text('' + numHearts, "20px Arial", "#000000"); 
 			heartText.x = 130;
 			heartText.y = 40;
 			heartText.textBaseline = "alphabetic";
@@ -109,6 +109,8 @@ var GJ = (function () {
 					2, 9, 1.5));
 			}
 
+			numGems = 10;
+			numHearts = 3;
 
 			setupGem();
 			setupHeart();
@@ -121,6 +123,7 @@ var GJ = (function () {
 
 
 			GJ.Sound.triggerEvent("turtle_happy");
+			turtle.spawnHearts();
 			var effect = new Effect(300, 300, GJ.EffectTypes.WAVE_OVER, 0);
 		},
 
@@ -201,6 +204,20 @@ var GJ = (function () {
 		addGem: function () {
 			numGems++;
 			gemText.text = '' + numGems;
+		},
+
+		getTurtle: function () {
+			return turtle;
+		},
+
+		takeHit: function () {
+			numHearts--;
+			heartText.text = '' + numHearts;
+
+			// DO GAMESTAGE CHECKING STUFF HERE, REINIT IF DEAD
+			if(numHearts <= 0) {
+				GJ.assetsReady();
+			}
 		},
 
 		States: {

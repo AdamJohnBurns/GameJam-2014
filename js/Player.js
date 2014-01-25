@@ -24,6 +24,9 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 
 	this.isMining = false;
 
+	this.hitDelay = 100;
+	this.hitTimer = 0;
+
 	this.direction = GJ.Directions.RIGHT;
 
 	// data = new createjs.SpriteSheet({
@@ -117,6 +120,10 @@ Player.prototype.update = function () {
 		this.footstepTimer = this.footstepDelay;
 	} else {	
 		this.footstepTimer--;		
+	}
+
+	if (this.hitTimer > 0) {
+		this.hitTimer--;
 	}
 	
 };
@@ -389,6 +396,22 @@ Player.prototype.checkActorCollision = function (actor) {
 	if (typeof actor !== 'undefined') {
 		// can you check this with shapes!????
 		var intersection = ndgmr.checkRectCollision(this.image, actor.getImage());
+
+		if (intersection) {
+
+			if (this.hitTimer <= 0) {
+				this.hitTimer = this.hitDelay;
+				GJ.takeHit();
+				GJ.Sound.triggerEvent("meow");
+
+				if(this.image.x < actor.getImage().x) {
+					this.accelX = -20;
+				} else {
+					this.accelX = 20;
+				}
+			}
+		}
+
 		// console.log(intersection);
 	} else {
 		// console.error('checkActorCollision(): actor is undefined');

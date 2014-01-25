@@ -46,6 +46,7 @@ GJ.Assets = (function () {
 
 			// particles
 			{id: 'ParticleBacon', src:'img/Particles/BaconParticle.png'},
+			{id: 'ParticleHeart', src:'img/Particles/Heart.png'},
 
 			// bullets
 			{id: 'BulletGem', src:'img/Particles/Diamond.png'},			
