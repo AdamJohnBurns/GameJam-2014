@@ -53,15 +53,17 @@ var GJ = (function () {
 			}
 			turtle = new Turtle();
 
-			actors = [];
-			// for (i = 0; i < NUM_ACTORS; i++) {
-			actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-			// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-			actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-			// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-			actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-			// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-			// }
+			
+				actors = [];
+				// for (i = 0; i < NUM_ACTORS; i++) {
+				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// }
+
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
@@ -93,6 +95,9 @@ var GJ = (function () {
 			createjs.Ticker.addEventListener('tick', GJ.update);
 
 			GJ.Sound.init(); // Start the audio engine
+
+
+			var wave1 = new Effect(300, 300, GJ.EffectTypes.WAVE_OVER, 0);
 		},
 
 
@@ -199,7 +204,11 @@ var GJ = (function () {
 
 		EffectTypes: {
 			RUNNING_SMOKE: 0,
-			JUMP_SMOKE: 1
+			JUMP_SMOKE: 1,
+			WAVE1: 2,
+			WAVE2: 3,
+			WAVE3: 4,
+			WAVE_OVER: 5
 		}
 	};
 })();

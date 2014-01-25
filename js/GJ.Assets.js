@@ -16,6 +16,10 @@ GJ.Assets = (function () {
 			{id: 'EffectHitEffect', src:'img/Effects/EffectHitEffect.png'},
 			{id: 'EffectJumpSmoke', src:'img/Effects/JumpSmoke.png'},
 			{id: 'EffectRunningSmoke', src:'img/Effects/RunningSmoke.png'},
+			// {id: 'EffectWave1', src:'img/Effects/Wave1.png'},
+			// {id: 'EffectWave2', src:'img/Effects/Wave2.png'},
+			// {id: 'EffectWave3', src:'img/Effects/Wave3.png'},
+			{id: 'EffectWaveOver', src:'img/Effects/WaveOver.png'},
 
 			// main character
 			{id: 'MainCharacterIdle', src:'img/MainCharacter/Idle.png'},
