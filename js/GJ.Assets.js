@@ -63,6 +63,7 @@ GJ.Assets = (function () {
 			{id: 'SceneCloud3', src:'img/Scene/Cloud3.png'},
 
 			// audio
+			{id: 'music', src:'audio/music.ogg', data: 2},			
 			{id: 'amb_birdsong', src:'audio/amb_birdsong.ogg', data: 4},
 			{id: 'footstep_grass_01', src:'audio/footstep_grass_01.ogg', data: 4},
 			{id: 'footstep_grass_02', src:'audio/footstep_grass_02.ogg', data: 4},

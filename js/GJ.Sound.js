@@ -18,19 +18,24 @@ GJ.Sound = (function () {
 
 		init: function ( ) {
 		
-			// Start happy ambience loop
+			// Start playing ambience and music loops
 			soundsPlaying.push({
 				name: "ambience_happy",
 				sound: createjs.Sound.play("amb_birdsong", {loop: -1, volume: 0})
+			}, {
+				name: "music",
+				sound: createjs.Sound.play("music", {loop: -1, volume: 0})
 			});
 
-			// Fade in happy ambience loop
+			// Fade in loops
 			var i, sound;
 			for (i = 0; i < soundsPlaying.length; i++) {
 				sound = soundsPlaying[i];
 
 				if (sound.name === "ambience_happy") {
-					fadeVolume(sound.sound, 0.5, 3000); //fade in sound over 3s
+					fadeVolume(sound.sound, 0.5, 3000);
+				} else if (sound.name === "music") {
+					fadeVolume(sound.sound, 0.4, 1000);
 				}
 
 			}
