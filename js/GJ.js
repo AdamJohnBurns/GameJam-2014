@@ -55,11 +55,11 @@ var GJ = (function () {
 
 			actors = [];
 			// for (i = 0; i < NUM_ACTORS; i++) {
-			// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
 			actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+			// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+			actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
 			// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-			// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-			// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+			actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
 			// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
 			// }
 
@@ -165,12 +165,12 @@ var GJ = (function () {
 
 		gentlemanStoleMyBike: function () {
 			numGems--;
-			gemText.text = 'Gems :' + numGems;
+			gemText.text = '' + numGems;
 		},
 
 		addGem: function () {
 			numGems++;
-			gemText.text = 'Gems :' + numGems;
+			gemText.text = '' + numGems;
 		},
 
 		States: {

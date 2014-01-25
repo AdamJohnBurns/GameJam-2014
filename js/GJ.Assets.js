@@ -34,6 +34,11 @@ GJ.Assets = (function () {
 			{id: 'PigGemRun', src:'img/Pigs/DiamondPigRun.png'},
 			{id: 'PigBombRun', src:'img/Pigs/BombPigRun.png'},
 			{id: 'PigBombExplode', src:'img/Pigs/ExplodingPig.png'},
+			{id: 'PigFly', src:'img/Pigs/FlyingPig.png'},
+
+			// ballooon
+			{id: 'BalloonFly', src:'img/Pigs/Balloon.png'},
+			{id: 'BalloonDestroy', src:'img/Pigs/BalloonFlyOff.png'},
 
 			// particles
 			{id: 'ParticleBacon', src:'img/Particles/BaconParticle.png'},
@@ -50,10 +55,6 @@ GJ.Assets = (function () {
 			{id: 'SceneCloud1', src:'img/Scene/Cloud1.png'},
 			{id: 'SceneCloud2', src:'img/Scene/Cloud2.png'},
 			{id: 'SceneCloud3', src:'img/Scene/Cloud3.png'},
-
-			{id: 'sprite1', src:'img/sprite1.jpg'},
-			{id: 'sprite2', src:'img/sprite2.jpg'},
-			{id: 'sprite3', src:'img/sprite3.jpg'},
 
 			// audio
 			{id: 'amb_birdsong', src:'audio/amb_birdsong.ogg', data: 4},
