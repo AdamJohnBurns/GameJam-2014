@@ -148,6 +148,7 @@ Actor.prototype.checkExploding = function () {
 
 	if (typeof this.balloon !== 'undefined') {
 		if (typeof this.balloon.removeBalloon !== 'undefined') {
+			GJ.Sound.triggerEvent("pop");
 			this.balloon.removeBalloon = undefined;
 			this.ignoreBalloon = true;
 			// this.balloon.x = 2000;
@@ -191,6 +192,7 @@ Actor.prototype.doAI = function () {
 				this.state = GJ.States.LANDING;
 			} else {
 				this.state = GJ.States.STEALING;
+				GJ.Sound.triggerEvent("pig_steal");
 			}
 
 		} else {
@@ -201,6 +203,7 @@ Actor.prototype.doAI = function () {
 
 		if(this.image.y + this.accelY + this.height >= GJ.getCurrentWorld().getGroundHeight() ) {
 			this.state = GJ.States.STEALING;
+			GJ.Sound.triggerEvent("pig_steal");
 			this.type = GJ.ActorTypes.GROUND_NORMAL;
 		}
 
@@ -226,6 +229,7 @@ Actor.prototype.doAI = function () {
 
 		if (this.image.currentAnimation !== 'explode') {
 			this.image.gotoAndPlay('explode');
+			GJ.Sound.triggerEvent("explode");
 
 			this.image.addEventListener('animationend', function (event) {
 
@@ -401,6 +405,7 @@ Actor.prototype.kill = function (explode) {
 
 	if (this.type === GJ.ActorTypes.GROUND_NORMAL) {
 		this.throwBack();
+		GJ.Sound.triggerEvent("kill");
 
 	} else if (this.type === GJ.ActorTypes.GROUND_EXPLODING) {
 		if (typeof explode !== 'undefined') {
@@ -408,6 +413,7 @@ Actor.prototype.kill = function (explode) {
 		}
 		
 	} else if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
+		GJ.Sound.triggerEvent("kill");
 		this.throwBack();
 	}
 

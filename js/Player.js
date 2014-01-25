@@ -15,6 +15,8 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 	this.maxMoveSpeed = maxMoveSpeed;
 	this.weight = weight;
 
+	this.footstepDelay = 30;
+	this.footstepTimer = this.footstepDelay;
 	
 	this.isOnGround = false;
 
@@ -109,6 +111,13 @@ Player.prototype.update = function () {
 
 	this.checkWorldCollision();
 	this.applyVelocity();
+
+	if (this.footstepTimer <= 0) {
+		GJ.Sound.triggerEvent("footstep");
+		this.footstepTimer = this.footstepDelay;
+	} else {	
+		this.footstepTimer--;		
+	}
 	
 };
 
@@ -146,6 +155,7 @@ Player.prototype.checkReadyToFire = function () {
 	if (typeof this.image.readyToFire !== 'undefined' && this.image.readyToFire) {
 		this.gun.fire();
 		this.image.readyToFire = undefined;
+		GJ.Sound.triggerEvent("swish");
 
 		this.image.removeEventListener('tick');
 	}
@@ -198,6 +208,7 @@ Player.prototype.checkMining = function () {
 
 	if (typeof this.image.giveGem !== 'undefined' && this.image.giveGem === true) {
 		GJ.addGem();
+		GJ.Sound.triggerEvent("gem_pickup");
 		this.image.giveGem = undefined;
 	}
 };
@@ -206,6 +217,7 @@ Player.prototype.checkMining = function () {
 Player.prototype.mineGems = function () {
 	if (this.image.currentAnimation !== 'pickaxe' && this.isOnGround && this.direction === GJ.Directions.LEFT && this.image.x <= 150) {
 		this.image.gotoAndPlay('pickaxe');
+		GJ.Sound.triggerEvent("mine");
 
 		this.image.removeEventListener('animationend');
 		this.mining = true;

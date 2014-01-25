@@ -18,6 +18,10 @@ var GJ = (function () {
 		gemText,
 		gemImage,
 
+		numHearts		= 3,
+		heartText,
+		heartImage,
+
 		stage,
 		worlds,
 		actors,
@@ -30,6 +34,34 @@ var GJ = (function () {
 
 	var drawFPS = function () {
 
+	};
+
+
+	var setupGem = function () {
+		gemImage = new createjs.Bitmap(GJ.Assets.get('BulletGem'));
+			gemImage.x = 20;
+			gemImage.y = 20;
+			stage.addChild(gemImage);
+
+			gemText = new createjs.Text('' + numGems, "20px Arial", "#000000"); 
+			gemText.x = 50;
+			gemText.y = 40;
+			gemText.textBaseline = "alphabetic";
+			stage.addChild(gemText);
+	};
+
+
+	var setupHeart = function () {
+		heartImage = new createjs.Bitmap(GJ.Assets.get('BulletGem'));
+			heartImage.x = 90;
+			heartImage.y = 20;
+			stage.addChild(heartImage);
+
+			heartText = new createjs.Text('' + numGems, "20px Arial", "#000000"); 
+			heartText.x = 130;
+			heartText.y = 40;
+			heartText.textBaseline = "alphabetic";
+			stage.addChild(heartText);
 	};
 
 
@@ -78,17 +110,8 @@ var GJ = (function () {
 			}
 
 
-			gemImage = new createjs.Bitmap(GJ.Assets.get('BulletGem'));
-			gemImage.x = 20;
-			gemImage.y = 20;
-			stage.addChild(gemImage);
-
-
-			gemText = new createjs.Text('' + numGems, "20px Arial", "#000000"); 
-			gemText.x = 50;
-			gemText.y = 40;
-			gemText.textBaseline = "alphabetic";
-			stage.addChild(gemText);
+			setupGem();
+			setupHeart();
 
 			createjs.Ticker.setFPS(TARGET_FPS);
 			createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED; // if we do standard timing instead of this can we adjust fps to slow/fast up game?
@@ -97,7 +120,8 @@ var GJ = (function () {
 			GJ.Sound.init(); // Start the audio engine
 
 
-			var wave1 = new Effect(300, 300, GJ.EffectTypes.WAVE_OVER, 0);
+			GJ.Sound.triggerEvent("turtle_happy");
+			var effect = new Effect(300, 300, GJ.EffectTypes.WAVE_OVER, 0);
 		},
 
 
@@ -171,6 +195,7 @@ var GJ = (function () {
 		gentlemanStoleMyBike: function () {
 			numGems--;
 			gemText.text = '' + numGems;
+			GJ.Sound.triggerEvent("turtle_sad");
 		},
 
 		addGem: function () {
