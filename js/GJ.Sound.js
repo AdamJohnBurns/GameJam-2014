@@ -9,7 +9,7 @@ GJ.Sound = (function () {
 
 	// Generic fading function
 	var fadeVolume = function (soundInstance, targetVolume, fadeDuration) {
-	createjs.Tween.get(soundInstance).to({volume:targetVolume}, fadeDuration);
+		createjs.Tween.get(soundInstance).to({volume:targetVolume}, fadeDuration);
 	}
 
 	// Public methods /////////////////////////////////////////////
@@ -21,7 +21,7 @@ GJ.Sound = (function () {
 			// Start happy ambience loop
 			soundsPlaying.push({
 				name: "ambience_happy",
-				sound: createjs.Sound.play("amb_birdsong", "none", 0, 0, {loop: -1}, {volume: 0.001})
+				sound: createjs.Sound.play("amb_birdsong", {loop: -1, volume: 0})
 			});
 
 			// Fade in happy ambience loop
@@ -30,8 +30,7 @@ GJ.Sound = (function () {
 				sound = soundsPlaying[i];
 
 				if (sound.name === "ambience_happy") {
-					fadeVolume(sound.sound, 1, 2000);
-					//sound.sound.volume = 0.1;
+					fadeVolume(sound.sound, 1, 3000); //fade in sound over 3s
 				}
 
 			}
@@ -81,10 +80,7 @@ GJ.Sound = (function () {
 				});
 			} else if (name === "gem_steal") {
 				var randomInt = Math.floor((Math.random()*8)+1);
-				soundsPlaying.push(/*{
-					name: "gem_steal",
-					sound: createjs.Sound.play("gem_steal")
-				},*/ {
+				soundsPlaying.push({
 					name: "pig_happy",
 					sound: createjs.Sound.play("pig_snort_0" + randomInt)					
 				});
