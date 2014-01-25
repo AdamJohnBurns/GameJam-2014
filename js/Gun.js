@@ -1,10 +1,12 @@
-var Gun = function (fireDelay, bulletSpeedX, bulletSpeedY, controller) {
+var Gun = function (fireDelay, bulletSpeedX, bulletSpeedY, controller, offsetX, offetY) {
 	this.bullets = [];
 	this.fireDelay = fireDelay;
 	this.fireTimer = 0;
 	this.controller = controller;
 	this.bulletSpeedX = bulletSpeedX;
 	this.bulletSpeedY = bulletSpeedY;
+	this.offsetX = offsetX;
+	this.offetY = offetY;
 };
 
 

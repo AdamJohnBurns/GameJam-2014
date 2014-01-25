@@ -91,6 +91,8 @@ var GJ = (function () {
 
 			event = evt;
 
+			GJ.Sound.update();
+
 			worlds[currentWorld].update();
 
 			for (i = 0; i < actors.length; i++) {
@@ -100,7 +102,7 @@ var GJ = (function () {
 
 			for (i = 0; i < players.length; i++) {
 				players[i].update();
-				worlds[currentWorld].handleGravity(players[i].getImage());
+				// worlds[currentWorld].handleGravity(players[i].getImage());
 
 				for (j = 0; j < actors.length; j++) {
 					players[i].checkActorCollision(actors[j]);
@@ -109,7 +111,7 @@ var GJ = (function () {
 
 			drawFPS();
 
-			stage.update();
+			stage.update(evt);
 		},
 
 

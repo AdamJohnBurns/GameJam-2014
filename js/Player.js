@@ -15,6 +15,9 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 	this.maxMoveSpeed = maxMoveSpeed;
 	this.weight = weight;
 
+	this.height = 96;
+	this.isOnGround = false;
+
 	this.attackRange = 20;
 
 	this.isMining = false;
@@ -41,34 +44,85 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
  //    this.image.setTransform(-200, 90, 0.8, 0.8);
  //    this.image.framerate = 30;
 
-	this.image = new createjs.Shape();
-	this.image.graphics.beginFill("red").drawCircle(0, 0, 50);
+	this.gun = new Gun(GJ.getTargetFPS(), 6, 0, this, 0, 0);
+	this.gunType = GJ.Weapons.PLAYER_GUN;
+
+
+
+
+
+
+
+
+	var data;
+	data = new createjs.SpriteSheet({
+		framerate: 25,
+		images: [ 
+			GJ.Assets.get('MainCharacterIdle'), // 10
+			GJ.Assets.get('MainCharacterRun') 	// 17
+		], 
+		frames: [
+			// x, y, width, height, index, regX, regY
+			// the index needs to match the file with the sprites
+			[0,0,67,97,0,32.3,96.65],[67,0,67,97,0,32.3,96.65],[134,0,67,97,0,32.3,96.65],[0,97,67,97,0,32.3,96.65],[67,97,67,97,0,32.3,96.65],[134,97,67,97,0,32.3,96.65],[0,194,67,97,0,32.3,96.65],[67,194,67,97,0,32.3,96.65],[134,194,67,97,0,32.3,96.65],[0,291,67,97,0,32.3,96.65],[67,291,67,97,0,32.3,96.65],[134,291,67,97,0,32.3,96.65],[0,388,67,97,0,32.3,96.65],
+			[0,0,71,113,1,37.75,112.35],[71,0,71,113,1,37.75,112.35],[142,0,71,113,1,37.75,112.35],[213,0,71,113,1,37.75,112.35],[284,0,71,113,1,37.75,112.35],[355,0,71,113,1,37.75,112.35],[426,0,71,113,1,37.75,112.35],[0,113,71,113,1,37.75,112.35],[71,113,71,113,1,37.75,112.35],[142,113,71,113,1,37.75,112.35],[213,113,71,113,1,37.75,112.35],[284,113,71,113,1,37.75,112.35],[355,113,71,113,1,37.75,112.35],[426,113,71,113,1,37.75,112.35],[0,226,71,113,1,37.75,112.35],[71,226,71,113,1,37.75,112.35],[142,226,71,113,1,37.75,112.35]
+		],
+		animations: { 
+			idle: [0, 10],
+			run: [11, 27],
+			jump: [15, 15],
+			fall: [20, 20]
+		}
+	});
+	this.image = new createjs.Sprite(data, 'idle');
+
+
+
+
+	// this.image = new createjs.Shape();
+	// this.image.graphics.beginFill("red").drawCircle(0, 0, 50);
 	this.image.x = 100;
 	this.image.y = 100;
 
-	this.blurFilter = new createjs.BlurFilter(10, 10, 1);
-	this.image.filters = [this.blurFilter];
-	this.bounds = this.blurFilter.getBounds();
-// console.log(bounds.x, bounds.y, bounds.width, bounds.height);
-	// MUST use a cache when using filters
-	this.image.cache(-50+this.bounds.x, -50+this.bounds.y, 100+this.bounds.width, 100+this.bounds.height);
+	// this.blurFilter = new createjs.BlurFilter(10, 10, 1);
+	// this.image.filters = [this.blurFilter];
+	// this.bounds = this.blurFilter.getBounds();
+	// this.image.cache(-50+this.bounds.x, -50+this.bounds.y, 100+this.bounds.width, 100+this.bounds.height);
 
 	GJ.getStage().addChild(this.image);
 
-	this.gun = new Gun(GJ.getTargetFPS(), 6, 0, this);
-	this.gunType = GJ.Weapons.PLAYER_GUN;
+
+
+		// data = new createjs.SpriteSheet({
+		//     'images': [GJ.Assets.get('ExplosionSmall')],
+		//     'frames': {
+		//     	'regX': 0, 
+		//     	'height': 292, 
+		//     	'count': 64, 
+		//     	'regY': 0, 
+		//     	'width': 165
+		//     },
+		//     // define two animations, run (loops, 1.5x speed) and jump (returns to run):
+		//     'animations': {
+		//     	'run': [0, 25, 'run', 1.5], 
+		//     	'jump': [26, 63, 'run'],
+		//     	'idle': [0, 0]
+		//     }
+	 //    });
+	    // this.image = new createjs.Sprite(data, "run");
+	    // this.image.setTransform(-200, 90, 0.8, 0.8);
+	    // this.image.framerate = 30;
 };
 
 
 Player.prototype.update = function () {
 	this.handleInput();
 	this.checkActorCollision();
-	this.checkWorldCollision();
 	this.gun.update();
 	this.gun.checkBulletCollisions(GJ.getActors());
 
-	this.applyVelocity();
 	this.checkWorldCollision();
+	this.applyVelocity();
 };
 
 
@@ -105,7 +159,9 @@ Player.prototype.handleInput = function () {
 
 Player.prototype.applyVelocity = function () {
 
-	this.accelY += GJ.getCurrentWorld().getGravity();
+	if (!this.isOnGround) {
+		this.accelY += GJ.getCurrentWorld().getGravity();
+	}
 
 	// if (this.accelY > 0) {
 	// 	this.accelY -= GJ.getCurrentWorld().getGravity();
@@ -133,8 +189,11 @@ Player.prototype.moveLeft = function () {
 	}
 
 	this.direction = GJ.Directions.LEFT;
-	this.image.scaleX = 1;
-	// this.image.gotoAndPlay('run');
+	this.image.scaleX = -1;
+
+	if (this.image.currentAnimation !== 'run') {
+		this.image.gotoAndPlay('run');
+	}
 };
 
 
@@ -147,8 +206,11 @@ Player.prototype.moveRight = function () {
 	}
 
 	this.direction = GJ.Directions.RIGHT;
-	this.image.scaleX = -1;
-	// this.image.gotoAndPlay('run');
+	this.image.scaleX = 1;
+
+	if (this.image.currentAnimation !== 'run') {
+		this.image.gotoAndPlay('run');
+	}
 };
 
 
@@ -186,7 +248,10 @@ Player.prototype.jump = function () {
 	if (this.image.y + this.image.getBounds().height / 2 >= GJ.getCurrentWorld().getGroundHeight()) {
 		this.accelY = -20;
 		GJ.Sound.triggerEvent('footstep');
-		// this.image.gotoAndPlay('jump');
+
+		if (this.image.currentAnimation !== 'jump') {
+			this.image.gotoAndPlay('jump');
+		}
 	}
 };
 
@@ -194,7 +259,9 @@ Player.prototype.jump = function () {
 Player.prototype.idle = function () {
 	this.dampenAcceleration();
 
-	// this.image.gotoAndPlay('idle');
+	if (this.image.currentAnimation !== 'idle') {
+		this.image.gotoAndPlay('idle');
+	}
 };
 
 
@@ -234,10 +301,14 @@ Player.prototype.checkActorCollision = function (actor) {
 
 
 Player.prototype.checkWorldCollision = function () {
-	var height = this.image.getBounds().height / 2;
+	var height = this.height / 2;//this.image.getBounds().height / 2;
 
-	if (this.image.y + height > this.groundHeight) {
+	if (this.image.y >= GJ.getCurrentWorld().getGroundHeight() ) {
 		this.image.y = GJ.getCurrentWorld().getGroundHeight();
 		this.accelY = 0;
+		this.isOnGround = true;
+	} else {
+		this.isOnGround = false;
+		// this.image.gotoAndPlay('fall');
 	}
 };
