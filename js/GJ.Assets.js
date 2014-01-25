@@ -21,6 +21,7 @@ GJ.Assets = (function () {
 			{id: 'MainCharacterIdle', src:'img/MainCharacter/Idle.png'},
 			{id: 'MainCharacterRun', src:'img/MainCharacter/Run.png'},
 			{id: 'MainCharacterJump', src:'img/MainCharacter/Jumping-NoLoop.png'},
+			{id: 'MainCharacterShoot', src:'img/MainCharacter/ThrowDiamond.png'},
 
 			// pigs
 			{id: 'PigRun', src:'img/Pigs/PigRun.png'},
@@ -32,6 +33,9 @@ GJ.Assets = (function () {
 
 			// particles
 			{id: 'ParticleBacon', src:'img/Particles/BaconParticle.png'},
+
+			// bullets
+			{id: 'BulletGem', src:'img/Particles/BaconParticle.png'},			
 
 			// scene
 			{id: 'SceneBGMain', src:'img/Scene/BGMain.png'},

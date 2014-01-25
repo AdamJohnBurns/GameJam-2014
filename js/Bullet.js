@@ -4,8 +4,10 @@ var Bullet = function (x, y, velX, velY) {
 	this.velX = velX;
 	this.velY = velY;
 
-	this.image = new createjs.Shape();
-	this.image.graphics.beginFill("blue").drawCircle(0, 0, 5);
+	this.image = new createjs.Bitmap(GJ.Assets.get('BulletGem'));
+	this.image.regX = this.image.getBounds().width / 2;
+	this.image.regY = this.image.getBounds().height / 2;
+
 	this.image.x = x;
 	this.image.y = y;
 
@@ -17,6 +19,8 @@ Bullet.prototype.update = function () {
 	if (this.active) {
 		this.image.x += this.velX;
 		this.image.y += this.velY;
+
+		this.image.rotation += 25;
 	}
 };
 
