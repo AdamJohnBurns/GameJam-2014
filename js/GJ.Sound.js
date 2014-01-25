@@ -18,7 +18,7 @@ GJ.Sound = (function () {
 
 		init: function ( ) {
 			
-			createjs.Sound.stop();
+			//createjs.Sound.stop();
 
 			// Start playing ambience and music loops if they're not already playing
 			soundsPlaying.push({
