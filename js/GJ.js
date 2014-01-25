@@ -16,10 +16,12 @@ var GJ = (function () {
 
 		numGems			= 10,
 		gemText,
+		gemImage,
 
 		stage,
 		worlds,
 		actors,
+		turtle,
 		players;
 
 
@@ -47,8 +49,9 @@ var GJ = (function () {
 
 			worlds = [];
 			for (i = 0; i < NUM_WORLDS; i++) {
-				worlds.push(new World(150, stage.canvas.height - 130, 120, 1));
+				worlds.push(new World(240, stage.canvas.height - 130, 120, 1));
 			}
+			turtle = new Turtle();
 
 			actors = [];
 			// for (i = 0; i < NUM_ACTORS; i++) {
@@ -72,9 +75,16 @@ var GJ = (function () {
 					2, 9, 1.5));
 			}
 
-			gemText = new createjs.Text('Gems :' + numGems, "20px Arial", "#ff7700"); 
-			gemText.x = 20;
-			gemText.y = 20;
+
+			gemImage = new createjs.Bitmap(GJ.Assets.get('BulletGem'));
+			gemImage.x = 20;
+			gemImage.y = 20;
+			stage.addChild(gemImage);
+
+
+			gemText = new createjs.Text('' + numGems, "20px Arial", "#000000"); 
+			gemText.x = 50;
+			gemText.y = 40;
 			gemText.textBaseline = "alphabetic";
 			stage.addChild(gemText);
 
@@ -158,6 +168,11 @@ var GJ = (function () {
 			gemText.text = 'Gems :' + numGems;
 		},
 
+		addGem: function () {
+			numGems++;
+			gemText.text = 'Gems :' + numGems;
+		},
+
 		States: {
 			MOVING_LEFT: 0,
 			LANDING: 1,
@@ -178,7 +193,8 @@ var GJ = (function () {
 		ActorTypes: {
 			GROUND_NORMAL: 0,
 			GROUND_EXPLODING: 1,
-			FLYING_NORMAL: 2
+			FLYING_NORMAL: 2,
+			TURTLE: 3
 		},
 
 		EffectTypes: {

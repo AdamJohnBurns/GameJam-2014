@@ -13,13 +13,6 @@ World = function (goalX, goalY, groundOffset, gravity) {
 	this.goalX = goalX;
 	this.goalY = goalY;
 
-	// this.shape = new createjs.Shape();
-	// this.shape.graphics.beginFill("red").drawRect(0, this.groundHeight, stageWidth, stageHeight);
-
-	this.gems = new createjs.Shape();
-	this.gems.graphics.beginFill("orange").drawRect(0, 30, 30, 30);
-	this.gems.x = this.goalX - 15;
-	this.gems.y = this.goalY - 15;
 
 
 	this.bgmain = new createjs.Bitmap(GJ.Assets.get('SceneBGMain'));
@@ -27,21 +20,20 @@ World = function (goalX, goalY, groundOffset, gravity) {
 	this.bgmain.y = 0;
 
 	this.decoration = new createjs.Bitmap(GJ.Assets.get('SceneDecoration'));
-	console.log(this.decoration);
+	
 	this.decoration.x = 0;
 	this.decoration.y = 270;
-	// this.decoration.image.x = 0;
-	// this.decoration.image.y = 300;
 
-	// console.log(this.decoration);
 
 	this.ground = new createjs.Bitmap(GJ.Assets.get('SceneGround'));
 	this.ground.x = 0;
 	this.ground.y = 460;
 
-	this.foreground = new createjs.Bitmap(GJ.Assets.get('SceneForeground'));
-	this.foreground.x = 0;
-	this.foreground.y = 520;
+	this.ground = new createjs.Bitmap(GJ.Assets.get('SceneGround'));
+	this.ground.x = 0;
+	this.ground.y = 460;
+
+	
 
 	GJ.getStage().addChild(this.bgmain);
 	GJ.getStage().addChild(this.decoration);
@@ -68,8 +60,9 @@ World = function (goalX, goalY, groundOffset, gravity) {
 		GJ.getStage().addChild(this.clouds[i]);		
 	}
 
-	this.mine = new createjs.Shape();
-	this.mine.graphics.beginFill("green").drawRect(0, stageHeight - groundOffset - 60, 60, 90);
+	this.mine = new createjs.Bitmap(GJ.Assets.get('SceneMine'));
+	this.mine.x = 0;
+	this.mine.y = 320;
 
 	GJ.getStage().addChild(this.shape);
 	GJ.getStage().addChild(this.gems);
