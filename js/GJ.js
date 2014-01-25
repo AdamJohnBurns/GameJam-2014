@@ -90,27 +90,55 @@ var GJ = (function () {
 		
 	};
 
-	var spawnWave1 = function () {
-		actors = [];
-				// for (i = 0; i < NUM_ACTORS; i++) {
-				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-				// }
+	/*
 
-			enemyCount = actors.length;
+	var startPoint = get
+
+	actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+	actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 50, startY + 0));
+	actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 50, startY + 0));
+
+	*/
+
+	var spawnWave1 = function () {
+		var startX = GJ.getCurrentWorld().getWorldWidth(),
+			startY = 400,
+			gapBetweenMiniWaves = 1500;
+
+		actors = [];
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 400, startY + 0));
+				
+		enemyCount = actors.length;
 	};
 
 
 	///////////////// WAVE 2
 	
 	var setupWaveTitle2 = function () {
-		// waveCounter = 1;
-		// waveTimer = 0;
-
 		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
 		waveTitle.x = 150;
 		waveTitle.y = 200;
@@ -118,26 +146,44 @@ var GJ = (function () {
 	};
 
 	var spawnWave2 = function () {
-		actors = [];
-				// for (i = 0; i < NUM_ACTORS; i++) {
-				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-				// }
+		var startX = GJ.getCurrentWorld().getWorldWidth(),
+			startY = 400,
+			gapBetweenMiniWaves = 1500;
 
-			enemyCount = actors.length;
+		actors = [];
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 400, startY + 0));
+				
+		enemyCount = actors.length;
 	};
 
 
 	///////////////// WAVE 3
 	
 	var setupWaveTitle3 = function () {
-		// waveCounter = 1;
-		// waveTimer = 0;
-
 		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
 		waveTitle.x = 150;
 		waveTitle.y = 200;
@@ -145,17 +191,38 @@ var GJ = (function () {
 	};
 
 	var spawnWave3 = function () {
-		actors = [];
-				// for (i = 0; i < NUM_ACTORS; i++) {
-				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-				// }
+		var startX = GJ.getCurrentWorld().getWorldWidth(),
+			startY = 400,
+			gapBetweenMiniWaves = 1500;
 
-			enemyCount = actors.length;
+		actors = [];
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 400, startY + 0));
+				
+		enemyCount = actors.length;
 	};
 
 

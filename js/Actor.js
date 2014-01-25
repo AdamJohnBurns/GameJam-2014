@@ -1,4 +1,4 @@
-var Actor = function (type) {
+var Actor = function (type, x, y) {
 	var data, data2, initialAnimation;
 
 	this.active = true;
@@ -51,7 +51,7 @@ var Actor = function (type) {
 		if (this.type === GJ.ActorTypes.GROUND_NORMAL) {
 			this.useGravity = true;
 			this.moveSpeed = 1;
-			this.maxMoveSpeed = 4;
+			this.maxMoveSpeed = 3;
 			this.weight = 2;
 			this.hasBomb = false;
 			initialAnimation = 'run';
@@ -67,7 +67,7 @@ var Actor = function (type) {
 		} else if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
 			this.useGravity = false;
 			this.moveSpeed = 0.5;
-			this.maxMoveSpeed = 2.5;
+			this.maxMoveSpeed = 3;
 			this.weight = 2;
 			this.hasBomb = false;
 
@@ -95,8 +95,8 @@ var Actor = function (type) {
 
 		this.image = new createjs.Sprite(data, initialAnimation);
 
-		this.image.x = Math.random() * 100 + 700;
-		this.image.y = Math.random() * 400;
+		this.image.x = x;//Math.random() * 100 + 700;
+		this.image.y = y;//Math.random() * 400;
 
 		this.height = 50;//this.image.getBounds().height;
 
