@@ -166,6 +166,11 @@ GJ.Sound = (function () {
 					name: "win",
 					sound: createjs.Sound.play("win")
 				});
+			}  else if (name === "lose") {
+				soundsPlaying.push({
+					name: "lose",
+					sound: createjs.Sound.play("lose")
+				});
 			}
 		}
 

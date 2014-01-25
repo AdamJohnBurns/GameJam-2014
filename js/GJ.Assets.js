@@ -132,6 +132,7 @@ GJ.Assets = (function () {
 			{id: 'gem_pinch', src:'audio/gem_pinch.ogg', data: 10},
 			{id: 'pick', src:'audio/pick.ogg', data: 10},
 			{id: 'win', src:'audio/win.ogg', data: 3},
+			{id: 'lose', src:'audio/lose.ogg', data: 3},
 			{id: 'new_wave', src:'audio/new_wave.ogg', data: 3}			
 		]);
 	};
