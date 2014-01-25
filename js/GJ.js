@@ -47,14 +47,14 @@ var GJ = (function () {
 
 			worlds = [];
 			for (i = 0; i < NUM_WORLDS; i++) {
-				worlds.push(new World(150, stage.canvas.height - 130, 100, 1));
+				worlds.push(new World(150, stage.canvas.height - 130, 120, 1));
 			}
 
 			actors = [];
 			// for (i = 0; i < NUM_ACTORS; i++) {
 			// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-			// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-			actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+			actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+			// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
 			// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
 			// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
 			// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
@@ -143,6 +143,10 @@ var GJ = (function () {
 
 		getCurrentWorld: function () {
 			return worlds[currentWorld];
+		},
+
+		getPlayers: function () {
+			return players;
 		},
 
 		getActors: function () {
