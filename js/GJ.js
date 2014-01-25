@@ -233,7 +233,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
 	///////////////// WIN
 	
 	var showWin = function () {
-		
+		GJ.Sound.triggerEvent("win");		
 		
 	};
 
@@ -242,7 +242,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
 
 	
 	var showGameOver = function () {
-		
+		GJ.Sound.triggerEvent("lose");		
 		
 	};
 
@@ -260,7 +260,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
 
 
 	var triggerWaveEnd = function () {
-		GJ.Sound.triggerEvent("turtle_happy");
+		GJ.Sound.triggerEvent("win");
 				turtle.spawnHearts();
 				var effect = new Effect(550, 200, GJ.EffectTypes.WAVE_OVER, 0);
 				waveTimer = -200;

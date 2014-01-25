@@ -17,8 +17,10 @@ GJ.Sound = (function () {
 	return {
 
 		init: function ( ) {
-		
-			// Start playing ambience and music loops
+			
+			createjs.Sound.stop();
+
+			// Start playing ambience and music loops if they're not already playing
 			soundsPlaying.push({
 				name: "ambience_happy",
 				sound: createjs.Sound.play("amb_birdsong", {loop: -1, volume: 0})
@@ -35,7 +37,7 @@ GJ.Sound = (function () {
 				if (sound.name === "ambience_happy") {
 					fadeVolume(sound.sound, 0.5, 3000);
 				} else if (sound.name === "music") {
-					fadeVolume(sound.sound, 0.4, 1000);
+					fadeVolume(sound.sound, 0.3, 1000);
 				}
 
 			}
@@ -76,7 +78,7 @@ GJ.Sound = (function () {
 				var randomInt = Math.floor((Math.random()*6)+1);
 				soundsPlaying.push({
 					name: "explosion",
-					sound: createjs.Sound.play("explosion_0" + randomInt)
+					sound: createjs.Sound.play("explosion_0" + randomInt, {delay: 1400})
 				});
 			} else if (name === "gem_pickup") {
 				soundsPlaying.push({
@@ -164,7 +166,7 @@ GJ.Sound = (function () {
 			} else if (name === "win") {
 				soundsPlaying.push({
 					name: "win",
-					sound: createjs.Sound.play("win")
+					sound: createjs.Sound.play("win", {volume: 0.5, delay: 300})
 				});
 			}  else if (name === "lose") {
 				soundsPlaying.push({

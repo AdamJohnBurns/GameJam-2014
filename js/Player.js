@@ -98,7 +98,7 @@ Player.prototype.update = function () {
 	this.applyVelocity();
 
 	if (this.footstepTimer <= 0) {
-		GJ.Sound.triggerEvent("footstep");
+		//GJ.Sound.triggerEvent("footstep");
 		this.footstepTimer = this.footstepDelay;
 	} else {	
 		this.footstepTimer--;		
