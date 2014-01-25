@@ -18,6 +18,10 @@ var GJ = (function () {
 		gemText,
 		gemImage,
 
+		waveTitle,
+		waveCounter,
+		waveTimer,
+
 		numHearts,
 		heartText,
 		heartImage,
@@ -26,7 +30,7 @@ var GJ = (function () {
 
 		stage,
 		worlds,
-		actors,
+		actors = [],
 		turtle,
 		players;
 
@@ -70,6 +74,33 @@ var GJ = (function () {
 	};
 
 
+	var setupWaveTitle = function () {
+		waveCounter = 1;
+		waveTimer = 0;
+
+		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
+		waveTitle.x = 150;
+		waveTitle.y = 200;
+		
+	};
+
+
+
+	var spawnWave = function () {
+		actors = [];
+				// for (i = 0; i < NUM_ACTORS; i++) {
+				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// }
+
+			enemyCount = actors.length;
+	};
+
+
 	// Public methods /////////////////////////////////////////////
 
 	return {
@@ -91,17 +122,7 @@ var GJ = (function () {
 			turtle = new Turtle();
 
 			
-				actors = [];
-				// for (i = 0; i < NUM_ACTORS; i++) {
-				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
-				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
-				// }
-
-			enemyCount = actors.length;
+				
 
 
 			players = [];
@@ -124,6 +145,8 @@ var GJ = (function () {
 			setupGem();
 			setupHeart();
 
+			setupWaveTitle();
+
 			createjs.Ticker.setFPS(TARGET_FPS);
 			createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED; // if we do standard timing instead of this can we adjust fps to slow/fast up game?
 			createjs.Ticker.addEventListener('tick', GJ.update);
@@ -144,6 +167,7 @@ var GJ = (function () {
 
 			worlds[currentWorld].update();
 
+
 			for (i = 0; i < actors.length; i++) {
 				actors[i].update();
 			}
@@ -154,6 +178,21 @@ var GJ = (function () {
 				for (j = 0; j < actors.length; j++) {
 					players[i].checkActorCollision(actors[j]);
 				}
+			}
+
+			waveTimer++;
+
+			if(waveTimer == 100) {
+				stage.addChild(waveTitle);
+			}
+
+
+			else if(waveTimer == 200) {
+				stage.removeChild(waveTitle);
+			}
+
+			else if (waveTimer == 300) {
+				spawnWave();
 			}
 
 			drawFPS();
