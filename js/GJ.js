@@ -74,9 +74,15 @@ var GJ = (function () {
 	};
 
 
-	var setupWaveTitle = function () {
-		waveCounter = 1;
-		waveTimer = 0;
+
+
+
+
+	///////////////// WAVE 1
+
+	var setupWaveTitle1 = function () {
+		// waveCounter = 1;
+		// waveTimer = 0;
 
 		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
 		waveTitle.x = 150;
@@ -84,9 +90,7 @@ var GJ = (function () {
 		
 	};
 
-
-
-	var spawnWave = function () {
+	var spawnWave1 = function () {
 		actors = [];
 				// for (i = 0; i < NUM_ACTORS; i++) {
 				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
@@ -99,6 +103,99 @@ var GJ = (function () {
 
 			enemyCount = actors.length;
 	};
+
+
+	///////////////// WAVE 2
+	
+	var setupWaveTitle2 = function () {
+		// waveCounter = 1;
+		// waveTimer = 0;
+
+		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
+		waveTitle.x = 150;
+		waveTitle.y = 200;
+		
+	};
+
+	var spawnWave2 = function () {
+		actors = [];
+				// for (i = 0; i < NUM_ACTORS; i++) {
+				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// }
+
+			enemyCount = actors.length;
+	};
+
+
+	///////////////// WAVE 3
+	
+	var setupWaveTitle3 = function () {
+		// waveCounter = 1;
+		// waveTimer = 0;
+
+		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
+		waveTitle.x = 150;
+		waveTitle.y = 200;
+		
+	};
+
+	var spawnWave3 = function () {
+		actors = [];
+				// for (i = 0; i < NUM_ACTORS; i++) {
+				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+				actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+				actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+				// }
+
+			enemyCount = actors.length;
+	};
+
+
+	///////////////// WIN
+	
+	var showWin = function () {
+		
+		
+	};
+
+
+
+
+	
+	var showGameOver = function () {
+		
+		
+	};
+
+
+
+	var showTitleWave = function () {
+		stage.addChild(waveTitle);
+	};
+
+
+
+	var hideTitleWave = function () {
+		stage.removeChild(waveTitle);
+	};
+
+
+	var triggerWaveEnd = function () {
+		GJ.Sound.triggerEvent("turtle_happy");
+				turtle.spawnHearts();
+				var effect = new Effect(550, 200, GJ.EffectTypes.WAVE_OVER, 0);
+				waveTimer = -200;
+				waveCounter++;
+	};
+
 
 
 	// Public methods /////////////////////////////////////////////
@@ -123,7 +220,7 @@ var GJ = (function () {
 
 			
 				
-
+			waveTimer = 0;
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
@@ -139,13 +236,12 @@ var GJ = (function () {
 
 			numGems = 10;
 			numHearts = 3;
+			waveCounter = 1;
 
 
 
 			setupGem();
 			setupHeart();
-
-			setupWaveTitle();
 
 			createjs.Ticker.setFPS(TARGET_FPS);
 			createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED; // if we do standard timing instead of this can we adjust fps to slow/fast up game?
@@ -159,7 +255,8 @@ var GJ = (function () {
 
 
 		update: function (evt) {
-			var i, j;
+			var i, j,
+			activeCount = 0;
 
 			event = evt;
 
@@ -168,8 +265,18 @@ var GJ = (function () {
 			worlds[currentWorld].update();
 
 
+
 			for (i = 0; i < actors.length; i++) {
+				actors[i].active
+				if (actors[i].active) {
+					activeCount++;
+				}
+
 				actors[i].update();
+			}
+
+			if (activeCount <= 0 && waveTimer > 450) {
+				triggerWaveEnd();
 			}
 
 			for (i = 0; i < players.length; i++) {
@@ -182,18 +289,59 @@ var GJ = (function () {
 
 			waveTimer++;
 
-			if(waveTimer == 100) {
-				stage.addChild(waveTitle);
+			///////////////////// WAVE 1
+
+			if(waveTimer == 100 && waveCounter == 1) {
+				setupWaveTitle1();
+				showTitleWave();
+			}
+
+			else if(waveTimer == 300 && waveCounter == 1) {
+				hideTitleWave();
+			}
+
+			else if (waveTimer == 400 && waveCounter == 1) {
+				spawnWave1();
+			}
+
+			///////////////////// WAVE 2
+
+			if(waveTimer == 100 && waveCounter == 2) {
+				setupWaveTitle2();
+				showTitleWave();
+			}
+
+			else if(waveTimer == 300 && waveCounter == 2) {
+				hideTitleWave();
+			}
+
+			else if (waveTimer == 400 && waveCounter == 2) {
+				spawnWave2();
 			}
 
 
-			else if(waveTimer == 200) {
-				stage.removeChild(waveTitle);
+			///////////////////// WAVE 3
+
+			if(waveTimer == 100 && waveCounter == 3) {
+				setupWaveTitle3();
+				showTitleWave();
 			}
 
-			else if (waveTimer == 300) {
-				spawnWave();
+			else if(waveTimer == 300 && waveCounter == 3) {
+				hideTitleWave();
 			}
+
+			else if (waveTimer == 400 && waveCounter == 3) {
+				spawnWave3();
+			}
+
+
+			///////////////////// WINRAR!
+
+			if(waveTimer == 100 && waveCounter == 3) {
+				showWin();
+			}
+
 
 			drawFPS();
 
@@ -260,11 +408,10 @@ var GJ = (function () {
 			enemyCount--;
 
 			if (enemyCount <= 0) {
-				GJ.Sound.triggerEvent("turtle_happy");
-			turtle.spawnHearts();
-			var effect = new Effect(800, 300, GJ.EffectTypes.WAVE_OVER, 0);
+				
 			}
 		},
+
 
 		takeHit: function () {
 			numHearts--;
@@ -306,7 +453,8 @@ var GJ = (function () {
 			WAVE1: 2,
 			WAVE2: 3,
 			WAVE3: 4,
-			WAVE_OVER: 5
+			WAVE_OVER: 5,
+			EXPLOSION_SMALL: 6
 		}
 	};
 })();

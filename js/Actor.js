@@ -124,16 +124,10 @@ var Actor = function (type) {
 
 Actor.prototype.update = function () {
 	if (this.active) {
-
-		
-
 		this.checkExploding();
 		this.doAI();
 		this.applyVelocity();
 		this.updateBalloon();
-		
-
-
 	}
 };
 
@@ -146,6 +140,8 @@ Actor.prototype.updateBalloon = function () {
 
 Actor.prototype.checkExploding = function () {
 	if (typeof this.image.stopExploding !== 'undefined') {
+		this.image.x = 2000;
+		this.image.y = 2000;
 		this.image.stopExploding = undefined;
 		this.kill();
 		GJ.getStage().removeChild(this.image);
@@ -421,11 +417,14 @@ Actor.prototype.kill = function (explode) {
 		if (typeof explode !== 'undefined') {
 			this.spawnBacsplosion();
 		}
-		
+		 
 	} else if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
 		GJ.Sound.triggerEvent("kill");
 		this.throwBack();
 	}
+
+	// this.image.x = 2000;
+	// this.image.y = 2000;
 
     GJ.getStage().removeChild(this.image);
 };

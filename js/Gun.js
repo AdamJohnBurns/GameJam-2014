@@ -33,8 +33,29 @@ Gun.prototype.checkBulletCollisions = function (targets) {
 				result = this.bullets[j].checkCollision(targets[i]);
 	
 				if (result) {
+
+
+					if (this.bullets[j].velX > 0) {
+						targets[i].velX = 50;
+					} else {
+						targets[i].velX = -50;
+					}
+
+
+					// if(targets[i].x < actor.getImage().x) {
+					// 	this.accelX = -20;
+					// } else {
+					// 	this.accelX = 20;
+					// }
+
+
 					this.bullets[j].kill(true);
 					targets[i].hitByBullet();
+
+
+
+
+
 					// hits.push(result);
 				}
 			}

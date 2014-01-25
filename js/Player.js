@@ -187,7 +187,7 @@ Player.prototype.checkMining = function () {
 			this.mining = false;
 			this.image.removeEventListener('animationend');
 			this.image.giveGem = false;
-			console.log('removed');
+			
 		} else {
 
 		}
@@ -195,6 +195,7 @@ Player.prototype.checkMining = function () {
 
 	if (typeof this.image.giveGem !== 'undefined' && this.image.giveGem === true) {
 		GJ.addGem();
+		
 		GJ.Sound.triggerEvent("gem_pickup");
 		this.image.giveGem = undefined;
 	}
@@ -206,7 +207,7 @@ Player.prototype.mineGems = function () {
 		this.image.gotoAndPlay('pickaxe');
 		GJ.Sound.triggerEvent("mine");
 
-		this.image.removeEventListener('animationend');
+		// this.image.removeEventListener('animationend');
 		this.mining = true;
 
 		this.image.addEventListener('animationend', function (event) {
