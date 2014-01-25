@@ -36,8 +36,8 @@ var Actor = function (type) {
 			run: [0, 21],
 			hit: [22, 37],
 			collect: [38, 113],
-			gemrun: [114, 136],
-			bombrun: [137, 159],
+			gemrun: [114, 133],
+			bombrun: [134, 156],
 			explode: [160, 226]
 		}
 	});
@@ -71,6 +71,8 @@ var Actor = function (type) {
 		initialAnimation = 'fly';
 	}
 
+this.hasGem = false;
+initialAnimation = 'gemrun';
 	this.image = new createjs.Sprite(data, initialAnimation);
 
 	this.image.x = Math.random() * 100 + 700;

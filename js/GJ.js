@@ -179,6 +179,11 @@ var GJ = (function () {
 			GROUND_NORMAL: 0,
 			GROUND_EXPLODING: 1,
 			FLYING_NORMAL: 2
+		},
+
+		EffectTypes: {
+			RUNNING_SMOKE: 0,
+			JUMP_SMOKE: 1
 		}
 	};
 })();

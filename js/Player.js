@@ -47,7 +47,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 	this.gun = new Gun(GJ.getTargetFPS(), 6, 0, this, 0, -48);
 	this.gunType = GJ.Weapons.PLAYER_GUN;
 
-
+	this.waitForEffect = 0;
 
 	var data;
 	data = new createjs.SpriteSheet({
@@ -55,26 +55,30 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 		images: [ 
 			GJ.Assets.get('MainCharacterIdle'), // 10
 			GJ.Assets.get('MainCharacterRun'), 	// 17
-			GJ.Assets.get('MainCharacterJump') 	// 15
+			GJ.Assets.get('MainCharacterJump'), 	// 15
 			// repeat jump sheet for landing anim // 25
+			GJ.Assets.get('MainCharacterShoot') 	// 17, 10 = fire
 		], 
 		frames: [
 			// x, y, width, height, index, regX, regY
 			// the index needs to match the file with the sprites
 			[0,0,67,97,0,32.3,96.65],[72,0,67,97,0,32.3,96.65],[144,0,67,97,0,32.3,96.65],[0,102,67,97,0,32.3,96.65],[72,102,67,97,0,32.3,96.65],[144,102,67,97,0,32.3,96.65],[0,204,67,97,0,32.3,96.65],[72,204,67,97,0,32.3,96.65],[144,204,67,97,0,32.3,96.65],[0,306,67,97,0,32.3,96.65],[72,306,67,97,0,32.3,96.65],[144,306,67,97,0,32.3,96.65],[0,408,67,97,0,32.3,96.65],
 			[0,0,71,113,1,37.75,112.35],[71,0,71,113,1,37.75,112.35],[142,0,71,113,1,37.75,112.35],[213,0,71,113,1,37.75,112.35],[284,0,71,113,1,37.75,112.35],[355,0,71,113,1,37.75,112.35],[426,0,71,113,1,37.75,112.35],[0,113,71,113,1,37.75,112.35],[71,113,71,113,1,37.75,112.35],[142,113,71,113,1,37.75,112.35],[213,113,71,113,1,37.75,112.35],[284,113,71,113,1,37.75,112.35],[355,113,71,113,1,37.75,112.35],[426,113,71,113,1,37.75,112.35],[0,226,71,113,1,37.75,112.35],[71,226,71,113,1,37.75,112.35],[142,226,71,113,1,37.75,112.35],
-			[0,0,101,104,2,47.05,99.85],[101,0,101,104,2,47.05,99.85],[202,0,101,104,2,47.05,99.85],[303,0,101,104,2,47.05,99.85],[404,0,101,104,2,47.05,99.85],[0,104,101,104,2,47.05,99.85],[101,104,101,104,2,47.05,99.85],[202,104,101,104,2,47.05,99.85],[303,104,101,104,2,47.05,99.85],[404,104,101,104,2,47.05,99.85],[0,208,101,104,2,47.05,99.85],[101,208,101,104,2,47.05,99.85],[202,208,101,104,2,47.05,99.85],[303,208,101,104,2,47.05,99.85],[404,208,101,104,2,47.05,99.85],[0,312,101,104,2,47.05,99.85],[101,312,101,104,2,47.05,99.85],[202,312,101,104,2,47.05,99.85],[303,312,101,104,2,47.05,99.85],[404,312,101,104,2,47.05,99.85],[0,416,101,104,2,47.05,99.85],[101,416,101,104,2,47.05,99.85],[202,416,101,104,2,47.05,99.85],[303,416,101,104,2,47.05,99.85],[404,416,101,104,2,47.05,99.85],[0,520,101,104,2,47.05,99.85],[101,520,101,104,2,47.05,99.85],[202,520,101,104,2,47.05,99.85],[303,520,101,104,2,47.05,99.85],[404,520,101,104,2,47.05,99.85],[0,624,101,104,2,47.05,99.85],[101,624,101,104,2,47.05,99.85],[202,624,101,104,2,47.05,99.85],[303,624,101,104,2,47.05,99.85],[404,624,101,104,2,47.05,99.85],[0,728,101,104,2,47.05,99.85],[101,728,101,104,2,47.05,99.85],[202,728,101,104,2,47.05,99.85],[303,728,101,104,2,47.05,99.85],[404,728,101,104,2,47.05,99.85]
+			[0,0,101,104,2,47.05,99.85],[101,0,101,104,2,47.05,99.85],[202,0,101,104,2,47.05,99.85],[303,0,101,104,2,47.05,99.85],[404,0,101,104,2,47.05,99.85],[0,104,101,104,2,47.05,99.85],[101,104,101,104,2,47.05,99.85],[202,104,101,104,2,47.05,99.85],[303,104,101,104,2,47.05,99.85],[404,104,101,104,2,47.05,99.85],[0,208,101,104,2,47.05,99.85],[101,208,101,104,2,47.05,99.85],[202,208,101,104,2,47.05,99.85],[303,208,101,104,2,47.05,99.85],[404,208,101,104,2,47.05,99.85],[0,312,101,104,2,47.05,99.85],[101,312,101,104,2,47.05,99.85],[202,312,101,104,2,47.05,99.85],[303,312,101,104,2,47.05,99.85],[404,312,101,104,2,47.05,99.85],[0,416,101,104,2,47.05,99.85],[101,416,101,104,2,47.05,99.85],[202,416,101,104,2,47.05,99.85],[303,416,101,104,2,47.05,99.85],[404,416,101,104,2,47.05,99.85],[0,520,101,104,2,47.05,99.85],[101,520,101,104,2,47.05,99.85],[202,520,101,104,2,47.05,99.85],[303,520,101,104,2,47.05,99.85],[404,520,101,104,2,47.05,99.85],[0,624,101,104,2,47.05,99.85],[101,624,101,104,2,47.05,99.85],[202,624,101,104,2,47.05,99.85],[303,624,101,104,2,47.05,99.85],[404,624,101,104,2,47.05,99.85],[0,728,101,104,2,47.05,99.85],[101,728,101,104,2,47.05,99.85],[202,728,101,104,2,47.05,99.85],[303,728,101,104,2,47.05,99.85],[404,728,101,104,2,47.05,99.85],
+			[0,0,132,97,3,68.1,95.85],[132,0,132,97,3,68.1,95.85],[264,0,132,97,3,68.1,95.85],[0,97,132,97,3,68.1,95.85],[132,97,132,97,3,68.1,95.85],[264,97,132,97,3,68.1,95.85],[0,194,132,97,3,68.1,95.85],[132,194,132,97,3,68.1,95.85],[264,194,132,97,3,68.1,95.85],[0,291,132,97,3,68.1,95.85],[132,291,132,97,3,68.1,95.85],[264,291,132,97,3,68.1,95.85],[0,388,132,97,3,68.1,95.85],[132,388,132,97,3,68.1,95.85],[264,388,132,97,3,68.1,95.85],[0,485,132,97,3,68.1,95.85],[132,485,132,97,3,68.1,95.85]
 		],
 		animations: { 
 			idle: [0, 10],
 			run: [11, 27],
 			jump: [28, 43],
-			fall: [44, 69]//,
+			fall: [44, 69],
+			shoot: [70, 86]
 
 			// melee: [24, 24],
 			// shoot: [27, 27]
 		}
 	});
+	this.fireShotFrame = 80;
 	this.image = new createjs.Sprite(data, 'idle');
 
 
@@ -118,10 +122,14 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 
 
 Player.prototype.update = function () {
+	this.checkReadyToFire();
+	this.checkReadyToStopShooting();
+
 	this.handleInput();
 	this.checkActorCollision();
 	this.gun.update();
 	this.gun.checkBulletCollisions(GJ.getActors());
+
 
 	this.checkWorldCollision();
 	this.applyVelocity();
@@ -139,7 +147,7 @@ Player.prototype.handleInput = function () {
 	}
 
 	if (GJ.Input.isPressed(this.shootKey)) {
-		this.gun.fire();
+		this.shoot();
 	}
 
 	if (GJ.Input.isPressed(this.meleeKey)) {
@@ -155,10 +163,27 @@ Player.prototype.handleInput = function () {
 	}
 
 	if (GJ.Input.isPressed(this.jumpKey)) {
-		this.jump();		
+		this.jump();
 	}
 };
 
+
+Player.prototype.checkReadyToFire = function () {
+	if (typeof this.image.readyToFire !== 'undefined' && this.image.readyToFire) {
+		this.gun.fire();
+		this.image.readyToFire = undefined;
+
+		this.image.removeEventListener('tick');
+	}
+};
+
+Player.prototype.checkReadyToStopShooting = function () {
+	if (typeof this.image.readyToStopShooting !== 'undefined' && this.image.readyToStopShooting) {
+		this.image.readyToStopShooting = undefined;
+		this.image.gotoAndPlay('idle');
+		this.image.removeEventListener('animationend');
+	}
+};
 
 Player.prototype.applyVelocity = function () {
 
@@ -180,6 +205,8 @@ Player.prototype.applyVelocity = function () {
 
 	this.image.x += this.accelX;
 	this.image.y += this.accelY;
+
+	this.waitForEffect--;
 };
 
 
@@ -189,6 +216,11 @@ Player.prototype.moveLeft = function () {
 
 	if (this.accelX < -this.maxMoveSpeed) {
 		this.accelX = -this.maxMoveSpeed;
+	}
+
+	if(this.accelX > 0 && this.waitForEffect <= 0 && this.isOnGround) {
+		this.waitForEffect = 4;
+		var effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.RUNNING_SMOKE, this.direction);
 	}
 
 	this.direction = GJ.Directions.LEFT;
@@ -206,6 +238,11 @@ Player.prototype.moveRight = function () {
 
 	if (this.accelX > this.maxMoveSpeed) {
 		this.accelX = this.maxMoveSpeed;
+	}
+
+	if(this.accelX < 0 && this.waitForEffect <= 0 && this.isOnGround) {
+		this.waitForEffect = 4;
+		var effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.RUNNING_SMOKE, this.direction);
 	}
 
 	this.direction = GJ.Directions.RIGHT;
@@ -247,6 +284,30 @@ Player.prototype.meleeAttack = function () {
 };
 
 
+Player.prototype.shoot = function () {
+	if (this.image.currentAnimation !== 'shoot') {
+		this.image.gotoAndPlay('shoot');
+		this.dampenAcceleration();
+
+		this.image.addEventListener('tick', function (target) {
+			// console.log(target.currentTarget.currentFrame);
+			if (target.currentTarget.currentFrame == 80) {
+				target.currentTarget.readyToFire = true;
+			}
+		});
+
+		this.image.addEventListener('animationend', function (target) {
+			target.currentTarget.readyToStopShooting = true;
+			// console.log(event);
+			// console.log(event2);
+			// console.log('----');
+		});
+	}
+
+	
+};
+
+
 Player.prototype.jump = function () {
 	if (this.isOnGround) {
 		this.accelY = -20;
@@ -254,7 +315,8 @@ Player.prototype.jump = function () {
 
 		if (this.image.currentAnimation !== 'jump') {
 			this.image.gotoAndPlay('jump');
-			console.log('j');
+			var effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.JUMP_SMOKE, this.direction);
+			// console.log('j');
 		}
 	}
 };
@@ -263,7 +325,7 @@ Player.prototype.jump = function () {
 Player.prototype.idle = function () {
 	this.dampenAcceleration();
 
-	if (this.image.currentAnimation !== 'idle' && this.isOnGround) {
+	if (this.image.currentAnimation !== 'idle' && this.isOnGround && this.image.currentAnimation !== 'shoot') {
 		this.image.gotoAndPlay('idle');
 	}
 };
