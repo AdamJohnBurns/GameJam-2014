@@ -76,15 +76,85 @@ GJ.Sound = (function () {
 			} else if (name === "gem_pickup") {
 				soundsPlaying.push({
 					name: "gem_pickup",
-					sound: createjs.Sound.play("gem_pickup_01")
+					sound: createjs.Sound.play("gem_pickup")
+				}, {
+					name: "pick",
+					sound: createjs.Sound.play("pick")
 				});
-			} else if (name === "gem_steal") {
+			} else if (name === "gem_drop") {
+				soundsPlaying.push({
+					name: "gem_drop",
+					sound: createjs.Sound.play("gem_drop")
+				});
+			} else if (name === "pig_steal") {
 				var randomInt = Math.floor((Math.random()*8)+1);
 				soundsPlaying.push({
-					name: "pig_happy",
-					sound: createjs.Sound.play("pig_snort_0" + randomInt)					
+					name: "pig_oink",
+					sound: createjs.Sound.play("pig_oink_0" + randomInt)					
+				}, {
+					name: "pinch",
+					sound: createjs.Sound.play("pinch_01")					
+				},
+				);
+			} else if (name === "pig_rummage") {
+				soundsPlaying.push({
+					name: "rummage",
+					sound: createjs.Sound.play("rummage")					
+				});
+			} else if (name === "swish") {
+				var randomInt = Math.floor((Math.random()*3)+1);
+				soundsPlaying.push({
+					name: "swish",
+					sound: createjs.Sound.play("swish_0" + randomInt)
+				});
+			} else if (name === "attack") {
+				var randomInt = Math.floor((Math.random()*4)+1);
+				soundsPlaying.push({
+					name: "attack",
+					sound: createjs.Sound.play("sword_swing_0" + randomInt)
+				});
+			} else if (name === "kill") {
+				var randomStab = Math.floor((Math.random()*4)+1);
+				var randomPig = Math.floor((Math.random()*4)+1);				
+				soundsPlaying.push({
+					name: "stab",
+					sound: createjs.Sound.play("sword_stab_0" + randomStab)
+				}, {
+					name: "pig_hit",
+					sound: createjs.Sound.play("pig_hit_0" + randomStab)
+				});
+			} else if (name === "mine") {
+				soundsPlaying.push({
+					name: "pick",
+					sound: createjs.Sound.play("pick")
+				});
+			} else if (name === "pop") {
+				soundsPlaying.push({
+					name: "balloon_pop",
+					sound: createjs.Sound.play("ballon_pop")
+				});
+			} else if (name === "turtle_sad") {
+				var randomInt = Math.floor((Math.random()*5)+1);
+				soundsPlaying.push({
+					name: "turtle_sad",
+					sound: createjs.Sound.play("turtle_sad_0" + randomInt)
+				});
+			} else if (name === "turtle_happy") {
+				var randomInt = Math.floor((Math.random()*5)+1);
+				soundsPlaying.push({
+					name: "turtle_happy",
+					sound: createjs.Sound.play("turtle_happy_0" + randomInt)
+				});
+			} else if (name === "meow") {
+				var randomInt = Math.floor((Math.random()*5)+1);
+				soundsPlaying.push({
+					name: "meow",
+					sound: createjs.Sound.play("cat_0" + randomInt)
 				});
 			}
+
+
+
 
 
 		}
