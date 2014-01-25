@@ -29,26 +29,6 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 
 	this.direction = GJ.Directions.RIGHT;
 
-	// data = new createjs.SpriteSheet({
- //            'images': [GJ.Assets.get('playerSS')],
- //            'frames': {
- //            	'regX': 0, 
- //            	'height': 292, 
- //            	'count': 64, 
- //            	'regY': 0, 
- //            	'width': 165
- //            },
- //            // define two animations, run (loops, 1.5x speed) and jump (returns to run):
- //            'animations': {
- //            	'run': [0, 25, 'run', 1.5], 
- //            	'jump': [26, 63, 'run'],
- //            	'idle': [0, 0]
- //            }
- //    });
- //    this.image = new createjs.Sprite(data, "run");
- //    this.image.setTransform(-200, 90, 0.8, 0.8);
- //    this.image.framerate = 30;
-
 	this.gun = new Gun(GJ.getTargetFPS(), 6, 0, this, 0, -48);
 	this.gunType = GJ.Weapons.PLAYER_GUN;
 

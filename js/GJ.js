@@ -22,6 +22,8 @@ var GJ = (function () {
 		heartText,
 		heartImage,
 
+		enemyCount,
+
 		stage,
 		worlds,
 		actors,
@@ -52,14 +54,17 @@ var GJ = (function () {
 
 
 	var setupHeart = function () {
-		heartImage = new createjs.Bitmap(GJ.Assets.get('BulletGem'));
-			heartImage.x = 90;
+		heartImage = new createjs.Bitmap(GJ.Assets.get('ParticleHeart'));
+			heartImage.x = 100;
 			heartImage.y = 20;
+					heartImage.scaleX = 0.55;
+			heartImage.scaleY = 0.55;
 			stage.addChild(heartImage);
 
 			heartText = new createjs.Text('' + numHearts, "20px Arial", "#000000"); 
 			heartText.x = 130;
 			heartText.y = 40;
+	
 			heartText.textBaseline = "alphabetic";
 			stage.addChild(heartText);
 	};
@@ -96,6 +101,8 @@ var GJ = (function () {
 				// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
 				// }
 
+			enemyCount = actors.length;
+
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
@@ -112,6 +119,8 @@ var GJ = (function () {
 			numGems = 10;
 			numHearts = 3;
 
+
+
 			setupGem();
 			setupHeart();
 
@@ -122,9 +131,7 @@ var GJ = (function () {
 			GJ.Sound.init(); // Start the audio engine
 
 
-			GJ.Sound.triggerEvent("turtle_happy");
-			turtle.spawnHearts();
-			var effect = new Effect(300, 300, GJ.EffectTypes.WAVE_OVER, 0);
+			
 		},
 
 
@@ -208,6 +215,16 @@ var GJ = (function () {
 
 		getTurtle: function () {
 			return turtle;
+		},
+
+		removeEnemy: function () {
+			enemyCount--;
+
+			if (enemyCount <= 0) {
+				GJ.Sound.triggerEvent("turtle_happy");
+			turtle.spawnHearts();
+			var effect = new Effect(800, 300, GJ.EffectTypes.WAVE_OVER, 0);
+			}
 		},
 
 		takeHit: function () {
