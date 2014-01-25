@@ -12,7 +12,9 @@ GJ.Assets = (function () {
 	var loadQueued = function () {
 		queue.loadManifest([
 			// {id: 'playerSS', src:'img/playerSS.png'},
-			{id: 'sprite1', src:'img/sprite.jpg'},
+			{id: 'sprite1', src:'img/sprite1.jpg'},
+			{id: 'sprite2', src:'img/sprite2.jpg'},
+			{id: 'sprite3', src:'img/sprite3.jpg'},
 			{id: 'amb_birdsong', src:'audio/amb_birdsong.ogg', data: 5},
 			{id: 'footstep_grass_01', src:'audio/footstep_grass_01.ogg', data: 5},
 			{id: 'footstep_grass_02', src:'audio/footstep_grass_02.ogg', data: 5},

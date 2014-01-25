@@ -1,9 +1,10 @@
-var Player = function (leftKey, rightKey, shootKey, jumpKey, moveSpeed, maxMoveSpeed, weight) {
+var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, moveSpeed, maxMoveSpeed, weight) {
 	var blurFilter, bounds, data;
 
 	this.leftKey = leftKey;
 	this.rightKey = rightKey;
 	this.shootKey = shootKey;
+	this.meleeKey = meleeKey;
 	this.jumpKey = jumpKey;
 
 	this.accelX = 0;
@@ -12,6 +13,8 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, moveSpeed, maxMoveS
 	this.moveSpeed = moveSpeed;
 	this.maxMoveSpeed = maxMoveSpeed;
 	this.weight = weight;
+
+	this.attackRange = 20;
 
 	this.direction = GJ.Directions.RIGHT;
 
@@ -79,6 +82,10 @@ Player.prototype.handleInput = function () {
 		this.gun.fire();
 	}
 
+	if (GJ.Input.isPressed(this.meleeKey)) {
+		this.meleeAttack();
+	}
+
 	if (GJ.Input.isPressed(this.jumpKey)) {
 		this.jump();		
 	}
@@ -86,8 +93,6 @@ Player.prototype.handleInput = function () {
 
 
 Player.prototype.applyVelocity = function () {
-
-	
 
 	this.accelY += GJ.getCurrentWorld().getGravity();
 
@@ -136,6 +141,36 @@ Player.prototype.moveRight = function () {
 };
 
 
+Player.prototype.meleeAttack = function () {
+	var i, 
+		actors = GJ.getActors(),
+		attackBox = {
+			x: this.image.x,
+			y: this.image.y,
+			width: this.image.getBounds().width,
+			height: this.image.getBounds().height
+		},  // use attackrange
+		actorBox;
+
+	this.dampenAcceleration();
+
+	for (i = 0; i < actors.length; i++) {
+		actorBox = {
+			x: actors[i].image.x,
+			y: actors[i].image.y,
+			width: actors[i].image.getBounds().width,
+			height: actors[i].image.getBounds().height,
+		};
+
+		if (GJ.Collisions.boundingBox(attackBox, actorBox)) {
+			actors[i].kill();
+		}
+	}
+
+	// this.image.gotoAndPlay('melee');
+};
+
+
 Player.prototype.jump = function () {
 	if (this.image.y + this.image.getBounds().height / 2 >= GJ.getCurrentWorld().getGroundHeight()) {
 		this.accelY = -20;
@@ -146,6 +181,13 @@ Player.prototype.jump = function () {
 
 
 Player.prototype.idle = function () {
+	this.dampenAcceleration();
+
+	// this.image.gotoAndPlay('idle');
+};
+
+
+Player.prototype.dampenAcceleration = function () {
 	if (this.accelX > 0) {
 		this.accelX -= this.weight;
 
@@ -159,8 +201,6 @@ Player.prototype.idle = function () {
 			this.accelX = 0;
 		}
 	}
-
-	// this.image.gotoAndPlay('idle');
 };
 
 

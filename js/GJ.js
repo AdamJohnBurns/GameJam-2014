@@ -51,17 +51,23 @@ var GJ = (function () {
 			}
 
 			actors = [];
-			for (i = 0; i < NUM_ACTORS; i++) {
-				actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
-			}
+			// for (i = 0; i < NUM_ACTORS; i++) {
+			actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+			actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL));
+			actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+			actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING));
+			actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+			actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL));
+			// }
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
 				players.push(new Player(GJ.Input.Keycodes.LEFT_ARROW, 
 					GJ.Input.Keycodes.RIGHT_ARROW, 
 					GJ.Input.Keycodes.SHIFT, 
-					GJ.Input.Keycodes.SPACEBAR, 
-					2, 8, 1));
+					GJ.Input.Keycodes.SPACEBAR,
+					GJ.Input.Keycodes.ENTER,
+					2, 9, 1.5));
 			}
 
 			gemText = new createjs.Text('Gems :' + numGems, "20px Arial", "#ff7700"); 
@@ -87,7 +93,7 @@ var GJ = (function () {
 
 			for (i = 0; i < actors.length; i++) {
 				actors[i].update();
-				worlds[currentWorld].handleGravity(actors[i].getImage());
+				// worlds[currentWorld].handleGravity(actors[i].getImage());
 			}
 
 			for (i = 0; i < players.length; i++) {
@@ -141,16 +147,17 @@ var GJ = (function () {
 			return actors;
 		},
 
-		stoleMyBike: function () {
+		gentlemanStoleMyBike: function () {
 			numGems--;
 			gemText.text = 'Gems :' + numGems;
 		},
 
 		States: {
 			MOVING_LEFT: 0,
-			STEALING: 1,
-			LEGGING_IT: 2,
-			EXPLODING: 2
+			LANDING: 1,
+			STEALING: 2,
+			LEGGING_IT: 3,
+			EXPLODING: 4
 		},
 
 		Directions: {
@@ -165,7 +172,7 @@ var GJ = (function () {
 		ActorTypes: {
 			GROUND_NORMAL: 0,
 			GROUND_EXPLODING: 1,
-			FLYING_NORMAL: 1
+			FLYING_NORMAL: 2
 		}
 	};
 })();
