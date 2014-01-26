@@ -109,7 +109,7 @@ var Actor = function (type, x, y) {
 			GJ.getStage().addChild(this.balloon);	
 			this.balloon.gotoAndPlay('fly');	
 
-			console.log(this.image.y, this.balloon.y);
+			// console.log(this.image.y, this.balloon.y);
 		}
 
 		this.waitTimer = 0;
@@ -139,7 +139,7 @@ Actor.prototype.update = function () {
 
 
 	if (this.hasBomb) {
-		console.log(this.image.currentAnimation);
+		// console.log(this.image.currentAnimation);
 	}
 };
 
@@ -230,7 +230,7 @@ Actor.prototype.doAI = function () {
 
 				if (intersection && this.image.currentAnimation !== 'explode') {
 					// this.state = GJ.States.EXPLODING;
-					console.log('proximity detected!');
+					// console.log('proximity detected!');
 					this.doExplode();
 				}
 			}
@@ -306,7 +306,7 @@ Actor.prototype.doExplode = function () {
 
 	if (this.image.currentAnimation !== 'explode') {
 
-		console.log('do explode');
+		// console.log('do explode');
 
 		this.state = GJ.States.EXPLODING;
 		this.image.gotoAndPlay('explode');
@@ -582,6 +582,7 @@ Actor.prototype.kill = function (explode) {
 
 
 Actor.prototype.hitByBullet = function () {
+	if (this.image.currentAnimation !== 'explode');
 	this.kill(true);
 };
 

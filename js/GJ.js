@@ -101,7 +101,7 @@ var GJ = (function () {
 
 		actors = [];
 // actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 800, startY + 0));		
-// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
+actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 800, balloonHeightHigh));
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 900, balloonHeightLow));
 
@@ -157,29 +157,46 @@ var GJ = (function () {
 		actors = [];
 
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-
-		startX += gapBetweenMiniWaves;
-
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-
-		startX += gapBetweenMiniWaves;
-
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 0, balloonHeightLow));
 
 		startX += gapBetweenMiniWaves;
 
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
 		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightLow));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 200, balloonHeightHigh));
 
 		startX += gapBetweenMiniWaves;
 
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 0, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 200, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 400, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 500, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 800, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 900, balloonHeightLow));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 0, startY + 0));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 400, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 0, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 300, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 400, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 500, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 600, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 800, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 900, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 1000, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 1000, balloonHeightHigh));
 				
 		enemyCount = actors.length;
 	};
@@ -203,30 +220,76 @@ var GJ = (function () {
 
 		actors = [];
 
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 0, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 200, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 300, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 400, balloonHeightLow));
 
 		startX += gapBetweenMiniWaves;
 
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-
-		startX += gapBetweenMiniWaves;
-
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
-
-		startX += gapBetweenMiniWaves;
-
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightLow));
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
-
-		startX += gapBetweenMiniWaves;
-
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 0, balloonHeightHigh));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 100, startY + 0));
-		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 300, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 400, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 500, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 600, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 700, balloonHeightHigh));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 0, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 200, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 200, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 300, balloonHeightHigh));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 400, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 400, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 500, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 600, startY + 0));
+
+
+		startX += gapBetweenMiniWaves;
+
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 0, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 0, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 0, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 100, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 200, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 200, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 300, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 300, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 300, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 400, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 400, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 400, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 500, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 500, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 500, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 600, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 600, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 600, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 700, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 700, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 700, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 800, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 800, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 800, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 900, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 900, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 900, balloonHeightHigh));
+		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 1000, startY + 0));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 1000, balloonHeightLow));
+		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 1000, balloonHeightHigh));
 				
 		enemyCount = actors.length;
 	};
@@ -236,7 +299,7 @@ var GJ = (function () {
 	
 	var showWin = function () {
 		GJ.Sound.triggerEvent("win");		
-		
+		console.log('show win screen');
 		turtle.image.gotoAndPlay('happy');
 	};
 
@@ -251,7 +314,7 @@ var GJ = (function () {
 	
 	var showGameOver = function () {
 		GJ.Sound.triggerEvent("lose");		
-		
+		console.log('SHOW GAME OVER');
 	};
 
 
@@ -308,9 +371,9 @@ var GJ = (function () {
 				players.push(new Player(
 					GJ.Input.Keycodes.LEFT_ARROW, 
 					GJ.Input.Keycodes.RIGHT_ARROW, 
-					GJ.Input.Keycodes.SHIFT, 
+					GJ.Input.Keycodes.ALT, 
 					GJ.Input.Keycodes.UP_ARROW,
-					GJ.Input.Keycodes.ENTER,
+					GJ.Input.Keycodes.CTRL,
 					GJ.Input.Keycodes.SPACEBAR,
 					2, 9, 1.5));
 			}
@@ -325,8 +388,13 @@ var GJ = (function () {
 
 
 
+
+
 			// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS
-			// waveTimer = 350;
+			waveTimer = 350;
+
+
+
 
 
 
@@ -382,6 +450,47 @@ var GJ = (function () {
 			}
 
 			waveTimer++;
+
+
+			///////////////////// GAME OVER
+
+
+			if(waveTimer == 1 && waveCounter == -1) {
+				showGameOver();
+			}
+
+			if(waveTimer == 200 && waveCounter == -1) {
+				GJ.assetsReady();
+			}
+			
+
+
+			///////////////////// HELP
+
+
+			if(waveTimer == 100 && waveCounter == 0) {
+				showHelp();
+			}
+
+
+			if(waveTimer == 100 && waveCounter == 0) {
+				waveTimer = 0;
+				waveCounter = 1;
+			}
+
+
+			///////////////////// WIN
+
+
+			if(waveTimer == 1 && waveCounter == 99) {
+				showWin();
+			}
+
+
+			if(waveTimer == 100 && waveCounter == 99) {
+				GJ.assetsReady();
+			}
+
 
 			///////////////////// WAVE 1
 
@@ -487,6 +596,11 @@ var GJ = (function () {
 			numGems--;
 			gemText.text = '' + numGems;
 			GJ.Sound.triggerEvent("turtle_sad");
+
+			if (numGems <= 0) {
+				waveTimer = 0;
+				waveCounter = -1;
+			}
 		},
 
 		getNumGems: function () {
@@ -517,7 +631,14 @@ var GJ = (function () {
 
 			// DO GAMESTAGE CHECKING STUFF HERE, REINIT IF DEAD
 			if(numHearts <= 0) {
-				GJ.assetsReady();
+				// GJ.assetsReady();
+				waveTimer = 0;
+				waveCounter = -1;
+
+				var effect = new Effect(players[0].image.x, players[0].image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
+				players[0].image.x = 4000;
+				players[0].image.y = 4000;
+				GJ.getStage().removeChild(players[0].image);
 			}
 		},
 
