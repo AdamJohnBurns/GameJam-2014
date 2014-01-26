@@ -53,7 +53,7 @@ var Actor = function (type, x, y) {
 			}
 		});
 
-		this.waitDelay = 160;
+		this.waitDelay = 150;
 
 		if (this.type === GJ.ActorTypes.GROUND_NORMAL) {
 			this.useGravity = true;
@@ -132,13 +132,14 @@ var Actor = function (type, x, y) {
 
 
 Actor.prototype.update = function () {
+	this.checkExploding();
+
 	if (this.active) {
-		this.checkExploding();
 		this.doAI();
 		this.applyVelocity();
 		this.updateBalloon();
 	} else {
-		if (GJ.getPlayers()[0].hitTimer === 0) {
+		if (GJ.getPlayers()[0].hitTimer === 0 && this.image.currentAnimation !== 'explode') {
 			this.image.x = 2000;
 			this.image.y = 2000;
 		}
@@ -319,13 +320,17 @@ Actor.prototype.doExplode = function () {
 		this.state = GJ.States.EXPLODING;
 		this.image.gotoAndPlay('explode');
 
+// console.log('added listening');
+
 		this.image.addEventListener('tick', function (event) {
+// console.log('tick');			
 			// console.log(target.currentTarget.currentFrame);
 // console.log('tick');	
 
-			if (event.currentTarget.currentFrame == 190 && event.currentTarget.currentAnimation == 'explode') {
+			if (event.currentTarget.currentFrame == 190) {
 				GJ.Sound.triggerEvent("explode");
-// console.log('tick = 190');			
+// console.log('tick = 190');
+// console.log(event.currentTarget.x, event.currentTarget.y);
 				// var index = event.currentTarget.getChildIndex(event.currentTarget);
 
 				var emitter;
@@ -364,17 +369,18 @@ Actor.prototype.doExplode = function () {
 				    emitter.endSize = 10;
 				    emitter.endSizeVar = 3;
 
-
-
 					GJ.getStage().addChild(emitter);
 
 					// createjs.setChild
 			}
 
-			if (event.currentTarget.currentFrame >= 225 /* && event.currentTarget.currentAnimation == 'explode'*/) {
+			if (event.currentTarget.currentFrame >= 224 /* && event.currentTarget.currentAnimation == 'explode'*/) {
 // console.log('tick = 225');				
 				event.remove();
 				event.currentTarget.setNotActive = true;
+				event.currentTarget.x = 2000;
+			event.currentTarget.y = 2000;
+			GJ.getStage().removeChild(event.currentTarget);
 			}
 			else if (event.currentTarget.currentFrame >= 190 /*&& event.currentTarget.currentAnimation == 'explode'*/) {
 // console.log('tick >= 190');					
@@ -386,10 +392,12 @@ Actor.prototype.doExplode = function () {
 		this.image.addEventListener('animationend', function (event) {
 // console.log('anim end');
 			event.currentTarget.stopExploding = true;
+
 			// event.currentTarget.x = 2000;
 			// event.currentTarget.y = 2000;
 			event.remove();
 		});
+		// console.log(this.image);
 	}
 };
 
@@ -568,13 +576,14 @@ Actor.prototype.kill = function (explode) {
 		}
 
 		this.active = false;
+		GJ.getStage().removeChild(this.image);
 
 	} else if (this.type === GJ.ActorTypes.GROUND_EXPLODING) {
 		// if (typeof explode !== 'undefined') {
 			// this.spawnBacsplosion();
 			// GJ.Sound.triggerEvent("kill"); // explode sound instead?
 		
-		effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
+		// effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
 
 		GJ.Sound.triggerEvent("kill");
 
@@ -591,6 +600,7 @@ Actor.prototype.kill = function (explode) {
 		this.throwBack();
 	}
 		this.active = false;
+		GJ.getStage().removeChild(this.image);
 	}
 
 
@@ -598,7 +608,7 @@ Actor.prototype.kill = function (explode) {
 	// this.image.x = 2000;
 	// this.image.y = 2000;
 
-    GJ.getStage().removeChild(this.image);
+    
 };
 
 
