@@ -410,7 +410,7 @@ var GJ = (function () {
 
 			// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS
 			// waveTimer = 350;
-			// waveCounter = 1;
+			// waveCounter = 3;
 
 
 
@@ -566,10 +566,7 @@ var GJ = (function () {
 
 			///////////////////// WINRAR!
 
-			if(waveTimer == 100 && waveCounter == 3) {
-				showWin();
-			}
-
+			
 
 			drawFPS();
 
