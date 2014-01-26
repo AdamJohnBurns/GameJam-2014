@@ -180,6 +180,18 @@ GJ.Sound = (function () {
 					name: "lose",
 					sound: createjs.Sound.play("lose")
 				});
+			// Fade out music
+			var i, sound;
+			for (i = 0; i < soundsPlaying.length; i++) {
+				sound = soundsPlaying[i];
+
+				if (sound.name === "ambience_happy") {
+					sound.sound.volume = 0;
+				} else if (sound.name === "music") {
+					sound.sound.volume = 0;
+				}
+
+			}
 			}
 		}
 
