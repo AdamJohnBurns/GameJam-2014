@@ -342,7 +342,7 @@ Player.prototype.shoot = function () {
 		});
 	// }
 	} else {
-		console.log('SHOW GET MORE GEMS MSG');
+		// console.log('SHOW GET MORE GEMS MSG');
 		GJ.Sound.triggerEvent("turtle_sad");
 	}
 	
