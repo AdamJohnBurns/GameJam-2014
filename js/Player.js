@@ -181,6 +181,14 @@ Player.prototype.checkMining = function () {
 			this.image.giveGem = false;
 		}
 
+		// if (this.image.currentAnimation == 'pickaxe' && (this.image.currentFrame == 116 || this.image.currentFrame == 143 || this.image.currentFrame == 166)) {
+		// 	zzz = true;
+		// }
+		if (this.image.currentAnimation == 'pickaxe' && (this.image.currentFrame == 117 || this.image.currentFrame == 142 || this.image.currentFrame == 167)) {
+			GJ.Sound.triggerEvent("mine");
+			//playable = undefined;
+		}
+
 	}
 
 	if (typeof this.image.giveGem !== 'undefined' && this.image.giveGem === true) {

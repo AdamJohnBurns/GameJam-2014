@@ -135,7 +135,7 @@ GJ.Assets = (function () {
 			{id: 'gem_drop', src:'audio/gem_drop.ogg', data: 10},
 			{id: 'gem_pickup', src:'audio/gem_pickup.ogg', data: 10},
 			{id: 'gem_pinch', src:'audio/gem_pinch.ogg', data: 10},
-			{id: 'pick', src:'audio/pick.ogg', data: 5},
+			{id: 'pick', src:'audio/pick.ogg', data: 1},
 			{id: 'win', src:'audio/win.ogg', data: 3},
 			{id: 'lose', src:'audio/lose.ogg', data: 3},
 			{id: 'new_wave', src:'audio/new_wave.ogg', data: 1}			
