@@ -86,7 +86,7 @@ var GJ = (function () {
 		turtle.image.gotoAndPlay('idle');
 
 
-		// createjs.Sound.triggerEvent("new_wave");
+		GJ.Sound.triggerEvent("new_wave");
 		
 	};
 

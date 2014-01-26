@@ -17,8 +17,6 @@ GJ.Sound = (function () {
 	return {
 
 		init: function ( ) {
-			
-			//createjs.Sound.stop();
 
 			// Start playing ambience and music loops if they're not already playing
 			soundsPlaying.push({
@@ -47,6 +45,8 @@ GJ.Sound = (function () {
 		update: function ( ) {
 			// Generic update function (that gets called every tick)
 			var i, sound;
+
+			//console.log(Player.isOnGround)
 
 			// for (i = 0; i < soundsPlaying.length; i++) {
 			// 	sound = soundsPlaying[i];
@@ -164,7 +164,7 @@ GJ.Sound = (function () {
 			} else if (name === "new_wave") {
 				soundsPlaying.push({
 					name: "new_wave",
-					sound: createjs.Sound.play("new_wave")
+					sound: createjs.Sound.play("new_wave", {delay: 300, volume: 0.5})
 				});
 			} else if (name === "win") {
 				soundsPlaying.push({
