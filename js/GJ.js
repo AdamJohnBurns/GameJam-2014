@@ -623,7 +623,7 @@ var GJ = (function () {
 			GJ.Sound.triggerEvent("turtle_sad");
 
 			if (numGems <= 0) {
-				player.enabled = false;
+				players[0].enabled = false;
 				waveTimer = 0;
 				waveCounter = -1;
 			}
@@ -660,7 +660,7 @@ var GJ = (function () {
 				// GJ.assetsReady();
 				waveTimer = 0;
 				waveCounter = -1;
-				player.enabled = false;
+				players[0].enabled = false;
 				var effect = new Effect(players[0].image.x, players[0].image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
 				players[0].image.x = 4000;
 				players[0].image.y = 4000;
