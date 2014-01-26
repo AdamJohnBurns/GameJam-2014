@@ -554,21 +554,30 @@ Actor.prototype.kill = function (explode) {
 
 	if (this.type === GJ.ActorTypes.GROUND_NORMAL) {
 		this.throwBack();
-		effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
-		GJ.Sound.triggerEvent("kill");
+
+		if (this.image.x < GJ.getCurrentWorld().getWorldWidth()) {
+			effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
+			GJ.Sound.triggerEvent("kill");
+		}
+
 		this.active = false;
 
 	} else if (this.type === GJ.ActorTypes.GROUND_EXPLODING) {
 		// if (typeof explode !== 'undefined') {
 			// this.spawnBacsplosion();
 			// GJ.Sound.triggerEvent("kill"); // explode sound instead?
+		if (this.image.x < GJ.getCurrentWorld().getWorldWidth()) {
 			this.doExplode();
+		}
+		this.active = false;
 		// }
 		 
 	} else if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
+		if (this.image.x < GJ.getCurrentWorld().getWorldWidth()) {
 		GJ.Sound.triggerEvent("kill");
 		effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
 		this.throwBack();
+	}
 		this.active = false;
 	}
 
