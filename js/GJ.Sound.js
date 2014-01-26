@@ -128,9 +128,13 @@ GJ.Sound = (function () {
 					sound: createjs.Sound.play("pig_hit_0" + randomStab, {volume: 0.5, delay: 100})
 				});
 			} else if (name === "mine") {
+				var randomInt = Math.floor((Math.random()*4)+1);
 				soundsPlaying.push({
+					name: "swing",
+					sound: createjs.Sound.play("sword_swing_0" + randomInt)
+				}, {
 					name: "pick",
-					sound: createjs.Sound.play("pick")
+					sound: createjs.Sound.play("pick", {delay :100})
 				});
 			} else if (name === "pop") {
 				soundsPlaying.push({
@@ -176,6 +180,18 @@ GJ.Sound = (function () {
 					name: "lose",
 					sound: createjs.Sound.play("lose")
 				});
+			// Fade out music
+			var i, sound;
+			for (i = 0; i < soundsPlaying.length; i++) {
+				sound = soundsPlaying[i];
+
+				if (sound.name === "ambience_happy") {
+					sound.sound.volume = 0;
+				} else if (sound.name === "music") {
+					sound.sound.volume = 0;
+				}
+
+			}
 			}
 		}
 
