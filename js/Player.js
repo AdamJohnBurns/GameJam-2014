@@ -212,6 +212,7 @@ Player.prototype.mineGems = function () {
 			if (event.currentTarget.currentFrame === 182) {
 				// event.currentTarget.giveGem = true;
 				GJ.addGem();
+				GJ.Sound.triggerEvent("gem_pickup");
 			}
 
 			if (event.currentTarget.currentAnimation !== 'pickaxe') {
