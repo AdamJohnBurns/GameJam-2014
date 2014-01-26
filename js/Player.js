@@ -181,8 +181,6 @@ Player.prototype.checkMining = function () {
 			this.image.giveGem = false;
 		}
 
-		//createjs.Sound.triggerEvent("mine");
-
 	}
 
 	if (typeof this.image.giveGem !== 'undefined' && this.image.giveGem === true) {
@@ -214,7 +212,7 @@ Player.prototype.mineGems = function () {
 			}
 
 		});
-	}
+  	}
 };
 
 
