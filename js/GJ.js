@@ -380,7 +380,7 @@ var GJ = (function () {
 					GJ.Input.Keycodes.UP_ARROW,
 					GJ.Input.Keycodes.CTRL,
 					GJ.Input.Keycodes.SPACEBAR,
-					2, 9, 1.5));
+					2, 8, 1.5));
 			}
 
 			numGems = 10;
