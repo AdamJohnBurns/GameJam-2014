@@ -12,6 +12,13 @@ var Actor = function (type, x, y) {
 	this.hasGem = false;
 	this.isOnGround = false;
 
+
+	this.goalOffset = 0;
+
+	if (y == 250) {
+		this.goalOffset = 150;
+	}
+
 	if (this.type !== GJ.ActorTypes.TURTLE) {
 		data = new createjs.SpriteSheet({
 			framerate: 25,
@@ -236,7 +243,7 @@ Actor.prototype.doAI = function () {
 			}
 		}
 
-		if (this.image.x <= GJ.getCurrentWorld().getGoalX()) {			
+		if (this.image.x <= GJ.getCurrentWorld().getGoalX() - this.goalOffset) {			
 
 			if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
 				this.useGravity = true;
