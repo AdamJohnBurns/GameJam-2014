@@ -104,7 +104,7 @@ var GJ = (function () {
 
 		actors = [];
 // actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 800, startY + 0));		
-// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
+actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 800, balloonHeightHigh));
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 900, balloonHeightLow));
 
@@ -302,8 +302,12 @@ var GJ = (function () {
 	
 	var showWin = function () {
 		GJ.Sound.triggerEvent("win");		
-		console.log('show win screen');
+		stage.addChild(winTitle);
 		turtle.image.gotoAndPlay('happy');
+	};
+
+	var hideWin = function () {
+		stage.removeChild(winTitle);
 	};
 
 
@@ -316,7 +320,8 @@ var GJ = (function () {
 
 	
 	var showGameOver = function () {
-		GJ.Sound.triggerEvent("lose");		
+		GJ.Sound.triggerEvent("lose");
+		stage.addChild(gameOverTitle);	
 		console.log('SHOW GAME OVER');
 	};
 
@@ -383,7 +388,16 @@ var GJ = (function () {
 
 			numGems = 10;
 			numHearts = 3;
-			waveCounter = 1;
+			waveCounter = 0;
+
+			gameOverTitle = new createjs.Bitmap(GJ.Assets.get('GameOverTitle'));
+			gameOverTitle.x = 230;
+			gameOverTitle.y = 50;
+			// showGameOver();
+			winTitle = new createjs.Bitmap(GJ.Assets.get('WinTitle'));
+			winTitle.x = 230;
+			winTitle.y = 50;
+			// showWin();
 
 
 
@@ -476,7 +490,8 @@ var GJ = (function () {
 			}
 
 
-			if(waveTimer == 100 && waveCounter == 0) {
+			if(waveTimer == 300 && waveCounter == 0) {
+				// hideHelp();
 				waveTimer = 0;
 				waveCounter = 1;
 			}
