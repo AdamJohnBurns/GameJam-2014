@@ -370,9 +370,6 @@ var GJ = (function () {
 			}
 			turtle = new Turtle();
 
-			
-				
-			waveTimer = 0;
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
@@ -389,6 +386,7 @@ var GJ = (function () {
 			numGems = 10;
 			numHearts = 3;
 			waveCounter = 0;
+			waveTimer = 0;
 
 			gameOverTitle = new createjs.Bitmap(GJ.Assets.get('GameOverTitle'));
 			gameOverTitle.x = 230;
@@ -485,7 +483,7 @@ var GJ = (function () {
 // if(waveCounter == -1 ) {
 // 	console.log(waveTimer);
 // }
-			if(waveTimer >= 200 && waveCounter == -1) {
+			if(waveTimer == 200 && waveCounter == -1) {
 				GJ.assetsReady();
 			}
 			
@@ -625,6 +623,7 @@ var GJ = (function () {
 			GJ.Sound.triggerEvent("turtle_sad");
 
 			if (numGems <= 0) {
+				player.enabled = false;
 				waveTimer = 0;
 				waveCounter = -1;
 			}
@@ -661,7 +660,7 @@ var GJ = (function () {
 				// GJ.assetsReady();
 				waveTimer = 0;
 				waveCounter = -1;
-
+				player.enabled = false;
 				var effect = new Effect(players[0].image.x, players[0].image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
 				players[0].image.x = 4000;
 				players[0].image.y = 4000;
