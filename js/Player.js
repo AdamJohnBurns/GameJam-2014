@@ -78,7 +78,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 
 	this.height = this.image.getBounds().height;//48;
 	this.image.x = 100;
-	this.image.y = 100;
+	this.image.y = -1000;
 
 
 	GJ.getStage().addChild(this.image);
