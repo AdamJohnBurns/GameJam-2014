@@ -160,30 +160,42 @@ Actor.prototype.checkExploding = function () {
 	// 	GJ.getStage().removeChild(this.image);
 	// }
 
-	// if (typeof this.image.checkBombCollision !== 'undefined') {
-	// 	if (typeof actor !== 'undefined') {
+	if (typeof this.image.checkBombCollision !== 'undefined') {
+		// if (typeof actor !== 'undefined') {
 			
-	// 		var intersection = ndgmr.checkRectCollision(this.image, GJ.getPlayers()[0].image);
+			var intersection = ndgmr.checkRectCollision(this.image, GJ.getPlayers()[0].image);
 
-	// 		if (intersection) {
+			if (intersection) {
 
-	// 			if (this.hitTimer <= 0) {
-	// 				this.hitTimer = this.hitDelay;
-	// 				GJ.takeHit();
-	// 				GJ.Sound.triggerEvent("meow");
+				if (this.hitTimer <= 0) {
+					this.hitTimer = this.hitDelay;
+					GJ.takeHit();
+					GJ.Sound.triggerEvent("meow");
 
-	// 				if(this.image.x < GJ.getPlayers()[0].image.x) {
-	// 					this.accelX = -20;
-	// 				} else {
-	// 					this.accelX = 20;
-	// 				}
-	// 			}
-	// 		}
+					if(this.image.x < GJ.getPlayers()[0].image.x) {
+						this.accelX = -20;
+					} else {
+						this.accelX = 20;
+					}
+				}
+			}
 
-	// 	}
+			var actors = GJ.getActors();
+// console.log(actors);
+			for (var i = 0; i < actors.length; i++) {
+				// console.log(i);
+				if (actors[i].active) {
+					if (ndgmr.checkRectCollision(this.image, actors[i].image)) {
+						actors[i].hitByBullet();
+					}
 
-	// 	this.image.checkBombCollision = undefined;
-	// }
+				}
+			}
+
+		// }
+
+		this.image.checkBombCollision = undefined;
+	}
 
 	if (typeof this.balloon !== 'undefined') {
 		if (typeof this.balloon.removeBalloon !== 'undefined') {
@@ -216,8 +228,9 @@ Actor.prototype.doAI = function () {
 			for (var i =0; i<players.length;i++) {
 				intersection = ndgmr.checkRectCollision(this.image, players[i].getImage());
 
-				if (intersection) {
+				if (intersection && this.image.currentAnimation !== 'explode') {
 					// this.state = GJ.States.EXPLODING;
+					console.log('proximity detected!');
 					this.doExplode();
 				}
 			}
@@ -301,23 +314,23 @@ Actor.prototype.doExplode = function () {
 
 		this.image.addEventListener('tick', function (event) {
 			// console.log(target.currentTarget.currentFrame);
-console.log('tick');	
+// console.log('tick');	
 
 			if (event.currentTarget.currentFrame == 190 && event.currentTarget.currentAnimation == 'explode') {
 
-console.log('tick = 190');			
+// console.log('tick = 190');			
 				// var index = event.currentTarget.getChildIndex(event.currentTarget);
 
 				var emitter;
 					emitter = new createjs.ParticleEmitter(GJ.Assets.get('ParticleBacon'));
 				    emitter.position = new createjs.Point(event.currentTarget.x + 10, event.currentTarget.y - 70);
 				    emitter.emitterType = createjs.ParticleEmitterType.Emit;
-				    emitter.duration = 250;	// how long emitter lasts for
-				    emitter.emissionRate = 20;
-				    emitter.maxParticles = 40;
-				    emitter.life = 500;
-				    emitter.lifeVar = 500;
-				    emitter.speed = 290;
+				    emitter.duration = 55;	// how long emitter lasts for
+				    emitter.emissionRate = 1000;
+				    emitter.maxParticles = 1000;
+				    emitter.life = 300;
+				    emitter.lifeVar = 50;
+				    emitter.speed = 550;
 				    emitter.speedVar = 10;
 				    emitter.positionVarX = 10;
 				    emitter.positionVarY = 10;
@@ -351,18 +364,20 @@ console.log('tick = 190');
 					// createjs.setChild
 			}
 
-			if (event.currentTarget.currentFrame >= 225  && event.currentTarget.currentAnimation == 'explode') {
-console.log('tick = 225');				
+			if (event.currentTarget.currentFrame >= 225 /* && event.currentTarget.currentAnimation == 'explode'*/) {
+// console.log('tick = 225');				
 				event.remove();
 				event.currentTarget.setNotActive = true;
 			}
-			else if (event.currentTarget.currentFrame >= 190 && event.currentTarget.currentAnimation == 'explode') {
+			else if (event.currentTarget.currentFrame >= 190 /*&& event.currentTarget.currentAnimation == 'explode'*/) {
+// console.log('tick >= 190');					
 				event.currentTarget.checkBombCollision = true;
+
 			}
 		});
 
 		this.image.addEventListener('animationend', function (event) {
-console.log('anim end');
+// console.log('anim end');
 			event.currentTarget.stopExploding = true;
 			// event.currentTarget.x = 2000;
 			// event.currentTarget.y = 2000;

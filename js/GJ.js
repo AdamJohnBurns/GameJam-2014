@@ -81,25 +81,12 @@ var GJ = (function () {
 	///////////////// WAVE 1
 
 	var setupWaveTitle1 = function () {
-		// waveCounter = 1;
-		// waveTimer = 0;
+		var effect = new Effect(550, 200, GJ.EffectTypes.WAVE1, 0);
 
-		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
-		waveTitle.x = 150;
-		waveTitle.y = 200;
-		
+		turtle.image.gotoAndPlay('idle');
 	};
 
-	/*
 
-	var startPoint = get
-
-	actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
-	actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 50, startY + 0));
-	actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 50, balloonHeightHigh)); // make sure these 2 dont overlap
-	actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 100, balloonHeightLow));
-
-	*/
 
 	var spawnWave1 = function () {
 		var startX = GJ.getCurrentWorld().getWorldWidth(),
@@ -110,10 +97,13 @@ var GJ = (function () {
 
 		actors = [];
 // actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 800, startY + 0));		
-actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
+// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 800, balloonHeightHigh));
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 900, balloonHeightLow));
 
+
+// turtle.image.gotoAndPlay('happy');
+// turtle.image.gotoAndPlay('moderatlyHappy');
 
 
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 0, startY + 0));
@@ -148,9 +138,9 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 	///////////////// WAVE 2
 	
 	var setupWaveTitle2 = function () {
-		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
-		waveTitle.x = 150;
-		waveTitle.y = 200;
+		var effect = new Effect(550, 200, GJ.EffectTypes.WAVE2, 0);
+
+		turtle.image.gotoAndPlay('idle');
 	};
 
 	var spawnWave2 = function () {
@@ -194,9 +184,9 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 	///////////////// WAVE 3
 	
 	var setupWaveTitle3 = function () {
-		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
-		waveTitle.x = 150;
-		waveTitle.y = 200;
+		var effect = new Effect(550, 200, GJ.EffectTypes.WAVE3, 0);
+
+		turtle.image.gotoAndPlay('idle');
 		
 	};
 
@@ -242,9 +232,14 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 	
 	var showWin = function () {
 		
-		
+		turtle.image.gotoAndPlay('happy');
 	};
 
+
+
+	var showHelp = function () {
+		var effect = new Effect(550, 200, GJ.EffectTypes.HELP, 0);
+	};
 
 
 
@@ -268,6 +263,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 
 
 	var triggerWaveEnd = function () {
+		turtle.image.gotoAndPlay('moderatelyHappy');
 		GJ.Sound.triggerEvent("turtle_happy");
 				turtle.spawnHearts();
 				var effect = new Effect(550, 200, GJ.EffectTypes.WAVE_OVER, 0);
@@ -324,7 +320,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 
 
 			// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS
-			waveTimer = 350;
+			// waveTimer = 350;
 
 
 
@@ -550,7 +546,8 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 			WAVE2: 3,
 			WAVE3: 4,
 			WAVE_OVER: 5,
-			EXPLOSION_SMALL: 6
+			EXPLOSION_SMALL: 6,
+			HELP: 7
 		}
 	};
 })();
