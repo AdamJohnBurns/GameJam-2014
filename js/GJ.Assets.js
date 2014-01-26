@@ -69,8 +69,8 @@ GJ.Assets = (function () {
 			{id: 'SceneCloud3', src:'img/Scene/Cloud3.png'},
 
 			// audio
-			{id: 'music', src:'audio/music.ogg', data: 2},			
-			{id: 'amb_birdsong', src:'audio/amb_birdsong.ogg', data: 4},
+			{id: 'music', src:'audio/music.ogg', data: 1},			
+			{id: 'amb_birdsong', src:'audio/amb_birdsong.ogg', data: 1},
 			{id: 'footstep_grass_01', src:'audio/footstep_grass_01.ogg', data: 4},
 			{id: 'footstep_grass_02', src:'audio/footstep_grass_02.ogg', data: 4},
 			{id: 'footstep_grass_03', src:'audio/footstep_grass_03.ogg', data: 4},
@@ -135,10 +135,10 @@ GJ.Assets = (function () {
 			{id: 'gem_drop', src:'audio/gem_drop.ogg', data: 10},
 			{id: 'gem_pickup', src:'audio/gem_pickup.ogg', data: 10},
 			{id: 'gem_pinch', src:'audio/gem_pinch.ogg', data: 10},
-			{id: 'pick', src:'audio/pick.ogg', data: 10},
+			{id: 'pick', src:'audio/pick.ogg', data: 5},
 			{id: 'win', src:'audio/win.ogg', data: 3},
 			{id: 'lose', src:'audio/lose.ogg', data: 3},
-			{id: 'new_wave', src:'audio/new_wave.ogg', data: 3}			
+			{id: 'new_wave', src:'audio/new_wave.ogg', data: 1}			
 		]);
 	};
 

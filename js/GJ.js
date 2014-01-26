@@ -84,6 +84,12 @@ var GJ = (function () {
 		var effect = new Effect(550, 200, GJ.EffectTypes.WAVE1, 0);
 
 		turtle.image.gotoAndPlay('idle');
+		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
+		waveTitle.x = 150;
+		waveTitle.y = 200;
+
+		createjs.Sound.triggerEvent("new_wave");
+		
 	};
 
 
@@ -231,6 +237,7 @@ var GJ = (function () {
 	///////////////// WIN
 	
 	var showWin = function () {
+		GJ.Sound.triggerEvent("win");		
 		
 		turtle.image.gotoAndPlay('happy');
 	};
@@ -245,7 +252,7 @@ var GJ = (function () {
 
 	
 	var showGameOver = function () {
-		
+		GJ.Sound.triggerEvent("lose");		
 		
 	};
 
@@ -265,6 +272,7 @@ var GJ = (function () {
 	var triggerWaveEnd = function () {
 		turtle.image.gotoAndPlay('moderatelyHappy');
 		GJ.Sound.triggerEvent("turtle_happy");
+		GJ.Sound.triggerEvent("win");
 				turtle.spawnHearts();
 				var effect = new Effect(550, 200, GJ.EffectTypes.WAVE_OVER, 0);
 				waveTimer = -200;

@@ -101,7 +101,7 @@ Player.prototype.update = function () {
 	this.applyVelocity();
 
 	if (this.footstepTimer <= 0) {
-		GJ.Sound.triggerEvent("footstep");
+		//GJ.Sound.triggerEvent("footstep");
 		this.footstepTimer = this.footstepDelay;
 	} else {	
 		this.footstepTimer--;		
@@ -179,8 +179,10 @@ Player.prototype.checkMining = function () {
 			this.mining = false;
 			this.image.removeEventListener('animationend');
 			this.image.giveGem = false;
-			
 		}
+
+		//createjs.Sound.triggerEvent("mine");
+
 	}
 
 	if (typeof this.image.giveGem !== 'undefined' && this.image.giveGem === true) {
@@ -195,12 +197,12 @@ Player.prototype.checkMining = function () {
 Player.prototype.mineGems = function () {
 	if (this.image.currentAnimation !== 'pickaxe' && this.isOnGround && this.direction === GJ.Directions.LEFT && this.image.x <= 150) {
 		this.image.gotoAndPlay('pickaxe');
-		GJ.Sound.triggerEvent("mine");
 
 		this.image.removeEventListener('animationend');
 		this.mining = true;
 
 		this.image.addEventListener('animationend', function (event) {
+
 			if (event.currentTarget.currentFrame === 182) {
 				// event.currentTarget.giveGem = true;
 				GJ.addGem();
@@ -339,7 +341,7 @@ Player.prototype.shoot = function () {
 Player.prototype.jump = function () {
 	if (this.isOnGround) {
 		this.accelY = -20;
-		GJ.Sound.triggerEvent('footstep');
+		GJ.Sound.triggerEvent('jump');
 
 		if (this.image.currentAnimation !== 'jump') {
 			this.image.gotoAndPlay('jump');
