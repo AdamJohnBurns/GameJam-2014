@@ -617,6 +617,18 @@ var GJ = (function () {
 			return actors;
 		},
 
+		playerShootGem: function () {
+			numGems-=1;
+			gemText.text = '' + numGems;
+			GJ.Sound.triggerEvent("turtle_sad");
+
+			if (numGems <= 0) {
+				players[0].enabled = false;
+				waveTimer = 0;
+				waveCounter = -1;
+			}
+		},
+
 		gentlemanStoleMyBike: function () {
 			numGems-=2;
 			gemText.text = '' + numGems;
