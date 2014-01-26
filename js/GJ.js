@@ -383,7 +383,7 @@ var GJ = (function () {
 					2, 8, 1.5));
 			}
 
-			numGems = 10;
+			numGems = 20;
 			numHearts = 5;
 			waveCounter = 0;
 			waveTimer = 0;
