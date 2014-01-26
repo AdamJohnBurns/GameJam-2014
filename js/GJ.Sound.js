@@ -145,7 +145,7 @@ GJ.Sound = (function () {
 				var randomInt = Math.floor((Math.random()*10)+1);
 				soundsPlaying.push({
 					name: "turtle_sad",
-					sound: createjs.Sound.play("turtle_sad_0" + randomInt)
+					sound: createjs.Sound.play("turtle_sad_0" + randomInt, {delay: 400})
 				});
 			} else if (name === "turtle_happy") {
 				var randomInt = Math.floor((Math.random()*5)+1);
