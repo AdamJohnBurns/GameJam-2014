@@ -201,7 +201,7 @@ Player.prototype.checkMining = function () {
 
 
 Player.prototype.mineGems = function () {
-	if (this.image.currentAnimation !== 'pickaxe' && this.isOnGround && this.direction === GJ.Directions.LEFT && this.image.x <= 150) {
+	if (this.image.currentAnimation !== 'pickaxe' && this.isOnGround && this.direction === GJ.Directions.LEFT && this.image.x <= 120) {
 		this.image.gotoAndPlay('pickaxe');
 
 		this.image.removeEventListener('animationend');
@@ -391,7 +391,7 @@ Player.prototype.getImage = function () {
 
 Player.prototype.checkActorCollision = function (actor) {
 
-	if (typeof actor !== 'undefined') {
+	if (typeof actor !== 'undefined' && actor.image.currentAnimation !== 'explode' && actor.active == true) {
 		// can you check this with shapes!????
 		var intersection = ndgmr.checkRectCollision(this.image, actor.getImage());
 

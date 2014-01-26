@@ -322,7 +322,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 	var showGameOver = function () {
 		GJ.Sound.triggerEvent("lose");
 		stage.addChild(gameOverTitle);	
-		console.log('SHOW GAME OVER');
+		
 	};
 
 
@@ -409,6 +409,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 
 			// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS
 			// waveTimer = 350;
+			// waveCounter = 1;
 
 
 
@@ -475,8 +476,10 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 			if(waveTimer == 1 && waveCounter == -1) {
 				showGameOver();
 			}
-
-			if(waveTimer == 200 && waveCounter == -1) {
+// if(waveCounter == -1 ) {
+// 	console.log(waveTimer);
+// }
+			if(waveTimer >= 200 && waveCounter == -1) {
 				GJ.assetsReady();
 			}
 			

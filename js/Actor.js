@@ -278,6 +278,7 @@ Actor.prototype.doAI = function () {
 			this.hasGem = true;
 			this.hasBomb = false;
 			this.state = GJ.States.LEGGING_IT;
+			this.image.x += 30;
 		}
 	} else if (this.state === GJ.States.LEGGING_IT) {
 		this.moveRight();
@@ -566,6 +567,9 @@ Actor.prototype.kill = function (explode) {
 		// if (typeof explode !== 'undefined') {
 			// this.spawnBacsplosion();
 			// GJ.Sound.triggerEvent("kill"); // explode sound instead?
+		
+		effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
+
 		if (this.image.x < GJ.getCurrentWorld().getWorldWidth()) {
 			this.doExplode();
 		}
