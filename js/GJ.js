@@ -87,6 +87,8 @@ var GJ = (function () {
 		waveTitle = new createjs.Bitmap(GJ.Assets.get('WaveTitle'));
 		waveTitle.x = 150;
 		waveTitle.y = 200;
+
+		createjs.Sound.triggerEvent("new_wave");
 		
 	};
 

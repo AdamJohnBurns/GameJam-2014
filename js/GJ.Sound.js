@@ -35,7 +35,7 @@ GJ.Sound = (function () {
 				sound = soundsPlaying[i];
 
 				if (sound.name === "ambience_happy") {
-					fadeVolume(sound.sound, 0.5, 3000);
+					fadeVolume(sound.sound, 0.6, 3000);
 				} else if (sound.name === "music") {
 					fadeVolume(sound.sound, 0.3, 1000);
 				}
@@ -66,13 +66,13 @@ GJ.Sound = (function () {
 				var randomInt = Math.floor((Math.random()*8)+1); // randomised 1 - 8
 				soundsPlaying.push({
 					name: "footstep",
-					sound: createjs.Sound.play("footstep_grass_0" + randomInt, {volume: 0.4})
+					sound: createjs.Sound.play("footstep_grass_0" + randomInt, {volume: 0.2})
 				});
-			} else if (name === "land") {
+			} else if (name === "jump") {
 				var randomInt = Math.floor((Math.random()*4)+1);
 				soundsPlaying.push({
-					name: "land",
-					sound: createjs.Sound.play("footstep_land_0" + randomInt, {volume: 0.4})
+					name: "jump",
+					sound: createjs.Sound.play("footstep_land_0" + randomInt, {volume: 0.2})
 				});	
 			} else if (name === "explode") {
 				var randomInt = Math.floor((Math.random()*6)+1);
@@ -98,10 +98,13 @@ GJ.Sound = (function () {
 				var randomRummage = Math.floor((Math.random()*6)+1);				
 				soundsPlaying.push({
 					name: "pinch",
-					sound: createjs.Sound.play("pinch_0" + randomPinch, {delay: 1000})					
+					sound: createjs.Sound.play("pinch_0" + randomPinch, {delay: 2400})					
 				}, {
 					name: "rummage",
-					sound: createjs.Sound.play("rummage_0" + randomRummage, {volume: 0.5})					
+					sound: createjs.Sound.play("rummage_0" + randomRummage)					
+				}, {
+					name: "gem_pinch",
+					sound: createjs.Sound.play("gem_steal")					
 				});
 			} else if (name === "swish") {
 				var randomInt = Math.floor((Math.random()*3)+1);
