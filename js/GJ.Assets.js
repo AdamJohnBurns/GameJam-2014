@@ -16,11 +16,13 @@ GJ.Assets = (function () {
 			{id: 'EffectHitEffect', src:'img/Effects/EffectHitEffect.png'},
 			{id: 'EffectJumpSmoke', src:'img/Effects/JumpSmoke.png'},
 			{id: 'EffectRunningSmoke', src:'img/Effects/RunningSmoke.png'},
-			// {id: 'EffectWave2', src:'img/Effects/Wave2.png'},
-			// {id: 'EffectWave3', src:'img/Effects/Wave3.png'},
+			{id: 'EffectWave1', src:'img/Effects/Wave1.png'},
+			{id: 'EffectWave2', src:'img/Effects/Wave2.png'},
+			{id: 'EffectWave3', src:'img/Effects/Wave3.png'},
+			{id: 'EffectHelp', src:'img/Effects/Help.png'},
 			{id: 'EffectWaveOver', src:'img/Effects/WaveOver.png'},
 
-			{id: 'WaveTitle', src:'img/Effects/Wave1.png'},
+			{id: 'WaveTitle', src:'img/Effects/Wave1Flat.png'},
 
 			// main character
 			{id: 'MainCharacterIdle', src:'img/MainCharacter/Idle.png'},
@@ -29,9 +31,12 @@ GJ.Assets = (function () {
 			{id: 'MainCharacterShoot', src:'img/MainCharacter/ThrowDiamond.png'},
 			{id: 'MainCharacterPickaxe', src:'img/MainCharacter/Pickaxing.png'},
 			{id: 'MainCharacterMelee', src:'img/MainCharacter/Attack1.png'},
+			{id: 'MainCharacterHitBack', src:'img/MainCharacter/HitBack.png'},
 
 			// turtle
 			{id: 'TurtleIdle', src:'img/Turtle/Turtle.png'},
+			{id: 'TurtleHappy', src:'img/Turtle/TurtleHappy.png'},
+			{id: 'TurtleModeratlyHappy', src:'img/Turtle/TurtleModeratlyHappy.png'},
 
 			// pigs
 			{id: 'PigRun', src:'img/Pigs/PigRun.png'},
