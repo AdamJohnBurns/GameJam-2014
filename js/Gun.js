@@ -79,7 +79,7 @@ Gun.prototype.fire = function () {
 		// } else {
 		// }
 	
-		GJ.gentlemanStoleMyBike();
+		GJ.playerShootGem();
 
 			x = this.controller.image.x + this.offsetX;
 

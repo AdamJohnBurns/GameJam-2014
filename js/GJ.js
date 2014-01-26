@@ -380,11 +380,11 @@ var GJ = (function () {
 					GJ.Input.Keycodes.UP_ARROW,
 					GJ.Input.Keycodes.CTRL,
 					GJ.Input.Keycodes.SPACEBAR,
-					2, 9, 1.5));
+					2, 8, 1.5));
 			}
 
 			numGems = 10;
-			numHearts = 3;
+			numHearts = 5;
 			waveCounter = 0;
 			waveTimer = 0;
 
@@ -617,8 +617,20 @@ var GJ = (function () {
 			return actors;
 		},
 
+		playerShootGem: function () {
+			numGems-=1;
+			gemText.text = '' + numGems;
+			GJ.Sound.triggerEvent("turtle_sad");
+
+			if (numGems <= 0) {
+				players[0].enabled = false;
+				waveTimer = 0;
+				waveCounter = -1;
+			}
+		},
+
 		gentlemanStoleMyBike: function () {
-			numGems--;
+			numGems-=2;
 			gemText.text = '' + numGems;
 			GJ.Sound.triggerEvent("turtle_sad");
 
