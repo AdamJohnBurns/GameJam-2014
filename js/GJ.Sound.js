@@ -78,7 +78,7 @@ GJ.Sound = (function () {
 				var randomInt = Math.floor((Math.random()*6)+1);
 				soundsPlaying.push({
 					name: "explosion",
-					sound: createjs.Sound.play("explosion_0" + randomInt, {delay: 1400})
+					sound: createjs.Sound.play("explosion_0" + randomInt)
 				});
 			} else if (name === "gem_pickup") {
 				soundsPlaying.push({

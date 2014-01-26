@@ -321,7 +321,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 	
 	var showGameOver = function () {
 		GJ.Sound.triggerEvent("lose");
-		stage.addChild(gameOverTitle);	
+		stage.addChild(gameOverTitle);
 		
 	};
 

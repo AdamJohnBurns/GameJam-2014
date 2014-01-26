@@ -1,0 +1,297 @@
+body{
+min-width:1100px;
+padding:0 auto;
+margin:0 auto;
+	background: #f2f2f2 url(bg.png) repeat-x top;
+}
+.game{
+
+margin:0 auto;
+
+width:1100px;
+height:650px;
+background:#FFF;
+padding:3%;
+
+
+}
+.underGame{
+border-top-style:solid;
+border-top-width:thin;
+border-top-color:#DEDEDE;
+margin:0 auto;
+background:#EEEEEE;
+width:1100px;
+height:1400px;
+
+padding:3%;
+
+}
+
+.box {
+	background: #fff;
+	border: 1px solid #e6e6e6;
+	
+	-moz-box-shadow: 0px 3px 3px #d6d6d6;
+	-webkit-box-shadow: 0px 3px 3px #d6d6d6;
+	box-shadow: 0px 3px 3px #d6d6d6;
+
+}
+
+.box p {
+	font-family: "Helvetica Neue";
+	font-size: 12px;
+	color: #6d6d6d;
+}
+
+.box hr { 
+	border: 0px #e8e8e8 solid;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-bottom-color: #fff;
+	clear: both;
+	height: 0;
+	margin: -10px 0 0 0;
+	padding: 0 0 15px 0;
+}
+.social{
+padding-top: 20px;
+display:block;
+padding:0 auto;
+margin:0 auto; 
+}
+
+
+footer{
+height:150px;
+background: #f2f2f2 url(grass.png) repeat-x top;
+
+margin:0 auto;
+
+margin-top:100px;
+
+}
+
+.button{
+color: #FFF;
+width: 100%;
+height:50px;
+
+background: #49F3EE;
+border-style:none; 
+text-align: center;
+verticle-align:middle;
+padding-top:3%;
+padding-bottom:3%;
+	margin: 0 auto;
+
+box-radius:25px;
+font:30px sans-serif;
+font-weight:bold;
+margin-bottom:50px;
+
+}
+.button:hover{
+background: #F3A649;
+color: #FFF;
+}
+.button p{
+font:15px sans-serif;
+font-weight:thin;
+}
+
+h3{
+color:#49F3EE;
+font:30px sans-serif;
+font-weight:bold;
+margin-bottom:50px;
+
+}
+
+h1{
+color:#171303;
+font:35px sans-serif;
+font-weight:bold;
+margin-bottom:50px;
+}
+
+button:hover{
+color: #FFF;
+width: 100px;
+
+background: #D02F2F;
+border-style:none; 
+text-align: center;
+
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+h1 {
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+	color: #333;
+	margin-bottom: 20px;
+	font-family: "Helvetica Neue";
+
+}
+
+
+.credits{
+text-align:center;
+display:block;
+Width:20%;
+float:right;
+
+
+
+}
+.instructions{
+display:block;
+display:inline-table;
+text-align:center;
+
+Width:100%;
+margin-bottom:50px;
+
+}
+.boxes{
+
+width:50%;
+display:inline;
+display:block;
+padding:0 auto;
+margin:0 auto;
+height:350px;
+
+}
+.video{
+text-align:center;
+display:block;
+width:800px
+
+display:inline;
+display:block;
+padding-bottom:50px;
+padding:0 auto;
+margin:0 auto;
+height:450px;
+
+
+}
+.videoHolder{
+margin-top:75px;
+width:1100px;
+background:#FFF;
+margin-bottom:50px;
+
+height:600px;
+padding:3%;
+}
+
+.footerText{
+
+color:#FFF;
+height:100px;
+text-align:center;
+margin:0 auto;
+padding-top:50px;
+
+
+}
+
+
+.story{
+
+width:75%;
+float:left;
+height:600px;
+margin:0 auto;
+padding:0 auto;
+text-align:center; 
+
+
+
+
+}
+
+.storyHolder{
+
+width:500px;
+}
+.contentHolder{
+
+margin:0 auto;
+padding:0 auto;
+width:1100px;
+
+
+
+}
+
+.headerLogo{
+padding:0 auto;
+margin:0 auto;
+
+
+width:1100px;
+height:180px;
+
+
+}
+.logos{
+
+
+
+
+}
+.logos:hover{
+
+opacity:0.9;
+
+
+
+}
+
+.cloud{
+width:161px;
+height:95px;
+display:block;
+margin-bottom:-100px;
+left:500px;
+background: url(cloud.png) top;
+
+}
+
+nav{
+display:block;
+display:inline-table;
+float:right;
+right:200px;
+
+
+width:1100px;
+height:180px;
+text-align:;
+verticle-align:text-bottom;
+}
+
+
+a{
+color:#49F3EE;
+font-weight:bold;
+font-size:15px;
+border-style:none;
+text-decoration:none;
+}
+
+a:hover{
+color:#F3A649;
+font-weight:bold;
+font-size:15px;
+}
+
+h3:hover{
+color:#F3A649;
+}

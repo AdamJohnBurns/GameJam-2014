@@ -311,14 +311,13 @@ Actor.prototype.doExplode = function () {
 
 		this.state = GJ.States.EXPLODING;
 		this.image.gotoAndPlay('explode');
-		GJ.Sound.triggerEvent("explode");
 
 		this.image.addEventListener('tick', function (event) {
 			// console.log(target.currentTarget.currentFrame);
 // console.log('tick');	
 
 			if (event.currentTarget.currentFrame == 190 && event.currentTarget.currentAnimation == 'explode') {
-
+				GJ.Sound.triggerEvent("explode");
 // console.log('tick = 190');			
 				// var index = event.currentTarget.getChildIndex(event.currentTarget);
 
@@ -569,6 +568,8 @@ Actor.prototype.kill = function (explode) {
 			// GJ.Sound.triggerEvent("kill"); // explode sound instead?
 		
 		effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
+
+		GJ.Sound.triggerEvent("kill");
 
 		if (this.image.x < GJ.getCurrentWorld().getWorldWidth()) {
 			this.doExplode();
