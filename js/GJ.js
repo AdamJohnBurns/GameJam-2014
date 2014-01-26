@@ -384,7 +384,7 @@ var GJ = (function () {
 			}
 
 			numGems = 10;
-			numHearts = 3;
+			numHearts = 5;
 			waveCounter = 0;
 			waveTimer = 0;
 
@@ -618,7 +618,7 @@ var GJ = (function () {
 		},
 
 		gentlemanStoleMyBike: function () {
-			numGems--;
+			numGems-=2;
 			gemText.text = '' + numGems;
 			GJ.Sound.triggerEvent("turtle_sad");
 

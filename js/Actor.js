@@ -15,9 +15,7 @@ var Actor = function (type, x, y) {
 
 	this.goalOffset = 0;
 
-	if (y == 250) {
-		this.goalOffset = 150;
-	}
+	
 
 	if (this.type !== GJ.ActorTypes.TURTLE) {
 		data = new createjs.SpriteSheet({
@@ -95,6 +93,11 @@ var Actor = function (type, x, y) {
 					destroy: [30, 50]
 				}
 			});
+
+			if (y == 250) {
+				this.goalOffset = 150;
+				this.maxMoveSpeed = 4;
+			}
 
 			this.balloon = new createjs.Sprite(data2, 'fly');
 			initialAnimation = 'fly';
