@@ -104,7 +104,7 @@ var GJ = (function () {
 
 		actors = [];
 // actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 800, startY + 0));		
-actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
+// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 800, balloonHeightHigh));
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 900, balloonHeightLow));
 
@@ -370,9 +370,6 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 			}
 			turtle = new Turtle();
 
-			
-				
-			waveTimer = 0;
 
 			players = [];
 			for (i = 0; i < NUM_PLAYERS; i++) {
@@ -389,6 +386,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 			numGems = 10;
 			numHearts = 3;
 			waveCounter = 0;
+			waveTimer = 0;
 
 			gameOverTitle = new createjs.Bitmap(GJ.Assets.get('GameOverTitle'));
 			gameOverTitle.x = 230;
@@ -407,9 +405,15 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 
 
 
+
+
+
 			// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS
 			// waveTimer = 350;
 			// waveCounter = 1;
+
+
+
 
 
 
@@ -479,7 +483,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 // if(waveCounter == -1 ) {
 // 	console.log(waveTimer);
 // }
-			if(waveTimer >= 200 && waveCounter == -1) {
+			if(waveTimer == 200 && waveCounter == -1) {
 				GJ.assetsReady();
 			}
 			
@@ -619,6 +623,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 			GJ.Sound.triggerEvent("turtle_sad");
 
 			if (numGems <= 0) {
+				player.enabled = false;
 				waveTimer = 0;
 				waveCounter = -1;
 			}
@@ -655,7 +660,7 @@ actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 				// GJ.assetsReady();
 				waveTimer = 0;
 				waveCounter = -1;
-
+				player.enabled = false;
 				var effect = new Effect(players[0].image.x, players[0].image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
 				players[0].image.x = 4000;
 				players[0].image.y = 4000;

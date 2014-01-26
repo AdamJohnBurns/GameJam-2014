@@ -1,6 +1,8 @@
 var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, moveSpeed, maxMoveSpeed, weight) {
 	var blurFilter, bounds, data;
 
+	this.enabled = true;
+
 	this.leftKey = leftKey;
 	this.rightKey = rightKey;
 	this.shootKey = shootKey;
@@ -87,28 +89,30 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 
 
 Player.prototype.update = function () {
-	this.checkReadyToFire();
-	this.checkReadyToStopShooting();
-	this.checkMining();
+	if (this.enabled) {
+		this.checkReadyToFire();
+		this.checkReadyToStopShooting();
+		this.checkMining();
 
-	this.handleInput();
-	this.checkActorCollision();
-	this.gun.update();
-	this.gun.checkBulletCollisions(GJ.getActors());
+		this.handleInput();
+		this.checkActorCollision();
+		this.gun.update();
+		this.gun.checkBulletCollisions(GJ.getActors());
 
 
-	this.checkWorldCollision();
-	this.applyVelocity();
+		this.checkWorldCollision();
+		this.applyVelocity();
 
-	if (this.footstepTimer <= 0) {
-		//GJ.Sound.triggerEvent("footstep");
-		this.footstepTimer = this.footstepDelay;
-	} else {	
-		this.footstepTimer--;		
-	}
+		if (this.footstepTimer <= 0) {
+			//GJ.Sound.triggerEvent("footstep");
+			this.footstepTimer = this.footstepDelay;
+		} else {	
+			this.footstepTimer--;		
+		}
 
-	if (this.hitTimer > 0) {
-		this.hitTimer--;
+		if (this.hitTimer > 0) {
+			this.hitTimer--;
+		}
 	}
 };
 
