@@ -101,7 +101,7 @@ var GJ = (function () {
 
 		actors = [];
 // actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 800, startY + 0));		
-// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
+actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 800, balloonHeightHigh));
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 900, balloonHeightLow));
 
@@ -371,9 +371,9 @@ var GJ = (function () {
 				players.push(new Player(
 					GJ.Input.Keycodes.LEFT_ARROW, 
 					GJ.Input.Keycodes.RIGHT_ARROW, 
-					GJ.Input.Keycodes.SHIFT, 
+					GJ.Input.Keycodes.ALT, 
 					GJ.Input.Keycodes.UP_ARROW,
-					GJ.Input.Keycodes.ENTER,
+					GJ.Input.Keycodes.CTRL,
 					GJ.Input.Keycodes.SPACEBAR,
 					2, 9, 1.5));
 			}
@@ -388,8 +388,13 @@ var GJ = (function () {
 
 
 
+
+
 			// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS
-			// waveTimer = 350;
+			waveTimer = 350;
+
+
+
 
 
 
@@ -629,6 +634,11 @@ var GJ = (function () {
 				// GJ.assetsReady();
 				waveTimer = 0;
 				waveCounter = -1;
+
+				var effect = new Effect(players[0].image.x, players[0].image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
+				players[0].image.x = 4000;
+				players[0].image.y = 4000;
+				GJ.getStage().removeChild(players[0].image);
 			}
 		},
 
