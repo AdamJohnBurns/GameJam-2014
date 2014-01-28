@@ -20,6 +20,7 @@ var GJ = (function () {
 
 		gameOverTitle,
 		winTitle,
+		mainTitle,
 
 		waveTitle,
 		waveCounter,
@@ -31,11 +32,13 @@ var GJ = (function () {
 
 		enemyCount,
 
+		readyToPlay,
+
 		stage,
 		worlds,
 		actors = [],
 		turtle,
-		players;
+		players = [];
 
 
 
@@ -77,14 +80,39 @@ var GJ = (function () {
 	};
 
 
+	var endGame = function () {
+		waveTimer = 0;
+		readyToPlay = false;
+		waveCounter = -1;
+		players[0].enabled = false;
+		var effect = new Effect(players[0].image.x, players[0].image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
+		players[0].image.x = 4000;
+		players[0].image.y = 4000;
+		GJ.getStage().removeChild(players[0].image);
+	};
 
+
+	var addPlayer = function () {
+
+		players = [];
+		for (i = 0; i < NUM_PLAYERS; i++) {
+			players.push(new Player(
+				GJ.Input.Keycodes.LEFT_ARROW, 
+				GJ.Input.Keycodes.RIGHT_ARROW, 
+				GJ.Input.Keycodes.ALT, 
+				GJ.Input.Keycodes.UP_ARROW,
+				GJ.Input.Keycodes.CTRL,
+				GJ.Input.Keycodes.SPACEBAR,
+				2, 8, 1.5));
+		}
+	};
 
 
 
 	///////////////// WAVE 1
 
 	var setupWaveTitle1 = function () {
-		var effect = new Effect(550, 200, GJ.EffectTypes.WAVE1, 0);
+		var effect = new Effect(550, 110, GJ.EffectTypes.WAVE1, 0);
 
 		turtle.image.gotoAndPlay('idle');
 
@@ -96,7 +124,7 @@ var GJ = (function () {
 
 
 	var spawnWave1 = function () {
-		var startX = GJ.getCurrentWorld().getWorldWidth(),
+		var startX = GJ.getCurrentWorld().getWorldWidth() + 50,
 			startY = 400,
 			balloonHeightHigh = 250,
 			balloonHeightLow = 400,
@@ -145,13 +173,13 @@ var GJ = (function () {
 	///////////////// WAVE 2
 	
 	var setupWaveTitle2 = function () {
-		var effect = new Effect(550, 200, GJ.EffectTypes.WAVE2, 0);
+		var effect = new Effect(550, 110, GJ.EffectTypes.WAVE2, 0);
 
 		turtle.image.gotoAndPlay('idle');
 	};
 
 	var spawnWave2 = function () {
-		var startX = GJ.getCurrentWorld().getWorldWidth(),
+		var startX = GJ.getCurrentWorld().getWorldWidth() + 50,
 			startY = 400,
 			balloonHeightHigh = 250,
 			balloonHeightLow = 400,
@@ -208,14 +236,14 @@ var GJ = (function () {
 	///////////////// WAVE 3
 	
 	var setupWaveTitle3 = function () {
-		var effect = new Effect(550, 200, GJ.EffectTypes.WAVE3, 0);
+		var effect = new Effect(550, 110, GJ.EffectTypes.WAVE3, 0);
 
 		turtle.image.gotoAndPlay('idle');
 		
 	};
 
 	var spawnWave3 = function () {
-		var startX = GJ.getCurrentWorld().getWorldWidth(),
+		var startX = GJ.getCurrentWorld().getWorldWidth() + 50,
 			startY = 400,
 			balloonHeightHigh = 250,
 			balloonHeightLow = 400,
@@ -313,10 +341,15 @@ var GJ = (function () {
 
 
 	var showHelp = function () {
-		var effect = new Effect(550, 200, GJ.EffectTypes.HELP, 0);
+		stage.addChild(mainTitle);
+		console.log(mainTitle);
+		var effect = new Effect(550, 420, GJ.EffectTypes.HELP, 0);
 	};
 
 
+	var hideHelp = function () {
+		stage.removeChild(mainTitle);
+	};
 
 	
 	var showGameOver = function () {
@@ -371,23 +404,14 @@ var GJ = (function () {
 			}
 			turtle = new Turtle();
 
-
-			players = [];
-			for (i = 0; i < NUM_PLAYERS; i++) {
-				players.push(new Player(
-					GJ.Input.Keycodes.LEFT_ARROW, 
-					GJ.Input.Keycodes.RIGHT_ARROW, 
-					GJ.Input.Keycodes.ALT, 
-					GJ.Input.Keycodes.UP_ARROW,
-					GJ.Input.Keycodes.CTRL,
-					GJ.Input.Keycodes.SPACEBAR,
-					2, 8, 1.5));
-			}
-
 			numGems = 30;
 			numHearts = 5;
 			waveCounter = 0;
 			waveTimer = 0;
+
+			mainTitle = new createjs.Bitmap(GJ.Assets.get('MainTitle'));
+			mainTitle.x = 340;
+			mainTitle.y = 60;
 
 			gameOverTitle = new createjs.Bitmap(GJ.Assets.get('GameOverTitle'));
 			gameOverTitle.x = 230;
@@ -400,28 +424,9 @@ var GJ = (function () {
 
 
 
-
-
-
-
-
-
-
-
-
 			// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS
 			// waveTimer = 350;
 			// waveCounter = 3;
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -433,9 +438,6 @@ var GJ = (function () {
 			createjs.Ticker.addEventListener('tick', GJ.update);
 
 			GJ.Sound.init(); // Start the audio engine
-
-
-			
 		},
 
 
@@ -478,13 +480,13 @@ var GJ = (function () {
 			///////////////////// GAME OVER
 
 
-			if(waveTimer == 1 && waveCounter == -1) {
+			if(waveTimer == 100 && waveCounter == -1) {
 				showGameOver();
 			}
 // if(waveCounter == -1 ) {
 // 	console.log(waveTimer);
 // }
-			if(waveTimer == 200 && waveCounter == -1) {
+			if(waveTimer == 300 && waveCounter == -1) {
 				GJ.assetsReady();
 			}
 			
@@ -493,16 +495,22 @@ var GJ = (function () {
 			///////////////////// HELP
 
 
-			if(waveTimer == 100 && waveCounter == 0) {
+			if (waveTimer == 1 && waveCounter == 0) {
 				showHelp();
 			}
 
-
-			if(waveTimer == 300 && waveCounter == 0) {
-				// hideHelp();
+			if (waveCounter == 0 && readyToPlay) {
+				hideHelp();
+				addPlayer();
 				waveTimer = 0;
 				waveCounter = 1;
 			}
+
+			if(waveTimer > 100 && waveCounter == 0) {
+				if (GJ.Input.isPressed(GJ.Input.Keycodes.ALT)) {
+					readyToPlay = true;
+				}
+			} 
 
 
 			///////////////////// WIN
@@ -618,12 +626,10 @@ var GJ = (function () {
 		playerShootGem: function () {
 			numGems-=1;
 			gemText.text = '' + numGems;
-			GJ.Sound.triggerEvent("turtle_sad");
+			// GJ.Sound.triggerEvent("turtle_sad");
 
 			if (numGems <= 0) {
-				players[0].enabled = false;
-				waveTimer = 0;
-				waveCounter = -1;
+				endGame();
 			}
 		},
 
@@ -633,9 +639,7 @@ var GJ = (function () {
 			GJ.Sound.triggerEvent("turtle_sad");
 
 			if (numGems <= 0) {
-				players[0].enabled = false;
-				waveTimer = 0;
-				waveCounter = -1;
+				endGame();
 			}
 		},
 
@@ -660,23 +664,19 @@ var GJ = (function () {
 			}
 		},
 
+		isReadyToPlay: function () {
+			return readyToPlay;
+		},
 
 		takeHit: function () {
 			numHearts--;
 			heartText.text = '' + numHearts;
 
-			// DO GAMESTAGE CHECKING STUFF HERE, REINIT IF DEAD
 			if(numHearts <= 0) {
-				// GJ.assetsReady();
-				waveTimer = 0;
-				waveCounter = -1;
-				players[0].enabled = false;
-				var effect = new Effect(players[0].image.x, players[0].image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
-				players[0].image.x = 4000;
-				players[0].image.y = 4000;
-				GJ.getStage().removeChild(players[0].image);
+				endGame();
 			}
 		},
+
 
 		States: {
 			MOVING_LEFT: 0,

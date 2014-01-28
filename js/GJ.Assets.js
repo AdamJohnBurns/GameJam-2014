@@ -22,10 +22,11 @@ GJ.Assets = (function () {
 			{id: 'EffectHelp', src:'img/Effects/Help.png'},
 			{id: 'EffectWaveOver', src:'img/Effects/WaveOver.png'},
 
-			// 
+			// Titles
 			{id: 'WaveTitle', src:'img/Effects/Wave1Flat.png'},
 			{id: 'WinTitle', src:'img/Effects/WIN.png'},
 			{id: 'GameOverTitle', src:'img/Effects/GAMEOVER.png'},
+			{id: 'MainTitle', src:'img/Scene/suspendercatLogoClouds.png'},
 
 			// main character
 			{id: 'MainCharacterIdle', src:'img/MainCharacter/Idle.png'},

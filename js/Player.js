@@ -31,7 +31,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 
 	this.direction = GJ.Directions.RIGHT;
 
-	this.gun = new Gun(10, 6, 0, this, 0, -48);
+	this.gun = new Gun(2, 6, 0, this, 0, -48);
 	this.gunType = GJ.Weapons.PLAYER_GUN;
 
 	this.waitForEffect = 0;
@@ -68,7 +68,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 			shoot: [70, 86],
 			pickaxe: [87, 182],
 			melee: [183, 196],
-			hitback: [197, 205]
+			hitback: [197, 202]
 
 			// melee: [24, 24],
 			// shoot: [27, 27]
@@ -245,7 +245,7 @@ Player.prototype.moveLeft = function () {
 	this.direction = GJ.Directions.LEFT;
 	this.image.scaleX = -1;
 
-	if (this.image.currentAnimation !== 'run' && this.isOnGround && this.image.currentAnimation !== 'hitback') {
+	if (this.image.currentAnimation !== 'run' && this.isOnGround && this.image.currentAnimation !== 'hitback' && this.image.currentAnimation !== 'shoot') {
 		this.image.gotoAndPlay('run');
 	}
 };
@@ -267,7 +267,7 @@ Player.prototype.moveRight = function () {
 	this.direction = GJ.Directions.RIGHT;
 	this.image.scaleX = 1;
 
-	if (this.image.currentAnimation !== 'run' && this.isOnGround && this.image.currentAnimation !== 'hitback') {
+	if (this.image.currentAnimation !== 'run' && this.isOnGround && this.image.currentAnimation !== 'hitback' && this.image.currentAnimation !== 'shoot') {
 		this.image.gotoAndPlay('run');
 	}
 };
@@ -320,7 +320,7 @@ Player.prototype.meleeAttack = function () {
 
 Player.prototype.shoot = function () {
 	if (GJ.getNumGems() > 1) {
-	// if (this.image.currentAnimation !== 'shoot') {
+	if (this.image.currentAnimation !== 'shoot') {
 		this.image.gotoAndPlay('shoot');
 		this.dampenAcceleration();
 
@@ -340,7 +340,7 @@ Player.prototype.shoot = function () {
 			// console.log(event2);
 			// console.log('----');
 		});
-	// }
+	}
 	} else {
 		// console.log('SHOW GET MORE GEMS MSG');
 		GJ.Sound.triggerEvent("turtle_sad");
@@ -354,7 +354,7 @@ Player.prototype.jump = function () {
 		this.accelY = -20;
 		GJ.Sound.triggerEvent('jump');
 
-		if (this.image.currentAnimation !== 'jump') {
+		if (this.image.currentAnimation !== 'jump' && this.image.currentAnimation !== 'shoot') {
 			this.image.gotoAndPlay('jump');
 			var effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.JUMP_SMOKE, this.direction);
 			// console.log('j');
@@ -366,7 +366,7 @@ Player.prototype.jump = function () {
 Player.prototype.idle = function () {
 	this.dampenAcceleration();
 
-	if (this.image.currentAnimation !== 'idle' && this.isOnGround && this.image.currentAnimation !== 'shoot'&& this.image.currentAnimation !== 'pickaxe' && this.image.currentAnimation !== 'melee' && this.image.currentAnimation !== 'hitback') {
+	if (this.image.currentAnimation !== 'idle' && this.isOnGround && this.image.currentAnimation !== 'shoot' && this.image.currentAnimation !== 'pickaxe' && this.image.currentAnimation !== 'melee' && this.image.currentAnimation !== 'hitback') {
 		this.image.gotoAndPlay('idle');
 	}
 };

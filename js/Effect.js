@@ -2,7 +2,8 @@ var Effect = function (x, y, type, direction) {
 	this.active = true;
 	this.type = type;
 	this.direction = direction;
-var data;
+
+	var data, killAtEnd;
 
 	if (this.type === GJ.EffectTypes.RUNNING_SMOKE) {
 		data = new createjs.SpriteSheet({
@@ -35,6 +36,7 @@ var data;
 			this.image.scaleX = -1;
 		}
 
+		killAtEnd = true;
 
 	} else if (this.type === GJ.EffectTypes.JUMP_SMOKE) {
 		data = new createjs.SpriteSheet({
@@ -57,6 +59,8 @@ var data;
 		this.image.x = x;
 		this.image.y = y;
 
+		killAtEnd = true;
+
 	} else if (this.type === GJ.EffectTypes.WAVE_OVER) {
 		data = new createjs.SpriteSheet({
 			framerate: 25,
@@ -77,6 +81,9 @@ var data;
 
 		this.image.x = x;
 		this.image.y = y;
+
+		killAtEnd = true;
+
 	} else if (this.type === GJ.EffectTypes.EXPLOSION_SMALL) {
 		data = new createjs.SpriteSheet({
 			framerate: 25,
@@ -108,6 +115,7 @@ var data;
 			this.image.scaleX = -1;
 		}
 
+		killAtEnd = true;
 
 	}  else if (this.type === GJ.EffectTypes.WAVE1) {
 		data = new createjs.SpriteSheet({
@@ -127,18 +135,10 @@ var data;
 
 		this.image = new createjs.Sprite(data, 'effect');
 
-		if (this.direction === GJ.Directions.LEFT) {
-			this.image.x = x ;
-		} else {
-			this.image.x = x+ 30;
-		}
-		this.image.y = y - 90;
+		this.image.x = x;
+		this.image.y = y;
 
-		if (this.direction === GJ.Directions.LEFT) {
-			this.image.scaleX = 1;
-		} else {
-			this.image.scaleX = -1;
-		}
+		killAtEnd = true;
 	} 
 
 	  else if (this.type === GJ.EffectTypes.WAVE2) {
@@ -159,18 +159,10 @@ var data;
 
 		this.image = new createjs.Sprite(data, 'effect');
 
-		if (this.direction === GJ.Directions.LEFT) {
-			this.image.x = x ;
-		} else {
-			this.image.x = x+ 30;
-		}
-		this.image.y = y - 90;
+		this.image.x = x;
+		this.image.y = y;
 
-		if (this.direction === GJ.Directions.LEFT) {
-			this.image.scaleX = 1;
-		} else {
-			this.image.scaleX = -1;
-		}
+		killAtEnd = true;
 	} 
 	  else if (this.type === GJ.EffectTypes.WAVE3) {
 		data = new createjs.SpriteSheet({
@@ -190,25 +182,17 @@ var data;
 
 		this.image = new createjs.Sprite(data, 'effect');
 
-		if (this.direction === GJ.Directions.LEFT) {
-			this.image.x = x ;
-		} else {
-			this.image.x = x+ 30;
-		}
-		this.image.y = y - 90;
+		this.image.x = x;
+		this.image.y = y;
 
-		if (this.direction === GJ.Directions.LEFT) {
-			this.image.scaleX = 1;
-		} else {
-			this.image.scaleX = -1;
-		}
+		killAtEnd = true;
 	} 
 
 
 
 	  else if (this.type === GJ.EffectTypes.HELP) {
 		data = new createjs.SpriteSheet({
-			framerate: 25,
+			framerate: 15,
 			images: [ 
 				GJ.Assets.get('EffectHelp') // 132
 			], 
@@ -224,29 +208,27 @@ var data;
 
 		this.image = new createjs.Sprite(data, 'effect');
 
-		if (this.direction === GJ.Directions.LEFT) {
-			this.image.x = x ;
-		} else {
-			this.image.x = x+ 30;
-		}
-		this.image.y = y - 90;
+		this.image.x = x;
+		this.image.y = y;
 
-		if (this.direction === GJ.Directions.LEFT) {
-			this.image.scaleX = 1;
-		} else {
-			this.image.scaleX = -1;
-		}
+		killAtEnd = false;
+
+		this.image.addEventListener('tick', function (event) {
+			if (GJ.isReadyToPlay()) {
+				GJ.getStage().removeChild(event.currentTarget);
+				event.remove();
+			}
+		});
 	} 
 
 
-
-
-	
-
 	GJ.getStage().addChild(this.image);
 
-	this.image.addEventListener('animationend', function (event) {
-		GJ.getStage().removeChild(event.currentTarget);
-		event.remove();
-	});
+
+	if (killAtEnd) {
+		this.image.addEventListener('animationend', function (event) {
+			GJ.getStage().removeChild(event.currentTarget);
+			event.remove();
+		});
+	}
 };
