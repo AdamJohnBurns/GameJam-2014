@@ -13,7 +13,7 @@ GJ.Assets = (function () {
 		queue.loadManifest([
 			// effects
 			{id: 'EffectExplosionSmall', src:'img/Effects/ExplosionSmall.png'},
-			{id: 'EffectHitEffect', src:'img/Effects/EffectHitEffect.png'},
+			{id: 'EffectHitEffect', src:'img/Effects/HitEffect.png'},
 			{id: 'EffectJumpSmoke', src:'img/Effects/JumpSmoke.png'},
 			{id: 'EffectRunningSmoke', src:'img/Effects/RunningSmoke.png'},
 			{id: 'EffectWave1', src:'img/Effects/Wave1.png'},

@@ -322,6 +322,7 @@ var GJ = (function () {
 	var showGameOver = function () {
 		GJ.Sound.triggerEvent("lose");
 		stage.addChild(gameOverTitle);
+		actors = [];
 		
 	};
 
