@@ -506,7 +506,7 @@ var GJ = (function () {
 				waveCounter = 1;
 			}
 
-			if(waveTimer > 100 && waveCounter == 0) {
+			if(waveTimer > 10 && waveCounter == 0) {
 				if (GJ.Input.isPressed(GJ.Input.Keycodes.ALT)) {
 					readyToPlay = true;
 				}
