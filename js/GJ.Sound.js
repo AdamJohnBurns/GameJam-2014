@@ -142,10 +142,10 @@ GJ.Sound = (function () {
 					sound: createjs.Sound.play("balloon_pop")
 				});
 			} else if (name === "turtle_sad") {
-				var randomInt = Math.floor((Math.random()*10)+1);
+				var randomInt = Math.floor((Math.random()*12)+1);
 				soundsPlaying.push({
 					name: "turtle_sad",
-					sound: createjs.Sound.play("turtle_sad_0" + randomInt, {delay: 400})
+					sound: createjs.Sound.play("turtle_sad_0" + randomInt, {delay: 700})
 				});
 			} else if (name === "turtle_happy") {
 				var randomInt = Math.floor((Math.random()*5)+1);

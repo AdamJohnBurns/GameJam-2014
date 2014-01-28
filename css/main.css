@@ -9,7 +9,7 @@ body{
 }
 
 canvas {
-	background-color:white;
+	background: white url(../img/Site/loading.gif) no-repeat center center;
 }
 
 .game{
