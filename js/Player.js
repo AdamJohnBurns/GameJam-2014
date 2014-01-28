@@ -205,7 +205,7 @@ Player.prototype.checkMining = function () {
 
 
 Player.prototype.mineGems = function () {
-	if (this.image.currentAnimation !== 'pickaxe' && this.isOnGround && this.direction === GJ.Directions.LEFT && this.image.x <= 120) {
+	if ((this.image.currentAnimation !== 'pickaxe' && this.isOnGround && this.direction === GJ.Directions.RIGHT && this.image.x <= 120) || (this.image.currentAnimation !== 'pickaxe' && this.isOnGround && this.direction === GJ.Directions.LEFT && this.image.x <= 200)) {
 		this.image.gotoAndPlay('pickaxe');
 
 		this.image.removeEventListener('animationend');
