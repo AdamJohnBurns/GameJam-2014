@@ -15,12 +15,12 @@ var Actor = function (type, x, y) {
 
 	this.goalOffset = 0;
 
-	
+
 
 	if (this.type !== GJ.ActorTypes.TURTLE) {
 		data = new createjs.SpriteSheet({
 			framerate: 25,
-			images: [ 
+			images: [
 				GJ.Assets.get('PigRun'), 		// 22
 				GJ.Assets.get('PigHit'), 		// 15
 				GJ.Assets.get('PigCollect'), 	// 75
@@ -28,7 +28,7 @@ var Actor = function (type, x, y) {
 				GJ.Assets.get('PigBombRun'), 	// 22
 				GJ.Assets.get('PigBombExplode'), 	// 66
 				GJ.Assets.get('PigFly') 	// 30
-			], 
+			],
 			frames: [
 				// x, y, width, height, index, regX, regY
 				// the index needs to match the file with the sprites
@@ -40,7 +40,7 @@ var Actor = function (type, x, y) {
 				[0,0,167,158,5,84.2,154.3],[167,0,167,158,5,84.2,154.3],[334,0,167,158,5,84.2,154.3],[501,0,167,158,5,84.2,154.3],[668,0,167,158,5,84.2,154.3],[835,0,167,158,5,84.2,154.3],[0,158,167,158,5,84.2,154.3],[167,158,167,158,5,84.2,154.3],[334,158,167,158,5,84.2,154.3],[501,158,167,158,5,84.2,154.3],[668,158,167,158,5,84.2,154.3],[835,158,167,158,5,84.2,154.3],[0,316,167,158,5,84.2,154.3],[167,316,167,158,5,84.2,154.3],[334,316,167,158,5,84.2,154.3],[501,316,167,158,5,84.2,154.3],[668,316,167,158,5,84.2,154.3],[835,316,167,158,5,84.2,154.3],[0,474,167,158,5,84.2,154.3],[167,474,167,158,5,84.2,154.3],[334,474,167,158,5,84.2,154.3],[501,474,167,158,5,84.2,154.3],[668,474,167,158,5,84.2,154.3],[835,474,167,158,5,84.2,154.3],[0,632,167,158,5,84.2,154.3],[167,632,167,158,5,84.2,154.3],[334,632,167,158,5,84.2,154.3],[501,632,167,158,5,84.2,154.3],[668,632,167,158,5,84.2,154.3],[835,632,167,158,5,84.2,154.3],[0,790,167,158,5,84.2,154.3],[167,790,167,158,5,84.2,154.3],[334,790,167,158,5,84.2,154.3],[501,790,167,158,5,84.2,154.3],[668,790,167,158,5,84.2,154.3],[835,790,167,158,5,84.2,154.3],[0,948,167,158,5,84.2,154.3],[167,948,167,158,5,84.2,154.3],[334,948,167,158,5,84.2,154.3],[501,948,167,158,5,84.2,154.3],[668,948,167,158,5,84.2,154.3],[835,948,167,158,5,84.2,154.3],[0,1106,167,158,5,84.2,154.3],[167,1106,167,158,5,84.2,154.3],[334,1106,167,158,5,84.2,154.3],[501,1106,167,158,5,84.2,154.3],[668,1106,167,158,5,84.2,154.3],[835,1106,167,158,5,84.2,154.3],[0,1264,167,158,5,84.2,154.3],[167,1264,167,158,5,84.2,154.3],[334,1264,167,158,5,84.2,154.3],[501,1264,167,158,5,84.2,154.3],[668,1264,167,158,5,84.2,154.3],[835,1264,167,158,5,84.2,154.3],[0,1422,167,158,5,84.2,154.3],[167,1422,167,158,5,84.2,154.3],[334,1422,167,158,5,84.2,154.3],[501,1422,167,158,5,84.2,154.3],[668,1422,167,158,5,84.2,154.3],[835,1422,167,158,5,84.2,154.3],[0,1580,167,158,5,84.2,154.3],[167,1580,167,158,5,84.2,154.3],[334,1580,167,158,5,84.2,154.3],[501,1580,167,158,5,84.2,154.3],[668,1580,167,158,5,84.2,154.3],[835,1580,167,158,5,84.2,154.3],[0,1738,167,158,5,84.2,154.3],
 				[0,0,56,67,6,24.4,69.55],[61,0,56,67,6,24.4,69.55],[122,0,56,67,6,24.4,69.55],[183,0,56,67,6,24.4,69.55],[244,0,56,67,6,24.4,69.55],[305,0,56,67,6,24.4,69.55],[366,0,56,67,6,24.4,69.55],[427,0,56,67,6,24.4,69.55],[0,72,56,67,6,24.4,69.55],[61,72,56,67,6,24.4,69.55],[122,72,56,67,6,24.4,69.55],[183,72,56,67,6,24.4,69.55],[244,72,56,67,6,24.4,69.55],[305,72,56,67,6,24.4,69.55],[366,72,56,67,6,24.4,69.55],[427,72,56,67,6,24.4,69.55],[0,144,56,67,6,24.4,69.55],[61,144,56,67,6,24.4,69.55],[122,144,56,67,6,24.4,69.55],[183,144,56,67,6,24.4,69.55],[244,144,56,67,6,24.4,69.55],[305,144,56,67,6,24.4,69.55],[366,144,56,67,6,24.4,69.55],[427,144,56,67,6,24.4,69.55],[0,216,56,67,6,24.4,69.55],[61,216,56,67,6,24.4,69.55],[122,216,56,67,6,24.4,69.55],[183,216,56,67,6,24.4,69.55],[244,216,56,67,6,24.4,69.55],[305,216,56,67,6,24.4,69.55]
 			],
-			animations: { 
+			animations: {
 				run: [0, 21],
 				hit: [22, 37],
 				collect: [38, 113],
@@ -61,7 +61,7 @@ var Actor = function (type, x, y) {
 			this.hasBomb = false;
 			initialAnimation = 'run';
 
-		} else if (this.type === GJ.ActorTypes.GROUND_EXPLODING) { 
+		} else if (this.type === GJ.ActorTypes.GROUND_EXPLODING) {
 			this.useGravity = true;
 			this.moveSpeed = 1;
 			this.maxMoveSpeed = 3;
@@ -78,17 +78,17 @@ var Actor = function (type, x, y) {
 
 			data2 = new createjs.SpriteSheet({
 				framerate: 25,
-				images: [ 
+				images: [
 					GJ.Assets.get('BalloonFly'), 		// 30
 					GJ.Assets.get('BalloonDestroy') 		// 21
-				], 
+				],
 				frames: [
 					// x, y, width, height, index, regX, regY
 					// the index needs to match the file with the sprites
 					[0,0,58,178,0,26.15,150.65],[63,0,58,178,0,26.15,150.65],[126,0,58,178,0,26.15,150.65],[189,0,58,178,0,26.15,150.65],[252,0,58,178,0,26.15,150.65],[315,0,58,178,0,26.15,150.65],[378,0,58,178,0,26.15,150.65],[441,0,58,178,0,26.15,150.65],[0,183,58,178,0,26.15,150.65],[63,183,58,178,0,26.15,150.65],[126,183,58,178,0,26.15,150.65],[189,183,58,178,0,26.15,150.65],[252,183,58,178,0,26.15,150.65],[315,183,58,178,0,26.15,150.65],[378,183,58,178,0,26.15,150.65],[441,183,58,178,0,26.15,150.65],[0,366,58,178,0,26.15,150.65],[63,366,58,178,0,26.15,150.65],[126,366,58,178,0,26.15,150.65],[189,366,58,178,0,26.15,150.65],[252,366,58,178,0,26.15,150.65],[315,366,58,178,0,26.15,150.65],[378,366,58,178,0,26.15,150.65],[441,366,58,178,0,26.15,150.65],[0,549,58,178,0,26.15,150.65],[63,549,58,178,0,26.15,150.65],[126,549,58,178,0,26.15,150.65],[189,549,58,178,0,26.15,150.65],[252,549,58,178,0,26.15,150.65],[315,549,58,178,0,26.15,150.65],
 					[0,0,289,374,1,78.8,378.65],[289,0,289,374,1,78.8,378.65],[578,0,289,374,1,78.8,378.65],[867,0,289,374,1,78.8,378.65],[1156,0,289,374,1,78.8,378.65],[1445,0,289,374,1,78.8,378.65],[1734,0,289,374,1,78.8,378.65],[0,374,289,374,1,78.8,378.65],[289,374,289,374,1,78.8,378.65],[578,374,289,374,1,78.8,378.65],[867,374,289,374,1,78.8,378.65],[1156,374,289,374,1,78.8,378.65],[1445,374,289,374,1,78.8,378.65],[1734,374,289,374,1,78.8,378.65],[0,748,289,374,1,78.8,378.65],[289,748,289,374,1,78.8,378.65],[578,748,289,374,1,78.8,378.65],[867,748,289,374,1,78.8,378.65],[1156,748,289,374,1,78.8,378.65],[1445,748,289,374,1,78.8,378.65],[1734,748,289,374,1,78.8,378.65],[0,1122,289,374,1,78.8,378.65]
 				],
-				animations: { 
+				animations: {
 					fly: [0, 29],
 					destroy: [30, 50]
 				}
@@ -116,19 +116,19 @@ var Actor = function (type, x, y) {
 		if (typeof this.balloon !== 'undefined') {
 			this.balloon.x = this.image.x;
 			this.balloon.y = this.image.y - 110;
-			GJ.getStage().addChild(this.balloon);	
-			this.balloon.gotoAndPlay('fly');	
+			GJ.getStage().addChild(this.balloon);
+			this.balloon.gotoAndPlay('fly');
 
 			// console.log(this.image.y, this.balloon.y);
 		}
 
 		this.waitTimer = 0;
 	} else {
-		
+
 	}
 
 	this.ignoreBalloon = false;
-	
+
 
 	GJ.getStage().addChild(this.image);
 };
@@ -173,7 +173,7 @@ Actor.prototype.checkExploding = function () {
 
 	if (typeof this.image.checkBombCollision !== 'undefined') {
 		// if (typeof actor !== 'undefined') {
-			
+
 			var intersection = ndgmr.checkRectCollision(this.image, GJ.getPlayers()[0].image);
 
 			if (intersection) {
@@ -247,7 +247,7 @@ Actor.prototype.doAI = function () {
 			}
 		}
 
-		if (this.image.x <= GJ.getCurrentWorld().getGoalX() - this.goalOffset) {			
+		if (this.image.x <= GJ.getCurrentWorld().getGoalX() - this.goalOffset) {
 
 			if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
 				this.useGravity = true;
@@ -300,8 +300,8 @@ Actor.prototype.doAI = function () {
 
 			this.active = false;
 			GJ.removeEnemy();
-			
-		
+
+
 		}
 	} else if (this.state === GJ.States.EXPLODING) {
 		this.dampenAcceleration();
@@ -326,9 +326,9 @@ Actor.prototype.doExplode = function () {
 // console.log('added listening');
 
 		this.image.addEventListener('tick', function (event) {
-// console.log('tick');			
+// console.log('tick');
 			// console.log(target.currentTarget.currentFrame);
-// console.log('tick');	
+// console.log('tick');
 
 			if (event.currentTarget.currentFrame == 190) {
 				GJ.Sound.triggerEvent("explode");
@@ -377,16 +377,16 @@ Actor.prototype.doExplode = function () {
 					// createjs.setChild
 			}
 
-			if (event.currentTarget.currentFrame >= 224 /* && event.currentTarget.currentAnimation == 'explode'*/) {
-// console.log('tick = 225');				
+			if (event.currentTarget.currentFrame >= 200 /* && event.currentTarget.currentAnimation == 'explode'*/) {
+// console.log('tick = 225');
 				event.remove();
 				event.currentTarget.setNotActive = true;
 				event.currentTarget.x = 2000;
-			event.currentTarget.y = 2000;
-			GJ.getStage().removeChild(event.currentTarget);
+				event.currentTarget.y = 2000;
+				GJ.getStage().removeChild(event.currentTarget);
 			}
 			else if (event.currentTarget.currentFrame >= 190 /*&& event.currentTarget.currentAnimation == 'explode'*/) {
-// console.log('tick >= 190');					
+// console.log('tick >= 190');
 				event.currentTarget.checkBombCollision = true;
 
 			}
@@ -450,7 +450,7 @@ Actor.prototype.moveLeft = function () {
 			this.image.gotoAndPlay('bombrun');
 		} else {
 			this.image.gotoAndPlay('run');
-			
+
 		}
 	}
 
@@ -563,7 +563,7 @@ Actor.prototype.collect = function () {
 
 
 Actor.prototype.kill = function (explode) {
-	
+
 	var effect;
 
 	if (typeof this.balloon !== 'undefined') {
@@ -585,7 +585,7 @@ Actor.prototype.kill = function (explode) {
 		// if (typeof explode !== 'undefined') {
 			// this.spawnBacsplosion();
 			// GJ.Sound.triggerEvent("kill"); // explode sound instead?
-		
+
 		// effect = new Effect(this.image.x, this.image.y, GJ.EffectTypes.EXPLOSION_SMALL, 0);
 
 		GJ.Sound.triggerEvent("kill");
@@ -595,7 +595,7 @@ Actor.prototype.kill = function (explode) {
 		}
 		this.active = false;
 		// }
-		 
+
 	} else if (this.type === GJ.ActorTypes.FLYING_NORMAL) {
 		if (this.image.x < GJ.getCurrentWorld().getWorldWidth()) {
 		GJ.Sound.triggerEvent("kill");
@@ -611,7 +611,7 @@ Actor.prototype.kill = function (explode) {
 	// this.image.x = 2000;
 	// this.image.y = 2000;
 
-    
+
 };
 
 

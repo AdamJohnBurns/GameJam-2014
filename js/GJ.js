@@ -404,7 +404,7 @@ var GJ = (function () {
 			}
 			turtle = new Turtle();
 
-			numGems = 30;
+			numGems = 41;
 			numHearts = 5;
 			waveCounter = 0;
 			waveTimer = 0;
