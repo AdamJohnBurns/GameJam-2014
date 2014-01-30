@@ -249,7 +249,7 @@ Player.prototype.moveLeft = function () {
 		this.image.gotoAndPlay('run');
 	}
 
-	if (this.image.currentAnimation == 'run' && (this.image.currentFrame == 26 || this.image.currentFrame == 18)) {
+	if (this.image.currentAnimation == 'run' && (this.image.currentFrame == 26 || this.image.currentFrame == 19)) {
 		GJ.Sound.triggerEvent('footstep');
 	}
 
@@ -276,7 +276,7 @@ Player.prototype.moveRight = function () {
 		this.image.gotoAndPlay('run');
 	}
 
-	if (this.image.currentAnimation == 'run' && (this.image.currentFrame == 26 || this.image.currentFrame == 18)) {
+	if (this.image.currentAnimation == 'run' && (this.image.currentFrame == 26 || this.image.currentFrame == 19)) {
 		GJ.Sound.triggerEvent('footstep');
 	}
 
@@ -445,7 +445,6 @@ Player.prototype.checkWorldCollision = function () {
 
 	if (this.image.y + this.accelY >= GJ.getCurrentWorld().getGroundHeight() ) {
 		this.image.y = GJ.getCurrentWorld().getGroundHeight();
-
 		if (this.image.currentAnimation !== 'jump') {
 			this.accelY = 0;
 		}

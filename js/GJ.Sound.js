@@ -66,13 +66,13 @@ GJ.Sound = (function () {
 				var randomInt = Math.floor((Math.random()*8)+1); // randomised 1 - 8
 				soundsPlaying.push({
 					name: "footstep",
-					sound: createjs.Sound.play("footstep_grass_0" + randomInt, {volume: 0.15})
+					sound: createjs.Sound.play("footstep_grass_0" + randomInt, {volume: 0.2})
 				});
 			} else if (name === "jump") {
 				var randomInt = Math.floor((Math.random()*4)+1);
 				soundsPlaying.push({
 					name: "jump",
-					sound: createjs.Sound.play("footstep_land_0" + randomInt, {volume: 0.25})
+					sound: createjs.Sound.play("footstep_land_0" + randomInt, {volume: 0.2})
 				});
 			} else if (name === "explode") {
 				var randomInt = Math.floor((Math.random()*6)+1);
