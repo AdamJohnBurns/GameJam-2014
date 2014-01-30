@@ -118,8 +118,9 @@ this.ndgmr = this.ndgmr || {};
          : bitmap2.spriteSheet.getFrame(bitmap2.currentFrame).rect;
     
     //precheck if objects are even close enough
-    return ( Math.abs(b2.x-b1.x) < ir2.width *bitmap2.scaleX+ir1.width *bitmap1.scaleX
-          && Math.abs(b2.y-b1.y) < ir2.height*bitmap2.scaleY+ir1.height*bitmap2.scaleY )
+    return(Math.abs(b2.x - b1.x) < ir2.width  * Math.abs(bitmap2.scaleX) + ir1.width  * Math.abs(bitmap1.scaleX)
+    && Math.abs(b2.y - b1.y) < ir2.height * Math.abs(bitmap2.scaleY) + ir1.height * Math.abs(bitmap2.scaleY))
+
   }
 
   var _intersectingImagePart = function(intersetion,bitmap,ctx,i) {

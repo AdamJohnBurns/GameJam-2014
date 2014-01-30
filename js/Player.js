@@ -95,7 +95,7 @@ Player.prototype.update = function () {
 		this.checkMining();
 
 		this.handleInput();
-		this.checkActorCollision();
+		// this.checkActorCollision();
 		this.gun.update();
 		this.gun.checkBulletCollisions(GJ.getActors());
 
@@ -292,7 +292,7 @@ Player.prototype.meleeAttack = function () {
 		this.image.addEventListener('tick', function (event) {
 // 183, 196
 			if(event.currentTarget.currentFrame == 195) {
-				console.log('DONE');
+				// console.log('DONE');
 				event.remove();
 				event.currentTarget.currentAnimation = 'idle';
 
@@ -408,7 +408,7 @@ Player.prototype.checkActorCollision = function (actor) {
 
 	if (typeof actor !== 'undefined' && actor.image.currentAnimation !== 'explode' && actor.active == true) {
 		// can you check this with shapes!????
-		var intersection = ndgmr.checkRectCollision(this.image, actor.getImage());
+		var intersection = ndgmr.checkPixelCollision(this.image, actor.getImage(), 0, true);
 
 		if (intersection) {
 

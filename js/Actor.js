@@ -289,7 +289,8 @@ Actor.prototype.doAI = function () {
 			this.hasGem = true;
 			this.hasBomb = false;
 			this.state = GJ.States.LEGGING_IT;
-			this.image.x += 30;
+			this.image.x += 37;
+			this.moveRight();
 		}
 	} else if (this.state === GJ.States.LEGGING_IT) {
 		this.moveRight();
