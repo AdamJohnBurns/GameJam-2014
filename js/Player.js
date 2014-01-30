@@ -67,8 +67,8 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 			fall: [44, 69],
 			shoot: [70, 86],
 			pickaxe: [87, 182],
-			melee: [183, 196],
-			hitback: [197, 202]
+			melee: [183, 197],
+			hitback: [198, 205]
 
 			// melee: [24, 24],
 			// shoot: [27, 27]
@@ -424,6 +424,8 @@ Player.prototype.checkActorCollision = function (actor) {
 				}
 
 				this.image.gotoAndPlay('hitback');
+				this.image.removeEventListener('animationend');
+				this.image.removeEventListener('tick');
 
 				this.image.addEventListener('animationend', function (event) {
 					event.remove();

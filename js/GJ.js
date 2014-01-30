@@ -94,7 +94,7 @@ var GJ = (function () {
 
 
 	var addPlayer = function () {
-
+		var i;
 		players = [];
 		for (i = 0; i < NUM_PLAYERS; i++) {
 			players.push(new Player(
@@ -132,10 +132,10 @@ var GJ = (function () {
 			gapBetweenMiniWaves = 1500;
 
 		actors = [];
-// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 800, startY + 0));
-// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
-// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 800, balloonHeightHigh));
-// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 900, balloonHeightLow));
+// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 300, startY + 0));
+// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 500, startY + 0));
+// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 700, balloonHeightHigh));
+// actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 850, balloonHeightLow));
 
 
 // turtle.image.gotoAndPlay('happy');
@@ -427,8 +427,9 @@ var GJ = (function () {
 
 			// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS// REMOVE THIS
 			// waveTimer = 350;
-			// waveCounter = 3;
-
+			// waveCounter = 1;
+			// readyToPlay = true;
+			// addPlayer();
 
 
 			setupGem();

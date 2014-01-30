@@ -46,12 +46,12 @@ var Actor = function (type, x, y) {
 				collect: [38, 113],
 				gemrun: [114, 133],
 				bombrun: [134, 156],
-				explode: [160, 226], // explosion ~190
-				fly: [227,250]
+				explode: [157, 223], // explosion ~190
+				fly: [224,252]
 			}
 		});
 
-		this.waitDelay = 150;
+		this.waitDelay = 115;
 
 		if (this.type === GJ.ActorTypes.GROUND_NORMAL) {
 			this.useGravity = true;
