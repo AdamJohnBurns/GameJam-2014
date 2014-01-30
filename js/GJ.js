@@ -55,7 +55,7 @@ var GJ = (function () {
 			gemImage.y = 20;
 			stage.addChild(gemImage);
 
-			gemText = new createjs.Text('' + numGems, "20px Arial", "#000000"); 
+			gemText = new createjs.Text('' + numGems, "20px Arial", "#000000");
 			gemText.x = 50;
 			gemText.y = 40;
 			gemText.textBaseline = "alphabetic";
@@ -71,10 +71,10 @@ var GJ = (function () {
 			heartImage.scaleY = 0.55;
 			stage.addChild(heartImage);
 
-			heartText = new createjs.Text('' + numHearts, "20px Arial", "#000000"); 
+			heartText = new createjs.Text('' + numHearts, "20px Arial", "#000000");
 			heartText.x = 130;
 			heartText.y = 40;
-	
+
 			heartText.textBaseline = "alphabetic";
 			stage.addChild(heartText);
 	};
@@ -97,9 +97,9 @@ var GJ = (function () {
 		players = [];
 		for (i = 0; i < NUM_PLAYERS; i++) {
 			players.push(new Player(
-				GJ.Input.Keycodes.LEFT_ARROW, 
-				GJ.Input.Keycodes.RIGHT_ARROW, 
-				GJ.Input.Keycodes.ALT, 
+				GJ.Input.Keycodes.LEFT_ARROW,
+				GJ.Input.Keycodes.RIGHT_ARROW,
+				GJ.Input.Keycodes.ALT,
 				GJ.Input.Keycodes.UP_ARROW,
 				GJ.Input.Keycodes.CTRL,
 				GJ.Input.Keycodes.SPACEBAR,
@@ -118,7 +118,7 @@ var GJ = (function () {
 
 
 		GJ.Sound.triggerEvent("new_wave");
-		
+
 	};
 
 
@@ -131,8 +131,8 @@ var GJ = (function () {
 			gapBetweenMiniWaves = 1500;
 
 		actors = [];
-// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 800, startY + 0));		
-// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));	
+// actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, 800, startY + 0));
+// actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, 800, startY + 0));
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 800, balloonHeightHigh));
 // actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, 900, balloonHeightLow));
 
@@ -165,13 +165,13 @@ var GJ = (function () {
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 200, startY + 0));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 300, startY + 0));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 400, startY + 0));
-				
+
 		enemyCount = actors.length;
 	};
 
 
 	///////////////// WAVE 2
-	
+
 	var setupWaveTitle2 = function () {
 		var effect = new Effect(550, 110, GJ.EffectTypes.WAVE2, 0);
 
@@ -228,18 +228,18 @@ var GJ = (function () {
 		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 900, balloonHeightHigh));
 		actors.push(new Actor(GJ.ActorTypes.GROUND_EXPLODING, startX + 1000, startY + 0));
 		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 1000, balloonHeightHigh));
-				
+
 		enemyCount = actors.length;
 	};
 
 
 	///////////////// WAVE 3
-	
+
 	var setupWaveTitle3 = function () {
 		var effect = new Effect(550, 110, GJ.EffectTypes.WAVE3, 0);
 
 		turtle.image.gotoAndPlay('idle');
-		
+
 	};
 
 	var spawnWave3 = function () {
@@ -321,15 +321,15 @@ var GJ = (function () {
 		actors.push(new Actor(GJ.ActorTypes.GROUND_NORMAL, startX + 1000, startY + 0));
 		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 1000, balloonHeightLow));
 		actors.push(new Actor(GJ.ActorTypes.FLYING_NORMAL, startX + 1000, balloonHeightHigh));
-				
+
 		enemyCount = actors.length;
 	};
 
 
 	///////////////// WIN
-	
+
 	var showWin = function () {
-		GJ.Sound.triggerEvent("win");		
+		GJ.Sound.triggerEvent("win");
 		stage.addChild(winTitle);
 		turtle.image.gotoAndPlay('happy');
 	};
@@ -342,7 +342,7 @@ var GJ = (function () {
 
 	var showHelp = function () {
 		stage.addChild(mainTitle);
-		console.log(mainTitle);
+		//console.log(mainTitle);
 		var effect = new Effect(550, 420, GJ.EffectTypes.HELP, 0);
 	};
 
@@ -351,12 +351,12 @@ var GJ = (function () {
 		stage.removeChild(mainTitle);
 	};
 
-	
+
 	var showGameOver = function () {
 		GJ.Sound.triggerEvent("lose");
 		stage.addChild(gameOverTitle);
 		actors = [];
-		
+
 	};
 
 
@@ -462,7 +462,7 @@ var GJ = (function () {
 				actors[i].update();
 			}
 
-			if (activeCount <= 0 && waveTimer > 450) {
+			if (activeCount <= 0 && waveTimer > 450 && readyToPlay) {
 				triggerWaveEnd();
 			}
 
@@ -474,7 +474,7 @@ var GJ = (function () {
 				}
 			}
 
-			waveTimer++;
+				waveTimer++;
 
 
 			///////////////////// GAME OVER
@@ -483,13 +483,11 @@ var GJ = (function () {
 			if(waveTimer == 100 && waveCounter == -1) {
 				showGameOver();
 			}
-// if(waveCounter == -1 ) {
-// 	console.log(waveTimer);
-// }
+
 			if(waveTimer == 300 && waveCounter == -1) {
 				GJ.assetsReady();
 			}
-			
+
 
 
 			///////////////////// HELP
@@ -510,7 +508,7 @@ var GJ = (function () {
 				if (GJ.Input.isPressed(GJ.Input.Keycodes.ALT)) {
 					readyToPlay = true;
 				}
-			} 
+			}
 
 
 			///////////////////// WIN
@@ -528,54 +526,54 @@ var GJ = (function () {
 
 			///////////////////// WAVE 1
 
-			if(waveTimer == 100 && waveCounter == 1) {
+			if(waveTimer == 100 && waveCounter == 1 && readyToPlay) {
 				setupWaveTitle1();
 				showTitleWave();
 			}
 
-			else if(waveTimer == 300 && waveCounter == 1) {
+			else if(waveTimer == 300 && waveCounter == 1 && readyToPlay) {
 				hideTitleWave();
 			}
 
-			else if (waveTimer == 400 && waveCounter == 1) {
+			else if (waveTimer == 400 && waveCounter == 1 && readyToPlay) {
 				spawnWave1();
 			}
 
 			///////////////////// WAVE 2
 
-			if(waveTimer == 100 && waveCounter == 2) {
+			if(waveTimer == 100 && waveCounter == 2 && readyToPlay) {
 				setupWaveTitle2();
 				showTitleWave();
 			}
 
-			else if(waveTimer == 300 && waveCounter == 2) {
+			else if(waveTimer == 300 && waveCounter == 2 && readyToPlay) {
 				hideTitleWave();
 			}
 
-			else if (waveTimer == 400 && waveCounter == 2) {
+			else if (waveTimer == 400 && waveCounter == 2 && readyToPlay) {
 				spawnWave2();
 			}
 
 
 			///////////////////// WAVE 3
 
-			if(waveTimer == 100 && waveCounter == 3) {
+			if(waveTimer == 100 && waveCounter == 3 && readyToPlay) {
 				setupWaveTitle3();
 				showTitleWave();
 			}
 
-			else if(waveTimer == 300 && waveCounter == 3) {
+			else if(waveTimer == 300 && waveCounter == 3 && readyToPlay) {
 				hideTitleWave();
 			}
 
-			else if (waveTimer == 400 && waveCounter == 3) {
+			else if (waveTimer == 400 && waveCounter == 3 && readyToPlay) {
 				spawnWave3();
 			}
 
 
 			///////////////////// WINRAR!
 
-			
+
 
 			drawFPS();
 
@@ -660,7 +658,7 @@ var GJ = (function () {
 			enemyCount--;
 
 			if (enemyCount <= 0) {
-				
+
 			}
 		},
 
