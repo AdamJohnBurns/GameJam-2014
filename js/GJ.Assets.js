@@ -60,7 +60,7 @@ GJ.Assets = (function () {
 			{id: 'ParticleHeart', src:'img/Particles/Heart.png'},
 
 			// bullets
-			{id: 'BulletGem', src:'img/Particles/Diamond.png'},			
+			{id: 'BulletGem', src:'img/Particles/Diamond.png'},
 
 			// scene
 			{id: 'SceneBGMain', src:'img/Scene/BGMain.png'},
@@ -73,18 +73,18 @@ GJ.Assets = (function () {
 			{id: 'SceneCloud3', src:'img/Scene/Cloud3.png'},
 
 			// audio
-			{id: 'music', src:'audio/music.ogg', data: 1},			
+			{id: 'music', src:'audio/music.ogg', data: 1},
 			{id: 'amb_birdsong', src:'audio/amb_birdsong.ogg', data: 1},
-			{id: 'footstep_grass_01', src:'audio/footstep_grass_01.ogg', data: 4},
-			{id: 'footstep_grass_02', src:'audio/footstep_grass_02.ogg', data: 4},
-			{id: 'footstep_grass_03', src:'audio/footstep_grass_03.ogg', data: 4},
-			{id: 'footstep_grass_04', src:'audio/footstep_grass_04.ogg', data: 4},
-			{id: 'footstep_grass_05', src:'audio/footstep_grass_05.ogg', data: 4},
-			{id: 'footstep_grass_06', src:'audio/footstep_grass_06.ogg', data: 4},
-			{id: 'footstep_grass_07', src:'audio/footstep_grass_07.ogg', data: 4},
-			{id: 'footstep_grass_08', src:'audio/footstep_grass_08.ogg', data: 4},
+			{id: 'footstep_grass_01', src:'audio/footstep_grass_01.ogg', data: 3},
+			{id: 'footstep_grass_02', src:'audio/footstep_grass_02.ogg', data: 3},
+			{id: 'footstep_grass_03', src:'audio/footstep_grass_03.ogg', data: 3},
+			{id: 'footstep_grass_04', src:'audio/footstep_grass_04.ogg', data: 3},
+			{id: 'footstep_grass_05', src:'audio/footstep_grass_05.ogg', data: 3},
+			{id: 'footstep_grass_06', src:'audio/footstep_grass_06.ogg', data: 3},
+			{id: 'footstep_grass_07', src:'audio/footstep_grass_07.ogg', data: 3},
+			{id: 'footstep_grass_08', src:'audio/footstep_grass_08.ogg', data: 3},
 			{id: 'footstep_land_01', src:'audio/footstep_land_01.ogg', data: 4},
-			{id: 'footstep_land_02', src:'audio/footstep_land_02.ogg', data: 4},			
+			{id: 'footstep_land_02', src:'audio/footstep_land_02.ogg', data: 4},
 			{id: 'footstep_land_03', src:'audio/footstep_land_03.ogg', data: 4},
 			{id: 'footstep_land_04', src:'audio/footstep_land_04.ogg', data: 4},
 			{id: 'explosion_02', src:'audio/expl_02.ogg', data: 4},
@@ -126,7 +126,7 @@ GJ.Assets = (function () {
 			{id: 'sword_swing_04', src:'audio/sword_swing_04.ogg', data: 10},
 			{id: 'swish_01', src:'audio/swish_01.ogg', data: 10},
 			{id: 'swish_02', src:'audio/swish_02.ogg', data: 10},
-			{id: 'swish_03', src:'audio/swish_03.ogg', data: 10},			
+			{id: 'swish_03', src:'audio/swish_03.ogg', data: 10},
 			{id: 'rummage_01', src:'audio/rummage_01.ogg', data: 5},
 			{id: 'rummage_02', src:'audio/rummage_02.ogg', data: 5},
 			{id: 'rummage_03', src:'audio/rummage_03.ogg', data: 5},
@@ -142,7 +142,7 @@ GJ.Assets = (function () {
 			{id: 'pick', src:'audio/pick.ogg', data: 1},
 			{id: 'win', src:'audio/win.ogg', data: 3},
 			{id: 'lose', src:'audio/lose.ogg', data: 3},
-			{id: 'new_wave', src:'audio/new_wave.ogg', data: 1}			
+			{id: 'new_wave', src:'audio/new_wave.ogg', data: 1}
 		]);
 	};
 

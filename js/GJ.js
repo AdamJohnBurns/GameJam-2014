@@ -89,6 +89,7 @@ var GJ = (function () {
 		players[0].image.x = 4000;
 		players[0].image.y = 4000;
 		GJ.getStage().removeChild(players[0].image);
+		GJ.Sound.triggerEvent("death");
 	};
 
 
@@ -463,7 +464,7 @@ var GJ = (function () {
 			}
 
 			if (activeCount <= 0 && waveTimer > 450 && readyToPlay) {
-				triggerWaveEnd();
+				triggerWaveEnd(); // PROBLEMATIC IF WE HIT "play" after 450 ticks
 			}
 
 			for (i = 0; i < players.length; i++) {
@@ -474,7 +475,11 @@ var GJ = (function () {
 				}
 			}
 
+			if (readyToPlay) {
 				waveTimer++;
+			} else if (waveTimer < 448) {
+				waveTimer++;
+			}
 
 
 			///////////////////// GAME OVER

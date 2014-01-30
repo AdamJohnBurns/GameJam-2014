@@ -19,7 +19,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 
 	this.footstepDelay = 30;
 	this.footstepTimer = this.footstepDelay;
-	
+
 	this.isOnGround = false;
 
 	this.attackRange = 20;
@@ -39,7 +39,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 	var data;
 	data = new createjs.SpriteSheet({
 		framerate: 25,
-		images: [ 
+		images: [
 			GJ.Assets.get('MainCharacterIdle'), // 10
 			GJ.Assets.get('MainCharacterRun'), 	// 17
 			GJ.Assets.get('MainCharacterJump'), 	// 15
@@ -48,7 +48,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 			GJ.Assets.get('MainCharacterPickaxe'), 	// 104
 			GJ.Assets.get('MainCharacterMelee'), 	// 14
 			GJ.Assets.get('MainCharacterHitBack') 	// 8
-		], 
+		],
 		frames: [
 			// x, y, width, height, index, regX, regY
 			// the index needs to match the file with the sprites
@@ -60,7 +60,7 @@ var Player = function (leftKey, rightKey, shootKey, jumpKey, meleeKey, useKey, m
 			[0,0,155,157,5,55.65,151.15],[160,0,155,157,5,55.65,151.15],[320,0,155,157,5,55.65,151.15],[0,162,155,157,5,55.65,151.15],[160,162,155,157,5,55.65,151.15],[320,162,155,157,5,55.65,151.15],[0,324,155,157,5,55.65,151.15],[160,324,155,157,5,55.65,151.15],[320,324,155,157,5,55.65,151.15],[0,486,155,157,5,55.65,151.15],[160,486,155,157,5,55.65,151.15],[320,486,155,157,5,55.65,151.15],[0,648,155,157,5,55.65,151.15],[160,648,155,157,5,55.65,151.15],
 			[0,0,78,105,6,49.4,102.1],[83,0,78,105,6,49.4,102.1],[166,0,78,105,6,49.4,102.1],[0,110,78,105,6,49.4,102.1],[83,110,78,105,6,49.4,102.1],[166,110,78,105,6,49.4,102.1],[0,220,78,105,6,49.4,102.1],[83,220,78,105,6,49.4,102.1]
 		],
-		animations: { 
+		animations: {
 			idle: [0, 10],
 			run: [11, 27],
 			jump: [28, 43],
@@ -106,8 +106,8 @@ Player.prototype.update = function () {
 		if (this.footstepTimer <= 0) {
 			//GJ.Sound.triggerEvent("footstep");
 			this.footstepTimer = this.footstepDelay;
-		} else {	
-			this.footstepTimer--;		
+		} else {
+			this.footstepTimer--;
 		}
 
 		if (this.hitTimer > 0) {
@@ -197,7 +197,7 @@ Player.prototype.checkMining = function () {
 
 	if (typeof this.image.giveGem !== 'undefined' && this.image.giveGem === true) {
 		GJ.addGem();
-		
+
 		GJ.Sound.triggerEvent("gem_pickup");
 		this.image.giveGem = undefined;
 	}
@@ -248,11 +248,16 @@ Player.prototype.moveLeft = function () {
 	if (this.image.currentAnimation !== 'run' && this.isOnGround && this.image.currentAnimation !== 'hitback' && this.image.currentAnimation !== 'shoot') {
 		this.image.gotoAndPlay('run');
 	}
+
+	if (this.image.currentAnimation == 'run' && (this.image.currentFrame == 26 || this.image.currentFrame == 18)) {
+		GJ.Sound.triggerEvent('footstep');
+	}
+
 };
 
 
 Player.prototype.moveRight = function () {
-	
+
 	this.accelX += this.moveSpeed;
 
 	if (this.accelX > this.maxMoveSpeed) {
@@ -270,6 +275,11 @@ Player.prototype.moveRight = function () {
 	if (this.image.currentAnimation !== 'run' && this.isOnGround && this.image.currentAnimation !== 'hitback' && this.image.currentAnimation !== 'shoot') {
 		this.image.gotoAndPlay('run');
 	}
+
+	if (this.image.currentAnimation == 'run' && (this.image.currentFrame == 26 || this.image.currentFrame == 18)) {
+		GJ.Sound.triggerEvent('footstep');
+	}
+
 };
 
 
@@ -287,7 +297,7 @@ Player.prototype.meleeAttack = function () {
 				event.currentTarget.currentAnimation = 'idle';
 
 			} else if(event.currentTarget.currentFrame >= 189) {
-				var i, 
+				var i,
 					actors = GJ.getActors(),
 					attackBox = {
 						x: event.currentTarget.x,
@@ -345,7 +355,7 @@ Player.prototype.shoot = function () {
 		// console.log('SHOW GET MORE GEMS MSG');
 		GJ.Sound.triggerEvent("turtle_sad");
 	}
-	
+
 };
 
 
