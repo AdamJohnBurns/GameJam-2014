@@ -330,7 +330,7 @@ var GJ = (function () {
 	///////////////// WIN
 
 	var showWin = function () {
-		GJ.Sound.triggerEvent("win");
+		//GJ.Sound.triggerEvent("win");
 		stage.addChild(winTitle);
 		turtle.image.gotoAndPlay('happy');
 	};
@@ -525,7 +525,7 @@ var GJ = (function () {
 			}
 
 
-			if(waveTimer == 300 && waveCounter == 4) {
+			if(waveTimer == 500 && waveCounter == 4) {
 				GJ.assetsReady();
 			}
 

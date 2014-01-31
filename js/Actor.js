@@ -221,7 +221,7 @@ Actor.prototype.checkExploding = function () {
 
 
 Actor.prototype.killBalloon = function () {
-	GJ.Sound.triggerEvent("pop");
+			//GJ.Sound.triggerEvent("pop");
 			this.balloon.removeBalloon = undefined;
 			this.ignoreBalloon = true;
 			// this.balloon.x = 2000;
