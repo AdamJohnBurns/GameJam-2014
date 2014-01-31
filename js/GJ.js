@@ -520,12 +520,12 @@ var GJ = (function () {
 			///////////////////// WIN
 
 
-			if(waveTimer == 1 && waveCounter == 99) {
+			if(waveTimer == 1 && waveCounter == 4) {
 				showWin();
 			}
 
 
-			if(waveTimer == 100 && waveCounter == 99) {
+			if(waveTimer == 300 && waveCounter == 4) {
 				GJ.assetsReady();
 			}
 
